@@ -1,0 +1,13 @@
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\bin\Release\SewingCompanyManagement.exe.config
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\bin\Release\SewingCompanyManagement.exe
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\bin\Release\SewingCompanyManagement.pdb
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.csprojAssemblyReference.cache
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.EntranceForm.resources
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.frmManager.resources
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.frmMaster.resources
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.Properties.Resources.resources
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.frmTechnologist.resources
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.csproj.GenerateResource.cache
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.csproj.CoreCompileInputs.cache
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.exe
+D:\GDrive\Develop\#HELEN PROJECTS\HELEN_NUOS\_DataBase\SewingCompanyManagement\obj\Release\SewingCompanyManagement.pdb
