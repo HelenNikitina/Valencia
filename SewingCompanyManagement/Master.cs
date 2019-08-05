@@ -355,7 +355,7 @@ namespace SewingCompanyManagement
                 int employer = int.Parse(comboBoxIDWorkerMaster.Text.Split(' ')[0]);
                 int namberOfOperations = int.Parse(textBoxNumberOfOperation.Text);
                 int operationForModel = 0;
-
+                string dateTime = DateTime.Now.ToShortDateString();
                 try
                 {
                     myConnection.Open();
@@ -375,9 +375,9 @@ namespace SewingCompanyManagement
                     }
                     reader.Close();
 
-                    string query = "INSERT INTO ORDER_OF_PRODCTION_OPERATIONS " +
-                        "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE) " +
-                        "VALUES (" + order + " , " + operationForModel + "," + employer + "," + namberOfOperations + "); ";
+                    string query = "INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
+                        "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE, [DATE]) " +
+                        "VALUES ('" + order + "' , '" + operationForModel + "' , '" + employer + "' , '" + namberOfOperations + "' , '" + dateTime + "')";
 
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
@@ -408,7 +408,8 @@ namespace SewingCompanyManagement
                     "PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION as [операция № ], " +
                     "EMPLOYEE.ID_EMPLOYEE as [исполнитель № ], " +
                     "EMPLOYEE.NAME_EMPLOYEE as [имя исполнителя ], " +
-                    "ORDER_OF_PRODCTION_OPERATIONS.NAMBER_OF_OPERATIONS_IS_DONE as [количество выпоненых операций] " +
+                    "ORDER_OF_PRODCTION_OPERATIONS.NAMBER_OF_OPERATIONS_IS_DONE as [количество выпоненых операций], " +
+                    "ORDER_OF_PRODCTION_OPERATIONS.DATE as [Дата] " +
                     "FROM PRODUCTION_OPERATION INNER JOIN(PRODUCTION_OPERATION_FOR_MODEL INNER JOIN([ORDER] INNER JOIN(ORDER_MODEL " +
                     "INNER JOIN(EMPLOYEE INNER JOIN ORDER_OF_PRODCTION_OPERATIONS ON EMPLOYEE.ID_EMPLOYEE = ORDER_OF_PRODCTION_OPERATIONS.ID_EMPLOYEE) " +
                     "ON ORDER_MODEL.ID_ORDER_LIST_MODEL = ORDER_OF_PRODCTION_OPERATIONS.ID_ORDER_LIST_MODEL) ON ORDER.ID_ORDER = ORDER_MODEL.ID_ORDER) " +
