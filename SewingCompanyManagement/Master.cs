@@ -19,8 +19,28 @@ namespace SewingCompanyManagement
         private void buttonGetOperationMaster_Click(object sender, EventArgs e)
         {
             PrintDBofPrerations();
+            getNamberOfOperationInOrder(sender, e, 21001352, 50);
         }
-
+        private int getNamberOfOperationInOrder(object sender, EventArgs e, int order, int operation)
+        {
+            Int32 value = 0;
+            try
+            {
+                string query = "SELECT SUM(NAMBER_OF_OPERATIONS_IS_DONE) FROM ORDER_OF_PRODCTION_OPERATIONS WHERE((ID_ORDER_LIST_MODEL = " + order + ") AND (ID_PRODUCTION_OPERATIONS_FOR_MODEL = " + operation + "));";
+                myConnection.Open();
+                lblConnections.Text = "Connection Successful";
+                OleDbCommand command = new OleDbCommand(query, myConnection);
+                value = Convert.ToInt32(command.ExecuteScalar());
+                myConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                MessageBox.Show("Error  " + ex);
+            }
+            MessageBox.Show(value.ToString());
+            return (int)value;
+        }
         private void PrintDBofPrerations()
         {
             try
