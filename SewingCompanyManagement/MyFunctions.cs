@@ -49,5 +49,9 @@ namespace SewingCompanyManagement
         {
             MessageBox.Show("Запис видалено !");
         }
+        public void MessageNotFound()
+        {
+            MessageBox.Show("Запис не знайдено !");
+        }
     }
 }

@@ -109,6 +109,7 @@
             this.comboBoxNumberOfOperationMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxNumberOfOperationMaster.TabIndex = 13;
             this.comboBoxNumberOfOperationMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfOperationMaster_DropDown);
+            this.comboBoxNumberOfOperationMaster.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNumberOfOperationMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfModelMaster
             // 
@@ -192,6 +193,7 @@
             this.textBoxNumberOfOperation.Name = "textBoxNumberOfOperation";
             this.textBoxNumberOfOperation.Size = new System.Drawing.Size(262, 22);
             this.textBoxNumberOfOperation.TabIndex = 4;
+            this.textBoxNumberOfOperation.TextChanged += new System.EventHandler(this.TextBoxNumberOfOperation_TextChanged);
             this.textBoxNumberOfOperation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfOperation_KeyPress);
             // 
             // lblConnections
@@ -325,6 +327,7 @@
             this.ErrorMaster1.Size = new System.Drawing.Size(13, 20);
             this.ErrorMaster1.TabIndex = 17;
             this.ErrorMaster1.Text = " \r\n";
+//            this.ErrorMaster1.Click += new System.EventHandler(this.ErrorMaster1_Click);
             // 
             // frmMaster
             // 

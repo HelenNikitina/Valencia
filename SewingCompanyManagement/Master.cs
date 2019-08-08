@@ -19,26 +19,40 @@ namespace SewingCompanyManagement
         private void buttonGetOperationMaster_Click(object sender, EventArgs e)
         {
             PrintDBofPrerations();
-            getNamberOfOperationInOrder(sender, e, 21001352, 50);
+            //getNamberOfOperationInOrder(sender, e, 21001352, 50);
         }
-        private int getNamberOfOperationInOrder(object sender, EventArgs e, int order, int operation)
+        private int getNamberOfOperationInOrder(object sender, EventArgs e, int order,int modelAndSize, int operation)
         {
             Int32 value = 0;
+            int idOperation = getIDOperationForModel(sender, e, operation, modelAndSize);
             try
             {
-                string query = "SELECT SUM(NAMBER_OF_OPERATIONS_IS_DONE) FROM ORDER_OF_PRODCTION_OPERATIONS WHERE((ID_ORDER_LIST_MODEL = " + order + ") AND (ID_PRODUCTION_OPERATIONS_FOR_MODEL = " + operation + "));";
+                string query = "SELECT SUM(NAMBER_OF_OPERATIONS_IS_DONE) FROM ORDER_OF_PRODCTION_OPERATIONS WHERE((ID_ORDER_LIST_MODEL = " + order + ") AND (ID_PRODUCTION_OPERATIONS_FOR_MODEL = " + idOperation + "));";
                 myConnection.Open();
                 lblConnections.Text = "Connection Successful";
                 OleDbCommand command = new OleDbCommand(query, myConnection);
-                value = Convert.ToInt32(command.ExecuteScalar());
-                myConnection.Close();
+                object result = command.ExecuteScalar();
+                if (result.GetType() != typeof(DBNull))
+                {
+                    value = Convert.ToInt32(result);
+                    myConnection.Close();
+                }
+                else
+                {
+                    value = 0;
+                    myConnection.Close();
+                }
+                 
+               
+                //value = Convert.ToInt32(command.ExecuteScalar());
+                //myConnection.Close();
             }
             catch (Exception ex)
-            {
+            { 
                 myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
-            MessageBox.Show(value.ToString());
+            //MessageBox.Show(value.ToString());
             return (int)value;
         }
         private void PrintDBofPrerations()
@@ -537,6 +551,79 @@ namespace SewingCompanyManagement
         private void ComboBoxIDWorkerMaster_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void TextBoxNumberOfOperation_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void ComboBoxNumberOfOperationMaster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);  
+            int orderModel = int.Parse(comboBoxNumberOfOrderMaster.Text + comboBoxNumberOfModelMaster.Text);
+            int operationToDo= getNamberOfModelToDo(sender,e, orderModel);
+            int operationIsDone = getNamberOfOperationInOrder(sender, e, orderModel,int.Parse(comboBoxNumberOfModelMaster.Text), operation);
+            int balance = operationToDo-operationIsDone;
+            textBoxNumberOfOperation.Text= balance.ToString();
+         
+        }
+        private int getIDOperationForModel(object sender, EventArgs e, int operation, int modelAndSize)
+        {
+            int var = 0;
+            try
+            {
+                string query = "SELECT ID_PRODUCTION_OPERATIONS_FOR_MODEL FROM PRODUCTION_OPERATION_FOR_MODEL WHERE(ID_PRODUCTION_OPERATION=" + operation + ") AND (ID_MODEL_AND_SIZE="+ modelAndSize + ");";
+                myConnection.Open();
+                lblConnections.Text = "Connection Successful";
+                OleDbCommand command = new OleDbCommand(query, myConnection);
+                object result = command.ExecuteScalar();
+                if (result.GetType() != typeof(DBNull))
+                {
+                    var = Convert.ToInt32(result);
+                    myConnection.Close();
+                }
+                else
+                {
+                    myFunction.MessageNotFound();
+                    myConnection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                MessageBox.Show("Error  " + ex);
+            }
+
+            return var;
+        }
+        private int getNamberOfModelToDo(object sender, EventArgs e, int orderModelSize)
+        {
+            int var = 0;
+            try
+            {
+                string query = "SELECT NUMBER_OF_MODELS FROM ORDER_MODEL WHERE(ID_ORDER_LIST_MODEL="+orderModelSize+");";
+                myConnection.Open();
+                lblConnections.Text = "Connection Successful";
+                OleDbCommand command = new OleDbCommand(query, myConnection);
+                object result = command.ExecuteScalar();
+                if (result.GetType() != typeof(DBNull))
+                {
+                    var = Convert.ToInt32(result);
+                    myConnection.Close();
+                }
+                else
+                {
+                    myFunction.MessageNotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                MessageBox.Show("Error  " + ex);
+            }
+
+            return var;
         }
     }
 }
