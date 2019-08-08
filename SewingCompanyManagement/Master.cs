@@ -388,6 +388,17 @@ namespace SewingCompanyManagement
                 int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);
                 int employer = int.Parse(comboBoxIDWorkerMaster.Text.Split(' ')[0]);
                 int namberOfOperations = int.Parse(textBoxNumberOfOperation.Text);
+                //сравнение введенного текста с балансом невыполненых операций в базеданных
+                if (compareBalanceAndEntredText(sender,e, namberOfOperations)==0)
+                {
+                    namberOfOperations = getBalancaOfOperation(sender, e);
+                    myFunction.MessageEnteredDataIsWrong();
+                }
+                //else if(compareBalanceAndEntredText(sender, e, namberOfOperations) == 1)
+                //{
+                //    //соощбщение про то что введено недопустимое значение для данной операции
+                    
+                //}
                 int operationForModel = 0;
                 string dateTime = DateTime.Now.ToShortDateString();
                 try
@@ -409,19 +420,29 @@ namespace SewingCompanyManagement
                     }
                     reader.Close();
 
-                    string query = "INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
+                    if (namberOfOperations>0)
+                    {
+                        string query = "INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
                         "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE, [DATE]) " +
                         "VALUES ('" + order + "' , '" + operationForModel + "' , '" + employer + "' , '" + namberOfOperations + "' , '" + dateTime + "')";
 
-                    command.CommandText = query;
-                    if (command.ExecuteNonQuery() == 1)
-                    {
-                        myFunction.MessageDataSeved();
-                        textBoxNumberOfOperation.Clear();
+                        command.CommandText = query;
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            myFunction.MessageDataSeved();
+                            textBoxNumberOfOperation.Clear();
+                        }
+                        myConnection.Close();
                     }
-
-                    myConnection.Close();
+                    else
+                    {     
+                        myFunction.MessageAllOperationsIsDone();
+                        myConnection.Close();
+                        textBoxNumberOfOperation.Text = getBalancaOfOperation(sender, e).ToString();
+                    }
+                    
                 }
+                    
                 catch (Exception ex)
                 {
                     myConnection.Close();
@@ -555,18 +576,32 @@ namespace SewingCompanyManagement
 
         private void TextBoxNumberOfOperation_TextChanged(object sender, EventArgs e)
         {
-           
+            
         }
-
+        private int compareBalanceAndEntredText(object sender, EventArgs e, int text)
+        {
+            int balance = getBalancaOfOperation(sender, e);
+            if (balance <= text)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
         private void ComboBoxNumberOfOperationMaster_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);  
+            textBoxNumberOfOperation.Text = getBalancaOfOperation(sender, e).ToString();
+        }
+        private int getBalancaOfOperation(object sender, EventArgs e)
+        {
+            int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);
             int orderModel = int.Parse(comboBoxNumberOfOrderMaster.Text + comboBoxNumberOfModelMaster.Text);
-            int operationToDo= getNamberOfModelToDo(sender,e, orderModel);
-            int operationIsDone = getNamberOfOperationInOrder(sender, e, orderModel,int.Parse(comboBoxNumberOfModelMaster.Text), operation);
-            int balance = operationToDo-operationIsDone;
-            textBoxNumberOfOperation.Text= balance.ToString();
-         
+            int operationToDo = getNamberOfModelToDo(sender, e, orderModel);
+            int operationIsDone = getNamberOfOperationInOrder(sender, e, orderModel, int.Parse(comboBoxNumberOfModelMaster.Text), operation);
+            int balance = operationToDo - operationIsDone;
+            return balance;
         }
         private int getIDOperationForModel(object sender, EventArgs e, int operation, int modelAndSize)
         {

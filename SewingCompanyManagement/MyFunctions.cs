@@ -53,5 +53,13 @@ namespace SewingCompanyManagement
         {
             MessageBox.Show("Запис не знайдено !");
         }
+        public void MessageAllOperationsIsDone()
+        {
+            MessageBox.Show("Данні операції виконані у повному овсязі, нема потреби вносити данний запис у базу даних.");
+        }
+        public void MessageEnteredDataIsWrong()
+        {
+            MessageBox.Show("Введені данні перевищують допустиме значення. У базу даних записано максимальне допустиме значення для даного поля. Для перевірки перегляньте базу даних виконаних операцій.");
+        }
     }
 }

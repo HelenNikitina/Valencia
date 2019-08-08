@@ -65,7 +65,7 @@
             this.buttonGetOperationMaster.Name = "buttonGetOperationMaster";
             this.buttonGetOperationMaster.Size = new System.Drawing.Size(278, 31);
             this.buttonGetOperationMaster.TabIndex = 2;
-            this.buttonGetOperationMaster.Text = "Просмотр списка операций по заказу";
+            this.buttonGetOperationMaster.Text = "Перегляд операцій для виконання";
             this.buttonGetOperationMaster.UseVisualStyleBackColor = true;
             this.buttonGetOperationMaster.Click += new System.EventHandler(this.buttonGetOperationMaster_Click);
             // 
@@ -272,7 +272,7 @@
             this.buttonGetOperationOfEmployee.Name = "buttonGetOperationOfEmployee";
             this.buttonGetOperationOfEmployee.Size = new System.Drawing.Size(242, 31);
             this.buttonGetOperationOfEmployee.TabIndex = 11;
-            this.buttonGetOperationOfEmployee.Text = "просмотр выпоненых работ по заказу";
+            this.buttonGetOperationOfEmployee.Text = "Перегляд виконаних операцій у замовленні";
             this.buttonGetOperationOfEmployee.UseVisualStyleBackColor = true;
             this.buttonGetOperationOfEmployee.Click += new System.EventHandler(this.buttonGetOperationOfEmployee_Click);
             // 
@@ -327,7 +327,6 @@
             this.ErrorMaster1.Size = new System.Drawing.Size(13, 20);
             this.ErrorMaster1.TabIndex = 17;
             this.ErrorMaster1.Text = " \r\n";
-//            this.ErrorMaster1.Click += new System.EventHandler(this.ErrorMaster1_Click);
             // 
             // frmMaster
             // 
