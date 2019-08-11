@@ -324,7 +324,6 @@ namespace SewingCompanyManagement
                     }
                     //закрытие соединения с базой данных
                     myConnection.Close();
-
                 }
                 catch (Exception ex)
                 {
@@ -349,7 +348,7 @@ namespace SewingCompanyManagement
                 //текст команбы
                 string query = "SELECT EMPLOYEE.ID_EMPLOYEE , EMPLOYEE.NAME_EMPLOYEE " +
                     "FROM POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE " +
-                    "WHERE(((POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE)LIKE 'Швея')); ";
+                    "WHERE(((POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE)LIKE 'Швея') AND (EMPLOYEE.STATUS=1)); ";
                 //создание SQL команды 
                 command.CommandText = query;
                 //считывание данных из базы данных
@@ -394,11 +393,7 @@ namespace SewingCompanyManagement
                     namberOfOperations = getBalancaOfOperation(sender, e);
                     myFunction.MessageEnteredDataIsWrong();
                 }
-                //else if(compareBalanceAndEntredText(sender, e, namberOfOperations) == 1)
-                //{
-                //    //соощбщение про то что введено недопустимое значение для данной операции
-                    
-                //}
+                
                 int operationForModel = 0;
                 string dateTime = DateTime.Now.ToShortDateString();
                 try
