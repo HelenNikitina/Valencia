@@ -615,7 +615,7 @@ namespace SewingCompanyManagement
                 }
                 else
                 {
-                    myFunction.MessageNotFound();
+                    myFunction.MessageDataNotFound();
                     myConnection.Close();
                 }
             }
@@ -644,7 +644,7 @@ namespace SewingCompanyManagement
                 }
                 else
                 {
-                    myFunction.MessageNotFound();
+                    myFunction.MessageDataNotFound();
                 }
             }
             catch (Exception ex)

@@ -85,8 +85,11 @@ namespace SewingCompanyManagement
                 string query = "SELECT EMPLOYEE.ID_EMPLOYEE as [Табельний номер працівника], " +
                     "EMPLOYEE.NAME_EMPLOYEE as [ПІП працівника], " +
                     "EMPLOYEE.PHONE_EMPLOYEE as [Номер телефона працівника], " +
-                    "POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE as [Посада працівника] " +
-                    "FROM POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE; ";
+                    "POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE as [Посада працівника], " +
+                    "EMPLOYEE_STATUS.NAME_OF_STATUS as [Статус працівника]"+
+                    "FROM EMPLOYEE_STATUS INNER JOIN (POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON " +
+                    "POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE) ON " +
+                    "EMPLOYEE_STATUS.ID_STATUS = EMPLOYEE.STATUS; ";
                 myConnection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = myConnection;
@@ -459,6 +462,55 @@ namespace SewingCompanyManagement
                     MessageBox.Show("Error  " + ex);
                 }
             }
+        }
+
+        private void ButtonDismiss_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxIDEmployeeForDismiss.Text))
+            {
+                myFunction.MessageBlankFields();
+            }
+            else
+            {
+                int IdEmployee = int.Parse(textBoxIDEmployeeForDismiss.Text);
+                try
+                {
+                    myConnection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = myConnection;
+
+                    //string query = "INSERT INTO [EMPLOYEE] (STATUS) VALUES (2) WHERE EMPLOYEE.ID_EMPLOYEE=" + IdEmployee + ";";
+                    string query = "UPDATE EMPLOYEE SET STATUS=2 WHERE EMPLOYEE.ID_EMPLOYEE=" + IdEmployee + ";";
+                    command.CommandText = query;
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        myFunction.MessageDataSeved();
+                        textBoxIDEmployeeForDismiss.Clear();
+                        myConnection.Close();
+                    }
+                    else
+                    {
+                        myFunction.MessageDataNotFound();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    myConnection.Close();
+                    MessageBox.Show("Error  " + ex);
+                }
+            }
+           
+        }
+
+        private void TextBoxIDEmployeeForDismiss_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxIDEmployeeForDismiss_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            myFunction.MyDigitKeyPress(sender, e);
         }
     }
 }

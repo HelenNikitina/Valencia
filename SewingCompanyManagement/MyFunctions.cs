@@ -19,7 +19,7 @@ namespace SewingCompanyManagement
         }
         public void MessageBlankFields()
         {
-            MessageBox.Show("Усі поля повинні бути заповнені !!");
+            MessageBox.Show("Усі поля у доному блоці повинні бути заповнені !!");
         }
         public void MessageChooseModel()
         {
@@ -49,9 +49,9 @@ namespace SewingCompanyManagement
         {
             MessageBox.Show("Запис видалено !");
         }
-        public void MessageNotFound()
+        public void MessageDataNotFound()
         {
-            MessageBox.Show("Запис не знайдено !");
+            MessageBox.Show("Запис не знайдено ! Перевірте коректність введених даних. ");
         }
         public void MessageAllOperationsIsDone()
         {
