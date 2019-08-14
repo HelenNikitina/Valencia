@@ -25,13 +25,15 @@ namespace SewingCompanyManagement
         {
             try
             {
-
                 string query = "SELECT " +
-                    "ID_ORDER as [Замовлення №], " +
-                    "DATE_OF_ORDER as [Дата замовлення], " +
-                    "NAME_OF_CUSTOMER as [Им'я замовника], " +
-                    "[COMMENT] as [Коментар] "+
-                    "FROM [ORDER] " ;
+                    "ORDER.ID_ORDER as [Замовлення №], " +
+                    "ORDER.DATE_OF_ORDER as [Дата замовлення], " +
+                    "CUSTOMER.NAME_OF_CUSTOMER as [Им'я замовника], " +
+                    "ORDER.COMMENT as [Коментар], " +
+                    "ORDER.NAMBER_OF_MODELS as [Кількість одиниць у замовленні], " +
+                    "ORDER.PERSENTAGE_OF_READINESS as [Готовність у процентах] " +
+                    "FROM CUSTOMER INNER JOIN[ORDER] ON CUSTOMER.ID = ORDER.ID_OF_CUSTOMER;";
+
                 myConnection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = myConnection;

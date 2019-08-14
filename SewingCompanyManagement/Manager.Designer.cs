@@ -58,6 +58,10 @@
             this.textBoxNameOfCostumer = new System.Windows.Forms.TextBox();
             this.dateTimePickerManager = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBoxDismissAnEmployee = new System.Windows.Forms.GroupBox();
+            this.buttonDismiss = new System.Windows.Forms.Button();
+            this.textBoxIDEmployeeForDismiss = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.buttonAddNewEmployee = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -73,10 +77,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNamePosition = new System.Windows.Forms.TextBox();
             this.textBoxIdPosition = new System.Windows.Forms.TextBox();
-            this.groupBoxDismissAnEmployee = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxIDEmployeeForDismiss = new System.Windows.Forms.TextBox();
-            this.buttonDismiss = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewForManager)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -84,10 +84,10 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBoxDismissAnEmployee.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBoxDismissAnEmployee.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewForManager
@@ -238,9 +238,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(16, 175);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(167, 13);
+            this.label6.Size = new System.Drawing.Size(204, 13);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Кількість одиниць у замовленні\r\n";
+            this.label6.Text = "Кількість одиниць моделі у замовленні\r\n";
             // 
             // textBoxNumberModelsInOrder
             // 
@@ -404,6 +404,47 @@
             this.tabPage2.Text = "Працівники";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBoxDismissAnEmployee
+            // 
+            this.groupBoxDismissAnEmployee.Controls.Add(this.buttonDismiss);
+            this.groupBoxDismissAnEmployee.Controls.Add(this.textBoxIDEmployeeForDismiss);
+            this.groupBoxDismissAnEmployee.Controls.Add(this.label14);
+            this.groupBoxDismissAnEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxDismissAnEmployee.Location = new System.Drawing.Point(7, 206);
+            this.groupBoxDismissAnEmployee.Name = "groupBoxDismissAnEmployee";
+            this.groupBoxDismissAnEmployee.Size = new System.Drawing.Size(381, 145);
+            this.groupBoxDismissAnEmployee.TabIndex = 1;
+            this.groupBoxDismissAnEmployee.TabStop = false;
+            this.groupBoxDismissAnEmployee.Text = "Звільнити працівника";
+            // 
+            // buttonDismiss
+            // 
+            this.buttonDismiss.Location = new System.Drawing.Point(254, 98);
+            this.buttonDismiss.Name = "buttonDismiss";
+            this.buttonDismiss.Size = new System.Drawing.Size(121, 28);
+            this.buttonDismiss.TabIndex = 2;
+            this.buttonDismiss.Text = "Звільнити";
+            this.buttonDismiss.UseVisualStyleBackColor = true;
+            this.buttonDismiss.Click += new System.EventHandler(this.ButtonDismiss_Click);
+            // 
+            // textBoxIDEmployeeForDismiss
+            // 
+            this.textBoxIDEmployeeForDismiss.Location = new System.Drawing.Point(7, 48);
+            this.textBoxIDEmployeeForDismiss.Name = "textBoxIDEmployeeForDismiss";
+            this.textBoxIDEmployeeForDismiss.Size = new System.Drawing.Size(368, 21);
+            this.textBoxIDEmployeeForDismiss.TabIndex = 1;
+            this.textBoxIDEmployeeForDismiss.TextChanged += new System.EventHandler(this.TextBoxIDEmployeeForDismiss_TextChanged);
+            this.textBoxIDEmployeeForDismiss.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxIDEmployeeForDismiss_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 29);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(178, 15);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Табельний номер працівника";
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.buttonAddNewEmployee);
@@ -548,47 +589,6 @@
             this.textBoxIdPosition.Size = new System.Drawing.Size(368, 20);
             this.textBoxIdPosition.TabIndex = 0;
             // 
-            // groupBoxDismissAnEmployee
-            // 
-            this.groupBoxDismissAnEmployee.Controls.Add(this.buttonDismiss);
-            this.groupBoxDismissAnEmployee.Controls.Add(this.textBoxIDEmployeeForDismiss);
-            this.groupBoxDismissAnEmployee.Controls.Add(this.label14);
-            this.groupBoxDismissAnEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxDismissAnEmployee.Location = new System.Drawing.Point(7, 206);
-            this.groupBoxDismissAnEmployee.Name = "groupBoxDismissAnEmployee";
-            this.groupBoxDismissAnEmployee.Size = new System.Drawing.Size(381, 145);
-            this.groupBoxDismissAnEmployee.TabIndex = 1;
-            this.groupBoxDismissAnEmployee.TabStop = false;
-            this.groupBoxDismissAnEmployee.Text = "Звільнити працівника";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 29);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(178, 15);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Табельний номер працівника";
-            // 
-            // textBoxIDEmployeeForDismiss
-            // 
-            this.textBoxIDEmployeeForDismiss.Location = new System.Drawing.Point(7, 48);
-            this.textBoxIDEmployeeForDismiss.Name = "textBoxIDEmployeeForDismiss";
-            this.textBoxIDEmployeeForDismiss.Size = new System.Drawing.Size(368, 21);
-            this.textBoxIDEmployeeForDismiss.TabIndex = 1;
-            this.textBoxIDEmployeeForDismiss.TextChanged += new System.EventHandler(this.TextBoxIDEmployeeForDismiss_TextChanged);
-            this.textBoxIDEmployeeForDismiss.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxIDEmployeeForDismiss_KeyPress);
-            // 
-            // buttonDismiss
-            // 
-            this.buttonDismiss.Location = new System.Drawing.Point(254, 98);
-            this.buttonDismiss.Name = "buttonDismiss";
-            this.buttonDismiss.Size = new System.Drawing.Size(121, 28);
-            this.buttonDismiss.TabIndex = 2;
-            this.buttonDismiss.Text = "Звільнити";
-            this.buttonDismiss.UseVisualStyleBackColor = true;
-            this.buttonDismiss.Click += new System.EventHandler(this.ButtonDismiss_Click);
-            // 
             // frmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,13 +610,13 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.groupBoxDismissAnEmployee.ResumeLayout(false);
+            this.groupBoxDismissAnEmployee.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBoxDismissAnEmployee.ResumeLayout(false);
-            this.groupBoxDismissAnEmployee.PerformLayout();
             this.ResumeLayout(false);
 
         }
