@@ -343,6 +343,7 @@
             this.Name = "frmMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master";
+            this.Load += new System.EventHandler(this.frmMaster_Load);
             this.groupBoxMaster.ResumeLayout(false);
             this.groupBoxMaster.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaster)).EndInit();

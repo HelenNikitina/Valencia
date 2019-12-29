@@ -17,24 +17,38 @@ namespace SewingCompanyManagement
 
         private void buttonGetOperationMaster_Click(object sender, EventArgs e)
         {
-            ErrorMaster1.Text = "";
-            int order = 0;
-            int model = 0;
-            if (string.IsNullOrEmpty(comboBoxNumberOfOrderForMasterView.Text)) order = 0;
-            else order = int.Parse(comboBoxNumberOfOrderForMasterView.Text);
-            if (string.IsNullOrEmpty(comboBoxNumberOfModelForMaster.Text)) model = 0;
-            else model = int.Parse(comboBoxNumberOfModelForMaster.Text);
-            dataGridViewMaster.DataSource = DataBaseHelper.Master_GetOperationsToDo(order,model);
+            try
+            {
+                ErrorMaster1.Text = "";
+                int order = 0;
+                int model = 0;
+                if (string.IsNullOrEmpty(comboBoxNumberOfOrderForMasterView.Text)) order = 0;
+                else order = int.Parse(comboBoxNumberOfOrderForMasterView.Text);
+                if (string.IsNullOrEmpty(comboBoxNumberOfModelForMaster.Text)) model = 0;
+                else model = int.Parse(comboBoxNumberOfModelForMaster.Text);
+                dataGridViewMaster.DataSource = DataBaseHelper.Master_GetOperationsToDo(order, model);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error  " + ex);
+            }
+           
 
         }
-
+        void ClearCbx(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            comboBox.Text = "";
+        }
    
         private void comboBoxNumberOfOrderMaster_DropDown(object sender, EventArgs e)
         {
             try
             {
-                comboBoxNumberOfOrderMaster.DataSource = null; ;
-                comboBoxNumberOfOrderMaster.DataSource = DataBaseHelper.GetNumberOfOrder();
+                ClearCbx(comboBoxNumberOfOrderMaster);
+                comboBoxNumberOfOrderMaster.Items.AddRange(DataBaseHelper.GetNumberOfOrder().ToArray());
+                ClearCbx(comboBoxNumberOfModelMaster);
             }
             catch (Exception ex)
             {
@@ -44,7 +58,7 @@ namespace SewingCompanyManagement
 
         private void comboBoxNumberOfModelMaster_DropDown(object sender, EventArgs e)
         {
-
+            
             if (string.IsNullOrEmpty(comboBoxNumberOfOrderMaster.Text))
             {
                 MyFunctions.MessageChooseOrder();
@@ -54,8 +68,11 @@ namespace SewingCompanyManagement
                 try
                 {
                     int namberOfOrder = int.Parse(comboBoxNumberOfOrderMaster.Text);
-                    comboBoxNumberOfModelMaster.DataSource = null; ;
-                    comboBoxNumberOfModelMaster.DataSource = DataBaseHelper.GetNumberOfModelByOrder(namberOfOrder);
+                    comboBoxNumberOfModelMaster.Items.Clear();
+                    comboBoxNumberOfModelMaster.Text = "";
+                    comboBoxNumberOfModelMaster.Items.AddRange(DataBaseHelper.GetNumberOfModelByOrder(namberOfOrder).ToArray());
+                    comboBoxNumberOfOperationMaster.Items.Clear();
+                    comboBoxNumberOfOperationMaster.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -68,8 +85,9 @@ namespace SewingCompanyManagement
         {
             try
             {
-                comboBoxNumberOfOrderMaster.DataSource = null; ;
-                comboBoxNumberOfOrderForMasterView.DataSource= DataBaseHelper.GetNumberOfOrder();
+                comboBoxNumberOfOrderForMasterView.Items.Clear();
+                comboBoxNumberOfOrderForMasterView.Text = "";
+                comboBoxNumberOfOrderForMasterView.Items.AddRange(DataBaseHelper.GetNumberOfOrder().ToArray());
             }
             catch (Exception ex)
             {
@@ -86,6 +104,7 @@ namespace SewingCompanyManagement
                 ErrorMaster1.Text = "Оберіть значення для поля замовлення! ";
                 //очистка комбобокса
                 comboBoxNumberOfModelForMaster.Items.Clear();
+                comboBoxNumberOfModelForMaster.Text = "";
               //  comboBoxNumberOfModelForMaster.Text = "";
             }
             else
@@ -95,8 +114,9 @@ namespace SewingCompanyManagement
                     ErrorMaster1.Text = "";
                     //переменная которая принимает выбраное значение из комбабокса заказов
                     int order = int.Parse(comboBoxNumberOfOrderForMasterView.Text);
-                    comboBoxNumberOfModelForMaster.DataSource=null;
-                    comboBoxNumberOfModelForMaster.DataSource = DataBaseHelper.GetNumberOfModelByOrder(order);
+                    comboBoxNumberOfModelForMaster.Items.Clear();
+                    comboBoxNumberOfModelForMaster.Text = "";
+                    comboBoxNumberOfModelForMaster.Items.AddRange(DataBaseHelper.GetNumberOfModelByOrder(order).ToArray());
                 }
                 catch (Exception ex)
                 {
@@ -111,14 +131,16 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxNumberOfModelMaster.Text))
             {
-                MyFunctions.MessageChooseModel();            }
+                MyFunctions.MessageChooseModel();            
+            }
             else
             {
                 try
                 {
                     int model = int.Parse(comboBoxNumberOfModelMaster.Text);
-                    comboBoxNumberOfOperationMaster.DataSource = null; ;
-                    comboBoxNumberOfOperationMaster.DataSource = DataBaseHelper.GetNumberOfOperationByModel(model);
+                    comboBoxNumberOfOperationMaster.Items.Clear();
+                    comboBoxNumberOfOperationMaster.Text = "";
+                    comboBoxNumberOfOperationMaster.Items.AddRange(DataBaseHelper.GetNumberOfOperationByModel(model).ToArray());
                 }
                 catch (Exception ex)
                 {
@@ -131,8 +153,9 @@ namespace SewingCompanyManagement
         {
             try
             {
-                comboBoxIDWorkerMaster.DataSource = null; ;
-                comboBoxIDWorkerMaster.DataSource = DataBaseHelper.GetNumberIdAndNameOfEmployee();
+                comboBoxIDWorkerMaster.Items.Clear();
+                comboBoxIDWorkerMaster.Text = "";
+                comboBoxIDWorkerMaster.Items.AddRange(DataBaseHelper.GetNumberIdAndNameOfEmployee().ToArray());
             }
             catch (Exception ex)
             {
@@ -249,8 +272,17 @@ namespace SewingCompanyManagement
 
         private void buttonDelRowOerationIsDone_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(textBoxIdOperanionIsDone.Text);
-            DataBaseHelper.Master_DelRowOerationIsDoneById(id);
+            try
+            {
+                int id = int.Parse(textBoxIdOperanionIsDone.Text);
+                DataBaseHelper.Master_DelRowOerationIsDoneById(id);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error  " + ex);
+            }
+            
         }
 
         private void comboBoxNumberOfModelForMaster_SelectedIndexChanged(object sender, EventArgs e)
@@ -275,7 +307,7 @@ namespace SewingCompanyManagement
 
         private void TextBoxNumberOfOperation_TextChanged(object sender, EventArgs e)
         {
-            
+            textBoxNumberOfOperation.Text = getBalanceOfOperation().ToString();
         }
         private int compareBalanceAndEntredText(object sender, EventArgs e, int text)
         {
@@ -295,22 +327,20 @@ namespace SewingCompanyManagement
         }
         private int getBalanceOfOperation()
         {          
-            if (DataBaseHelper.IsServerAlive())
-            {
+           
                 int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);
                 int orderModel = int.Parse(comboBoxNumberOfOrderMaster.Text + comboBoxNumberOfModelMaster.Text);
                 int modelAndSize = int.Parse(comboBoxNumberOfModelMaster.Text);
                 int operationToDo = DataBaseHelper.Master_getNamberOfModelToDo(orderModel);
                 int operationIsDone = DataBaseHelper.Master_getNamberOfOperationInOrder(orderModel, modelAndSize, operation);
                 int balance = operationToDo - operationIsDone;
-                return balance;
-            }
-            else
-            {
-                MyFunctions.MesageServerIsntAlive();
-                return -1;
-            }           
-        }  
+                return balance;        
+        }
+
+        private void frmMaster_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

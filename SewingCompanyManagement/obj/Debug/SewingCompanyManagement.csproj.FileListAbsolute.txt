@@ -64,3 +64,16 @@ D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompa
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csproj.GenerateResource.cache
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.exe
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.pdb
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\bin\Debug\SewingCompanyManagement.exe.config
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\bin\Debug\SewingCompanyManagement.exe
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\bin\Debug\SewingCompanyManagement.pdb
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.frmAdmin.resources
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.EntranceForm.resources
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.frmManager.resources
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.frmMaster.resources
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.Properties.Resources.resources
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.frmTechnologist.resources
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csproj.GenerateResource.cache
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.exe
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.pdb
+D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csprojAssemblyReference.cache
