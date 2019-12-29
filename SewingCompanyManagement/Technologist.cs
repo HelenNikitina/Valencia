@@ -14,7 +14,6 @@ namespace SewingCompanyManagement
     public partial class frmTechnologist : Form
     {
         private OleDbConnection myConnection = new OleDbConnection();
-        MyFunctions myFunction = new MyFunctions();
         public frmTechnologist()
         {
             InitializeComponent();
@@ -221,7 +220,7 @@ namespace SewingCompanyManagement
         {     
             if (string.IsNullOrEmpty(textBoxNumberOfModel.Text)|| string.IsNullOrEmpty(textBoxNameOfModel.Text)|| string.IsNullOrEmpty(textBoxDescriptOfModel.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -239,7 +238,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery()==1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNumberOfModel.Clear();
                         textBoxNameOfModel.Clear();
                         textBoxDescriptOfModel.Clear();
@@ -257,12 +256,12 @@ namespace SewingCompanyManagement
 
         private void textBoxNumberOfModel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxIdOperatinToNew_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void buttonAddSizeForModel_Click(object sender, EventArgs e)
@@ -270,7 +269,7 @@ namespace SewingCompanyManagement
             int modelNumber, stature, size, modelAndSize, sizeAndSrature;
             if (string.IsNullOrEmpty(comboBoxNumberOfModelToAddSize.Text) || string.IsNullOrEmpty(comboBoxStatureOfModel.Text) || string.IsNullOrEmpty(comboBoxSizeOfModel.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -288,7 +287,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                     }
                     myConnection.Close();
                 }
@@ -416,7 +415,7 @@ namespace SewingCompanyManagement
             string nameOfOperation, descriptionOfOperation;
             if (string.IsNullOrEmpty(textBoxIdOperatinToNew.Text)|| string.IsNullOrEmpty(textBoxNameOperationToNew.Text)|| string.IsNullOrEmpty(textBoxOperatinnDescriptorToNew.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -433,7 +432,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxIdOperatinToNew.Clear();
                         textBoxNameOperationToNew.Clear();
                         textBoxOperatinnDescriptorToNew.Clear();
@@ -458,7 +457,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxModelAndSizeForAdd.Text))
             {
-                myFunction.MessageChooseModel();
+                MyFunctions.MessageChooseModel();
             }
             else
             {
@@ -496,7 +495,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxStature.Text))
             {
-                myFunction.MessageChooseSize();
+                MyFunctions.MessageChooseSize();
             }
             else
             {
@@ -529,34 +528,34 @@ namespace SewingCompanyManagement
        
         private void textBoxTimeForOperation_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxModelForDel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxOperationForDel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxModelForDelOperation_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxOperationForDelFromModel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void buttonDeleteModele_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(comboBoxModelNumberForUpdate.Text))
             {
-                myFunction.MessageChooseModel();
+                MyFunctions.MessageChooseModel();
             }
             else
             {
@@ -566,7 +565,7 @@ namespace SewingCompanyManagement
                 string query = null;
                 if (string.IsNullOrEmpty(textBoxNewNamedelForUpdate.Text)&& string.IsNullOrEmpty(textBoxNewDescriptModelForUpdate.Text))
                 {
-                    myFunction.MessageChooseModel();
+                    MyFunctions.MessageChooseModel();
                 }
                 else
                 {
@@ -598,7 +597,7 @@ namespace SewingCompanyManagement
                         command.CommandText = query;
                         if (command.ExecuteNonQuery() == 1)
                         {
-                            myFunction.MessageDataUpdate();
+                            MyFunctions.MessageDataUpdate();
                             textBoxNewNamedelForUpdate.Clear();
                             textBoxNewDescriptModelForUpdate.Clear();         
                         }
@@ -647,7 +646,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxModelAndSizeForAdd.Text)|| string.IsNullOrEmpty(comboBoxStature.Text)|| string.IsNullOrEmpty(comboBoxOperation.Text)|| string.IsNullOrEmpty(textBoxTimeForOperation.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -663,7 +662,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         comboBoxOperation.Items.Clear();
                         textBoxTimeForOperation.Clear();
                     }
@@ -682,7 +681,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxNumberOperationForUpdate.Text))
             {
-                myFunction.MessageChooseOperation();
+                MyFunctions.MessageChooseOperation();
             }
             else
             {
@@ -723,7 +722,7 @@ namespace SewingCompanyManagement
                         command.CommandText = query;
                         if (command.ExecuteNonQuery() == 1)
                         {
-                            myFunction.MessageDataUpdate();
+                            MyFunctions.MessageDataUpdate();
                             textBoxNewNemOperationForUpdate.Clear();
                             textBoxNewOperationDescriptorForUpdate.Clear();
                         }

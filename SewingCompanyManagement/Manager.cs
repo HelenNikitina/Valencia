@@ -14,7 +14,6 @@ namespace SewingCompanyManagement
     public partial class frmManager : Form
     {
         private OleDbConnection myConnection = new OleDbConnection();
-        MyFunctions myFunction = new MyFunctions();
         public frmManager()
         {
             InitializeComponent();
@@ -25,13 +24,15 @@ namespace SewingCompanyManagement
         {
             try
             {
-
                 string query = "SELECT " +
-                    "ID_ORDER as [Замовлення №], " +
-                    "DATE_OF_ORDER as [Дата замовлення], " +
-                    "NAME_OF_CUSTOMER as [Им'я замовника], " +
-                    "[COMMENT] as [Коментар] "+
-                    "FROM [ORDER] " ;
+                    "ORDER.ID_ORDER as [Замовлення №], " +
+                    "ORDER.DATE_OF_ORDER as [Дата замовлення], " +
+                    "CUSTOMER.NAME_OF_CUSTOMER as [Им'я замовника], " +
+                    "ORDER.COMMENT as [Коментар], " +
+                    "ORDER.NAMBER_OF_MODELS as [Кількість одиниць у замовленні], " +
+                    "ORDER.PERSENTAGE_OF_READINESS as [Готовність у процентах] " +
+                    "FROM CUSTOMER INNER JOIN[ORDER] ON CUSTOMER.ID = ORDER.ID_OF_CUSTOMER;";
+
                 myConnection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = myConnection;
@@ -85,8 +86,11 @@ namespace SewingCompanyManagement
                 string query = "SELECT EMPLOYEE.ID_EMPLOYEE as [Табельний номер працівника], " +
                     "EMPLOYEE.NAME_EMPLOYEE as [ПІП працівника], " +
                     "EMPLOYEE.PHONE_EMPLOYEE as [Номер телефона працівника], " +
-                    "POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE as [Посада працівника] " +
-                    "FROM POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE; ";
+                    "POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE as [Посада працівника], " +
+                    "EMPLOYEE_STATUS.NAME_OF_STATUS as [Статус працівника]"+
+                    "FROM EMPLOYEE_STATUS INNER JOIN (POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON " +
+                    "POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE) ON " +
+                    "EMPLOYEE_STATUS.ID_STATUS = EMPLOYEE.STATUS; ";
                 myConnection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = myConnection;
@@ -132,12 +136,12 @@ namespace SewingCompanyManagement
       
         private void textBoxNumberModelsInOrder_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxTelephoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
 
         }
 
@@ -145,7 +149,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(dateTimePickerManager.Text)|| string.IsNullOrEmpty(textBoxNameOfCostumer.Text) || string.IsNullOrEmpty(textBoxComment.Text) )
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -162,7 +166,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNameOfCostumer.Clear();
                         textBoxComment.Clear();
                     }
@@ -181,7 +185,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxOrderNumber.Text)|| string.IsNullOrEmpty(comboBoxModelNumber.Text) || string.IsNullOrEmpty(comboBoxModelSize.Text) || string.IsNullOrEmpty(textBoxNumberModelsInOrder.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -198,7 +202,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                        
                     }
                     myConnection.Close();
@@ -266,7 +270,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxModelNumber.Text))
             {
-                myFunction.MessageChooseModel();
+                MyFunctions.MessageChooseModel();
             }
             else
             {
@@ -365,7 +369,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(textBoxNameEmployee.Text)|| string.IsNullOrEmpty(textBoxTelephoneNumber.Text) || string.IsNullOrEmpty(comboBoxPositionOfEmployee.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -384,7 +388,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNameEmployee.Clear();
                         textBoxTelephoneNumber.Clear();
                     }
@@ -429,7 +433,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(textBoxIdPosition.Text)|| string.IsNullOrEmpty(textBoxNamePosition.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -447,7 +451,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNameEmployee.Clear();
                         textBoxTelephoneNumber.Clear();
                     }
@@ -459,6 +463,55 @@ namespace SewingCompanyManagement
                     MessageBox.Show("Error  " + ex);
                 }
             }
+        }
+
+        private void ButtonDismiss_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxIDEmployeeForDismiss.Text))
+            {
+                MyFunctions.MessageBlankFields();
+            }
+            else
+            {
+                int IdEmployee = int.Parse(textBoxIDEmployeeForDismiss.Text);
+                try
+                {
+                    myConnection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = myConnection;
+
+                    //string query = "INSERT INTO [EMPLOYEE] (STATUS) VALUES (2) WHERE EMPLOYEE.ID_EMPLOYEE=" + IdEmployee + ";";
+                    string query = "UPDATE EMPLOYEE SET STATUS=2 WHERE EMPLOYEE.ID_EMPLOYEE=" + IdEmployee + ";";
+                    command.CommandText = query;
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        MyFunctions.MessageDataSeved();
+                        textBoxIDEmployeeForDismiss.Clear();
+                        myConnection.Close();
+                    }
+                    else
+                    {
+                        MyFunctions.MessageDataNotFound();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    myConnection.Close();
+                    MessageBox.Show("Error  " + ex);
+                }
+            }
+           
+        }
+
+        private void TextBoxIDEmployeeForDismiss_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxIDEmployeeForDismiss_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
     }
 }

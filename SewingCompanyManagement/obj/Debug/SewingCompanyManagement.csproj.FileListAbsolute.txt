@@ -62,6 +62,5 @@ D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompa
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.Properties.Resources.resources
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.frmTechnologist.resources
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csproj.GenerateResource.cache
-D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csproj.CoreCompileInputs.cache
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.exe
 D:\GDrveSpecowka\Git\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.pdb

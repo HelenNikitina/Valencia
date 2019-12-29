@@ -59,6 +59,7 @@
             this.textBoxLogin.Size = new System.Drawing.Size(145, 26);
             this.textBoxLogin.TabIndex = 4;
             this.textBoxLogin.Text = "женя";
+            this.textBoxLogin.TextChanged += new System.EventHandler(this.textBoxLogin_TextChanged);
             // 
             // textBoxPassword
             // 

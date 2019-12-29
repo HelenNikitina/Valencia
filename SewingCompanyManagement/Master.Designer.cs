@@ -65,7 +65,7 @@
             this.buttonGetOperationMaster.Name = "buttonGetOperationMaster";
             this.buttonGetOperationMaster.Size = new System.Drawing.Size(278, 31);
             this.buttonGetOperationMaster.TabIndex = 2;
-            this.buttonGetOperationMaster.Text = "Просмотр списка операций по заказу";
+            this.buttonGetOperationMaster.Text = "Перегляд операцій для виконання";
             this.buttonGetOperationMaster.UseVisualStyleBackColor = true;
             this.buttonGetOperationMaster.Click += new System.EventHandler(this.buttonGetOperationMaster_Click);
             // 
@@ -109,6 +109,7 @@
             this.comboBoxNumberOfOperationMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxNumberOfOperationMaster.TabIndex = 13;
             this.comboBoxNumberOfOperationMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfOperationMaster_DropDown);
+            this.comboBoxNumberOfOperationMaster.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNumberOfOperationMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfModelMaster
             // 
@@ -118,7 +119,6 @@
             this.comboBoxNumberOfModelMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxNumberOfModelMaster.TabIndex = 12;
             this.comboBoxNumberOfModelMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfModelMaster_DropDown);
-            this.comboBoxNumberOfModelMaster.SelectedIndexChanged += new System.EventHandler(this.comboBoxNumberOfModelMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfOrderMaster
             // 
@@ -128,8 +128,6 @@
             this.comboBoxNumberOfOrderMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxNumberOfOrderMaster.TabIndex = 11;
             this.comboBoxNumberOfOrderMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfOrderMaster_DropDown);
-            this.comboBoxNumberOfOrderMaster.SelectedIndexChanged += new System.EventHandler(this.comboBoxNumberOfOrderMaster_SelectedIndexChanged);
-            this.comboBoxNumberOfOrderMaster.Click += new System.EventHandler(this.comboBoxNumberOfOrderMaster_SelectedIndexChanged);
             // 
             // buttonAddOperationForWorker
             // 
@@ -192,6 +190,7 @@
             this.textBoxNumberOfOperation.Name = "textBoxNumberOfOperation";
             this.textBoxNumberOfOperation.Size = new System.Drawing.Size(262, 22);
             this.textBoxNumberOfOperation.TabIndex = 4;
+            this.textBoxNumberOfOperation.TextChanged += new System.EventHandler(this.TextBoxNumberOfOperation_TextChanged);
             this.textBoxNumberOfOperation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfOperation_KeyPress);
             // 
             // lblConnections
@@ -240,7 +239,6 @@
             this.dataGridViewMaster.ReadOnly = true;
             this.dataGridViewMaster.Size = new System.Drawing.Size(740, 608);
             this.dataGridViewMaster.TabIndex = 8;
-            this.dataGridViewMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBoxNumberOfOrderMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfOrderForMasterView
             // 
@@ -270,7 +268,7 @@
             this.buttonGetOperationOfEmployee.Name = "buttonGetOperationOfEmployee";
             this.buttonGetOperationOfEmployee.Size = new System.Drawing.Size(242, 31);
             this.buttonGetOperationOfEmployee.TabIndex = 11;
-            this.buttonGetOperationOfEmployee.Text = "просмотр выпоненых работ по заказу";
+            this.buttonGetOperationOfEmployee.Text = "Перегляд виконаних операцій у замовленні";
             this.buttonGetOperationOfEmployee.UseVisualStyleBackColor = true;
             this.buttonGetOperationOfEmployee.Click += new System.EventHandler(this.buttonGetOperationOfEmployee_Click);
             // 

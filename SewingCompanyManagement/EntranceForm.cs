@@ -106,5 +106,10 @@ namespace SewingCompanyManagement
         {
 
         }
+
+        private void textBoxLogin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

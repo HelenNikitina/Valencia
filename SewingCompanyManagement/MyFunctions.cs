@@ -9,7 +9,7 @@ namespace SewingCompanyManagement
 {
     class MyFunctions
     {
-        public void MyDigitKeyPress(object sender, KeyPressEventArgs e)
+        public static void MyDigitKeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
             if (!char.IsDigit(number) && e.KeyChar != (char)8)
@@ -17,37 +17,53 @@ namespace SewingCompanyManagement
                 e.Handled = true;
             }
         }
-        public void MessageBlankFields()
+        public static void MessageBlankFields()
         {
-            MessageBox.Show("Усі поля повинні бути заповнені !!");
+            MessageBox.Show("Усі поля у доному блоці повинні бути заповнені !!");
         }
-        public void MessageChooseModel()
+        public static void MessageChooseModel()
         {
             MessageBox.Show("Оберіть або введіть значення для моделі !");
         }
-        public void MessageDataSeved()
+        public static void MessageDataSeved()
         {
             MessageBox.Show("Данні збережено !");
         }
-        public void MessageDataUpdate()
+        public static void MessageDataUpdate()
         {
             MessageBox.Show("Данні оновлено !");
         }
-        public void MessageChooseOperation()
+        public static void MessageChooseOperation()
         {
             MessageBox.Show("Оберіть або введіть значення для операції !");
         }
-        public void MessageChooseSize()
+        public static void MessageChooseSize()
         {
             MessageBox.Show("Оберіть значення для поля розмір !");
         }
-        public void MessageChooseOrder()
+        public static void MessageChooseOrder()
         {
             MessageBox.Show("Оберіть значення для поля замовлення !");
         }
-        public void MessageDataDeleted()
+        public static void MessageDataDeleted()
         {
             MessageBox.Show("Запис видалено !");
+        }
+        public static void MessageDataNotFound()
+        {
+            MessageBox.Show("Запис не знайдено ! Перевірте коректність введених даних. ");
+        }
+        public static void MessageAllOperationsIsDone()
+        {
+            MessageBox.Show("Данні операції виконані у повному овсязі, нема потреби вносити данний запис у базу даних.");
+        }
+        public static void MessageEnteredDataIsWrong()
+        {
+            MessageBox.Show("Введені данні перевищують допустиме значення. У базу даних записано максимальне допустиме значення для даного поля. Для перевірки перегляньте базу даних виконаних операцій.");
+        }
+        public static void MesageServerIsntAlive()
+        {
+            MessageBox.Show("Немає зв'язку з базою данних!");
         }
     }
 }
