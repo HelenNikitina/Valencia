@@ -19,7 +19,7 @@ namespace SewingCompanyManagement
         }
         public void MessageBlankFields()
         {
-            MessageBox.Show("Усі поля повинні бути заповнені !!");
+            MessageBox.Show("Усі поля у доному блоці повинні бути заповнені !!");
         }
         public void MessageChooseModel()
         {
@@ -48,6 +48,18 @@ namespace SewingCompanyManagement
         public void MessageDataDeleted()
         {
             MessageBox.Show("Запис видалено !");
+        }
+        public void MessageDataNotFound()
+        {
+            MessageBox.Show("Запис не знайдено ! Перевірте коректність введених даних. ");
+        }
+        public void MessageAllOperationsIsDone()
+        {
+            MessageBox.Show("Данні операції виконані у повному овсязі, нема потреби вносити данний запис у базу даних.");
+        }
+        public void MessageEnteredDataIsWrong()
+        {
+            MessageBox.Show("Введені данні перевищують допустиме значення. У базу даних записано максимальне допустиме значення для даного поля. Для перевірки перегляньте базу даних виконаних операцій.");
         }
     }
 }

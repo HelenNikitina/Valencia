@@ -19,8 +19,42 @@ namespace SewingCompanyManagement
         private void buttonGetOperationMaster_Click(object sender, EventArgs e)
         {
             PrintDBofPrerations();
+            //getNamberOfOperationInOrder(sender, e, 21001352, 50);
         }
-
+        private int getNamberOfOperationInOrder(object sender, EventArgs e, int order,int modelAndSize, int operation)
+        {
+            Int32 value = 0;
+            int idOperation = getIDOperationForModel(sender, e, operation, modelAndSize);
+            try
+            {
+                string query = "SELECT SUM(NAMBER_OF_OPERATIONS_IS_DONE) FROM ORDER_OF_PRODCTION_OPERATIONS WHERE((ID_ORDER_LIST_MODEL = " + order + ") AND (ID_PRODUCTION_OPERATIONS_FOR_MODEL = " + idOperation + "));";
+                myConnection.Open();
+                lblConnections.Text = "Connection Successful";
+                OleDbCommand command = new OleDbCommand(query, myConnection);
+                object result = command.ExecuteScalar();
+                if (result.GetType() != typeof(DBNull))
+                {
+                    value = Convert.ToInt32(result);
+                    myConnection.Close();
+                }
+                else
+                {
+                    value = 0;
+                    myConnection.Close();
+                }
+                 
+               
+                //value = Convert.ToInt32(command.ExecuteScalar());
+                //myConnection.Close();
+            }
+            catch (Exception ex)
+            { 
+                myConnection.Close();
+                MessageBox.Show("Error  " + ex);
+            }
+            //MessageBox.Show(value.ToString());
+            return (int)value;
+        }
         private void PrintDBofPrerations()
         {
             try
@@ -290,7 +324,6 @@ namespace SewingCompanyManagement
                     }
                     //закрытие соединения с базой данных
                     myConnection.Close();
-
                 }
                 catch (Exception ex)
                 {
@@ -315,7 +348,7 @@ namespace SewingCompanyManagement
                 //текст команбы
                 string query = "SELECT EMPLOYEE.ID_EMPLOYEE , EMPLOYEE.NAME_EMPLOYEE " +
                     "FROM POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE " +
-                    "WHERE(((POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE)LIKE 'Швея')); ";
+                    "WHERE(((POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE)LIKE 'Швея') AND (EMPLOYEE.STATUS=1)); ";
                 //создание SQL команды 
                 command.CommandText = query;
                 //считывание данных из базы данных
@@ -354,6 +387,13 @@ namespace SewingCompanyManagement
                 int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);
                 int employer = int.Parse(comboBoxIDWorkerMaster.Text.Split(' ')[0]);
                 int namberOfOperations = int.Parse(textBoxNumberOfOperation.Text);
+                //сравнение введенного текста с балансом невыполненых операций в базеданных
+                if (compareBalanceAndEntredText(sender,e, namberOfOperations)==0)
+                {
+                    namberOfOperations = getBalancaOfOperation(sender, e);
+                    myFunction.MessageEnteredDataIsWrong();
+                }
+                
                 int operationForModel = 0;
                 string dateTime = DateTime.Now.ToShortDateString();
                 try
@@ -375,19 +415,38 @@ namespace SewingCompanyManagement
                     }
                     reader.Close();
 
+<<<<<<< HEAD
                     string query = "INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
                         "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE, [DATE]) " +
                         "VALUES ('" + order + "' , '" + operationForModel + "' , '" + employer + "' , '" + namberOfOperations + "' , '" + dateTime + "')";
 
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
+=======
+                    if (namberOfOperations>0)
+>>>>>>> 3eb801df1581d8fb2aa5fdb2259076b81f43f336
                     {
-                        myFunction.MessageDataSeved();
-                        textBoxNumberOfOperation.Clear();
-                    }
+                        string query = "INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
+                        "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE, [DATE]) " +
+                        "VALUES ('" + order + "' , '" + operationForModel + "' , '" + employer + "' , '" + namberOfOperations + "' , '" + dateTime + "')";
 
-                    myConnection.Close();
+                        command.CommandText = query;
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            myFunction.MessageDataSeved();
+                            textBoxNumberOfOperation.Clear();
+                        }
+                        myConnection.Close();
+                    }
+                    else
+                    {     
+                        myFunction.MessageAllOperationsIsDone();
+                        myConnection.Close();
+                        textBoxNumberOfOperation.Text = getBalancaOfOperation(sender, e).ToString();
+                    }
+                    
                 }
+                    
                 catch (Exception ex)
                 {
                     myConnection.Close();
@@ -517,6 +576,93 @@ namespace SewingCompanyManagement
         private void ComboBoxIDWorkerMaster_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void TextBoxNumberOfOperation_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private int compareBalanceAndEntredText(object sender, EventArgs e, int text)
+        {
+            int balance = getBalancaOfOperation(sender, e);
+            if (balance <= text)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        private void ComboBoxNumberOfOperationMaster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxNumberOfOperation.Text = getBalancaOfOperation(sender, e).ToString();
+        }
+        private int getBalancaOfOperation(object sender, EventArgs e)
+        {
+            int operation = int.Parse(comboBoxNumberOfOperationMaster.Text);
+            int orderModel = int.Parse(comboBoxNumberOfOrderMaster.Text + comboBoxNumberOfModelMaster.Text);
+            int operationToDo = getNamberOfModelToDo(sender, e, orderModel);
+            int operationIsDone = getNamberOfOperationInOrder(sender, e, orderModel, int.Parse(comboBoxNumberOfModelMaster.Text), operation);
+            int balance = operationToDo - operationIsDone;
+            return balance;
+        }
+        private int getIDOperationForModel(object sender, EventArgs e, int operation, int modelAndSize)
+        {
+            int var = 0;
+            try
+            {
+                string query = "SELECT ID_PRODUCTION_OPERATIONS_FOR_MODEL FROM PRODUCTION_OPERATION_FOR_MODEL WHERE(ID_PRODUCTION_OPERATION=" + operation + ") AND (ID_MODEL_AND_SIZE="+ modelAndSize + ");";
+                myConnection.Open();
+                lblConnections.Text = "Connection Successful";
+                OleDbCommand command = new OleDbCommand(query, myConnection);
+                object result = command.ExecuteScalar();
+                if (result.GetType() != typeof(DBNull))
+                {
+                    var = Convert.ToInt32(result);
+                    myConnection.Close();
+                }
+                else
+                {
+                    myFunction.MessageDataNotFound();
+                    myConnection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                MessageBox.Show("Error  " + ex);
+            }
+
+            return var;
+        }
+        private int getNamberOfModelToDo(object sender, EventArgs e, int orderModelSize)
+        {
+            int var = 0;
+            try
+            {
+                string query = "SELECT NUMBER_OF_MODELS FROM ORDER_MODEL WHERE(ID_ORDER_LIST_MODEL="+orderModelSize+");";
+                myConnection.Open();
+                lblConnections.Text = "Connection Successful";
+                OleDbCommand command = new OleDbCommand(query, myConnection);
+                object result = command.ExecuteScalar();
+                if (result.GetType() != typeof(DBNull))
+                {
+                    var = Convert.ToInt32(result);
+                    myConnection.Close();
+                }
+                else
+                {
+                    myFunction.MessageDataNotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                MessageBox.Show("Error  " + ex);
+            }
+
+            return var;
         }
     }
 }
