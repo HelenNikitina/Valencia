@@ -14,7 +14,6 @@ namespace SewingCompanyManagement
     public partial class frmManager : Form
     {
         private OleDbConnection myConnection = new OleDbConnection();
-        MyFunctions myFunction = new MyFunctions();
         public frmManager()
         {
             InitializeComponent();
@@ -137,12 +136,12 @@ namespace SewingCompanyManagement
       
         private void textBoxNumberModelsInOrder_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
 
         private void textBoxTelephoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
 
         }
 
@@ -150,7 +149,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(dateTimePickerManager.Text)|| string.IsNullOrEmpty(textBoxNameOfCostumer.Text) || string.IsNullOrEmpty(textBoxComment.Text) )
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -167,7 +166,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNameOfCostumer.Clear();
                         textBoxComment.Clear();
                     }
@@ -186,7 +185,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxOrderNumber.Text)|| string.IsNullOrEmpty(comboBoxModelNumber.Text) || string.IsNullOrEmpty(comboBoxModelSize.Text) || string.IsNullOrEmpty(textBoxNumberModelsInOrder.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -203,7 +202,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                        
                     }
                     myConnection.Close();
@@ -271,7 +270,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(comboBoxModelNumber.Text))
             {
-                myFunction.MessageChooseModel();
+                MyFunctions.MessageChooseModel();
             }
             else
             {
@@ -370,7 +369,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(textBoxNameEmployee.Text)|| string.IsNullOrEmpty(textBoxTelephoneNumber.Text) || string.IsNullOrEmpty(comboBoxPositionOfEmployee.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -389,7 +388,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNameEmployee.Clear();
                         textBoxTelephoneNumber.Clear();
                     }
@@ -434,7 +433,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(textBoxIdPosition.Text)|| string.IsNullOrEmpty(textBoxNamePosition.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -452,7 +451,7 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxNameEmployee.Clear();
                         textBoxTelephoneNumber.Clear();
                     }
@@ -470,7 +469,7 @@ namespace SewingCompanyManagement
         {
             if (string.IsNullOrEmpty(textBoxIDEmployeeForDismiss.Text))
             {
-                myFunction.MessageBlankFields();
+                MyFunctions.MessageBlankFields();
             }
             else
             {
@@ -486,13 +485,13 @@ namespace SewingCompanyManagement
                     command.CommandText = query;
                     if (command.ExecuteNonQuery() == 1)
                     {
-                        myFunction.MessageDataSeved();
+                        MyFunctions.MessageDataSeved();
                         textBoxIDEmployeeForDismiss.Clear();
                         myConnection.Close();
                     }
                     else
                     {
-                        myFunction.MessageDataNotFound();
+                        MyFunctions.MessageDataNotFound();
                     }
 
                 }
@@ -512,7 +511,7 @@ namespace SewingCompanyManagement
 
         private void TextBoxIDEmployeeForDismiss_KeyPress(object sender, KeyPressEventArgs e)
         {
-            myFunction.MyDigitKeyPress(sender, e);
+            MyFunctions.MyDigitKeyPress(sender, e);
         }
     }
 }

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SewingCompanyManagement.frmAdmin" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAIACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.EntranceForm">
+    <Position X="10" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAIAAAAECAAABAAEACAAAASAqAAAAAAAQAAAAAAACA=</HashCode>
+      <FileName>EntranceForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.frmManager">
+    <Position X="12.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>8QTGABABiCQASBBgUwyCBCAGCLAqEBAiBGYAABCRBDA=</HashCode>
+      <FileName>Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.frmMaster">
+    <Position X="6.75" Y="0.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAIIJAKgCoAEBAGQUGCBAIDIoAiQGAAQGBGAAyAwxE=</HashCode>
+      <FileName>Master.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.MyFunctions" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAoAAKAAAQIAAAAAAABAAIAEAAAAAICEAAAAAAAA=</HashCode>
+      <FileName>MyFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.Program" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.frmTechnologist">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>/wJCRJ7CJCABUBAIAwDDogAySIgGCBIFAGcCRaAJFVA=</HashCode>
+      <FileName>Technologist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.Properties.Resources" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIACABEAAAAQAgAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SewingCompanyManagement.Properties.Settings" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SewingCompanyManagement.EntranceType" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACEAAAAAQAAAAAABAAAIAAAAAAAAAA=</HashCode>
+      <FileName>EntranceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

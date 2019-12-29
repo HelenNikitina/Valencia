@@ -119,7 +119,6 @@
             this.comboBoxNumberOfModelMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxNumberOfModelMaster.TabIndex = 12;
             this.comboBoxNumberOfModelMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfModelMaster_DropDown);
-            this.comboBoxNumberOfModelMaster.SelectedIndexChanged += new System.EventHandler(this.comboBoxNumberOfModelMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfOrderMaster
             // 
@@ -129,8 +128,6 @@
             this.comboBoxNumberOfOrderMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxNumberOfOrderMaster.TabIndex = 11;
             this.comboBoxNumberOfOrderMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfOrderMaster_DropDown);
-            this.comboBoxNumberOfOrderMaster.SelectedIndexChanged += new System.EventHandler(this.comboBoxNumberOfOrderMaster_SelectedIndexChanged);
-            this.comboBoxNumberOfOrderMaster.Click += new System.EventHandler(this.comboBoxNumberOfOrderMaster_SelectedIndexChanged);
             // 
             // buttonAddOperationForWorker
             // 
@@ -242,7 +239,6 @@
             this.dataGridViewMaster.ReadOnly = true;
             this.dataGridViewMaster.Size = new System.Drawing.Size(740, 608);
             this.dataGridViewMaster.TabIndex = 8;
-            this.dataGridViewMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBoxNumberOfOrderMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfOrderForMasterView
             // 

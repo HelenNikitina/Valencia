@@ -57,6 +57,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxNameOfCostumer = new System.Windows.Forms.TextBox();
             this.dateTimePickerManager = new System.Windows.Forms.DateTimePicker();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxDismissAnEmployee = new System.Windows.Forms.GroupBox();
             this.buttonDismiss = new System.Windows.Forms.Button();
@@ -77,12 +78,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNamePosition = new System.Windows.Forms.TextBox();
             this.textBoxIdPosition = new System.Windows.Forms.TextBox();
+            this.groupBoxNewCustomer = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewForManager)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBoxDismissAnEmployee.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -195,6 +198,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(4, 5);
@@ -391,6 +395,17 @@
             this.dateTimePickerManager.Size = new System.Drawing.Size(368, 20);
             this.dateTimePickerManager.TabIndex = 0;
             this.dateTimePickerManager.Value = new System.DateTime(2019, 6, 24, 0, 0, 0, 0);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBoxNewCustomer);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(394, 633);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Новий Замовник";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -589,6 +604,15 @@
             this.textBoxIdPosition.Size = new System.Drawing.Size(368, 20);
             this.textBoxIdPosition.TabIndex = 0;
             // 
+            // groupBoxNewCustomer
+            // 
+            this.groupBoxNewCustomer.Location = new System.Drawing.Point(7, 7);
+            this.groupBoxNewCustomer.Name = "groupBoxNewCustomer";
+            this.groupBoxNewCustomer.Size = new System.Drawing.Size(381, 197);
+            this.groupBoxNewCustomer.TabIndex = 0;
+            this.groupBoxNewCustomer.TabStop = false;
+            this.groupBoxNewCustomer.Text = "groupBox6";
+            // 
             // frmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -609,6 +633,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBoxDismissAnEmployee.ResumeLayout(false);
             this.groupBoxDismissAnEmployee.PerformLayout();
@@ -672,5 +697,7 @@
         private System.Windows.Forms.Button buttonDismiss;
         private System.Windows.Forms.TextBox textBoxIDEmployeeForDismiss;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBoxNewCustomer;
     }
 }
