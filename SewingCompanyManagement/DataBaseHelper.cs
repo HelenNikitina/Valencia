@@ -47,18 +47,18 @@ namespace SewingCompanyManagement
                     "SELECT SUM(NAMBER_OF_OPERATIONS_IS_DONE) " +
                     "FROM ORDER_OF_PRODCTION_OPERATIONS " +
                     "WHERE((ID_ORDER_LIST_MODEL = " + order + ") " +
-                    "AND (ID_PRODUCTION_OPERATIONS_FOR_MODEL = " + idOperation + "));");
-                using (var reader = cmd.ExecuteReader())
+                    "AND (ID_PRODUCTION_OPERATIONS_FOR_MODEL = " + idOperation + "));",con);
+                var answer = cmd.ExecuteScalar().ToString();
+                
+                if (!string.IsNullOrWhiteSpace(answer) && !int.TryParse(answer, out value))
                 {
-                    if (reader.Read())
-                    {
-                        value = (int)reader.GetValue(0);
-                    }
+                    MyFunctions.MessageDataIsntCorrect(answer);
                 }
                 con.Close();
             }
-            return (int)value;
+            return value;
         }
+        
         public static int Master_getIdOperationForModel(int operation, int modelAndSize)
         {
             int result = 0;
@@ -69,7 +69,7 @@ namespace SewingCompanyManagement
                     "SELECT ID_PRODUCTION_OPERATIONS_FOR_MODEL " +
                     "FROM PRODUCTION_OPERATION_FOR_MODEL " +
                     "WHERE(ID_PRODUCTION_OPERATION=" + operation + ") " +
-                    "AND (ID_MODEL_AND_SIZE=" + modelAndSize + ");");
+                    "AND (ID_MODEL_AND_SIZE=" + modelAndSize + ");", con);
                 using (var reader = cmd.ExecuteReader())
                 {
 
@@ -95,7 +95,7 @@ namespace SewingCompanyManagement
                 OleDbCommand cmd = new OleDbCommand(
                     "SELECT NUMBER_OF_MODELS " +
                     "FROM ORDER_MODEL " +
-                    "WHERE(ID_ORDER_LIST_MODEL=" + orderModelSize + ");");
+                    "WHERE(ID_ORDER_LIST_MODEL=" + orderModelSize + ");", con);
                 using (var reader = cmd.ExecuteReader())
                 {
 
@@ -120,7 +120,7 @@ namespace SewingCompanyManagement
                 OleDbCommand cmd = new OleDbCommand(
                     "DELETE ORDER_OF_PRODCTION_OPERATIONS.*, ORDER_OF_PRODCTION_OPERATIONS.ID_ORDER_OF_PRODUCTION_OPERATION " +
                     "FROM ORDER_OF_PRODCTION_OPERATIONS " +
-                    "WHERE(((ORDER_OF_PRODCTION_OPERATIONS.ID_ORDER_OF_PRODUCTION_OPERATION) = " + Id + ")); ");
+                    "WHERE(((ORDER_OF_PRODCTION_OPERATIONS.ID_ORDER_OF_PRODUCTION_OPERATION) = " + Id + ")); ", con);
                 if(cmd.ExecuteNonQuery()==1)
                 {
                     MyFunctions.MessageDataDeleted();
@@ -221,8 +221,7 @@ namespace SewingCompanyManagement
             using (var con = GetNewConnection())
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand(@"SELECT ORDER.ID_ORDER FROM [ORDER]");
-                cmd.Connection = con;
+                OleDbCommand cmd = new OleDbCommand(@"SELECT ORDER.ID_ORDER FROM [ORDER]", con);
                 using (var reader = cmd.ExecuteReader())
                 {
                     for (int i = 0; reader.Read(); i++)
@@ -243,8 +242,7 @@ namespace SewingCompanyManagement
                 OleDbCommand cmd = new OleDbCommand("SELECT MODEL_AND_SIZE.ID_MODEL_AND_SIZE " +
                         "FROM[ORDER] INNER JOIN(MODEL_AND_SIZE INNER JOIN ORDER_MODEL ON MODEL_AND_SIZE.ID_MODEL_AND_SIZE = ORDER_MODEL.ID_MODEL_AND_SIZE) " +
                         "ON ORDER.ID_ORDER = ORDER_MODEL.ID_ORDER " +
-                    "WHERE((ORDER.ID_ORDER) = " + numberOfOrder + ");");
-                cmd.Connection = con;
+                    "WHERE((ORDER.ID_ORDER) = " + numberOfOrder + ");", con);
                 using (var reader = cmd.ExecuteReader())
                 {
                     for (int i = 0; reader.Read(); i++)
@@ -266,8 +264,7 @@ namespace SewingCompanyManagement
                         "FROM PRODUCTION_OPERATION INNER JOIN(MODEL_AND_SIZE INNER JOIN PRODUCTION_OPERATION_FOR_MODEL " +
                         "ON MODEL_AND_SIZE.ID_MODEL_AND_SIZE = PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) " +
                         "ON PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION = PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION " +
-                        "WHERE(((MODEL_AND_SIZE.ID_MODEL_AND_SIZE) = " + numberOfModel + ")); ");
-                cmd.Connection = con;
+                        "WHERE(((MODEL_AND_SIZE.ID_MODEL_AND_SIZE) = " + numberOfModel + ")); ", con);
                 using (var reader = cmd.ExecuteReader())
                 {
                     for (int i = 0; reader.Read(); i++)
@@ -279,6 +276,49 @@ namespace SewingCompanyManagement
             }
             return result;
         }
+        public static int GetProductionOperationForModel(int operation, int model)
+        {
+            int result = 0;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("SELECT PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATIONS_FOR_MODEL, PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION, MODEL_AND_SIZE.ID_MODEL_AND_SIZE " +
+                        "FROM PRODUCTION_OPERATION INNER JOIN(PRODUCTION_OPERATION_FOR_MODEL INNER JOIN MODEL_AND_SIZE ON PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE = MODEL_AND_SIZE.ID_MODEL_AND_SIZE) " +
+                        "ON PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION = PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION " +
+                        "WHERE(((PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION) = " + operation + ") AND((MODEL_AND_SIZE.ID_MODEL_AND_SIZE) = " + model + ")); ", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = int.Parse(reader["ID_PRODUCTION_OPERATIONS_FOR_MODEL"].ToString());
+                    }
+                    
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static bool InsertIntoOrderOfProductionOperation(int order, int operationForModel, int employer, int namberOfOperations)
+        {
+            string dateTime = DateTime.Now.ToShortDateString();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
+                        "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE, [DATE]) " +
+                        "VALUES ('" + order + "' , '" + operationForModel + "' , '" + employer + "' , '" + namberOfOperations + "' , '" + dateTime + "')", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
         public static List<string> GetNumberIdAndNameOfEmployee()
         {
             List<string> result = new List<string>();
@@ -287,8 +327,7 @@ namespace SewingCompanyManagement
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("SELECT EMPLOYEE.ID_EMPLOYEE , EMPLOYEE.NAME_EMPLOYEE " +
                     "FROM POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE " +
-                    "WHERE(((POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE)LIKE 'Швея') AND (EMPLOYEE.STATUS=1)); ");
-                cmd.Connection = con;
+                    "WHERE(((POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE)LIKE 'Швея') AND (EMPLOYEE.STATUS=1)); ", con);
                 using (var reader = cmd.ExecuteReader())
                 {
                     for (int i = 0; reader.Read(); i++)

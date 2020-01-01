@@ -17,6 +17,11 @@ namespace SewingCompanyManagement
                 e.Handled = true;
             }
         }
+        public static void ClearCbx(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            comboBox.Text = "";
+        }
         public static void MessageBlankFields()
         {
             MessageBox.Show("Усі поля у доному блоці повинні бути заповнені !!");
@@ -64,6 +69,10 @@ namespace SewingCompanyManagement
         public static void MesageServerIsntAlive()
         {
             MessageBox.Show("Немає зв'язку з базою данних!");
+        }
+        public static void MessageDataIsntCorrect(string message ="")
+        {
+            MessageBox.Show($"input data is not correct. {message}");
         }
     }
 }
