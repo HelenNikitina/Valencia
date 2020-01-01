@@ -276,6 +276,49 @@ namespace SewingCompanyManagement
             }
             return result;
         }
+        public static int GetProductionOperationForModel(int operation, int model)
+        {
+            int result = 0;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("SELECT PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATIONS_FOR_MODEL, PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION, MODEL_AND_SIZE.ID_MODEL_AND_SIZE " +
+                        "FROM PRODUCTION_OPERATION INNER JOIN(PRODUCTION_OPERATION_FOR_MODEL INNER JOIN MODEL_AND_SIZE ON PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE = MODEL_AND_SIZE.ID_MODEL_AND_SIZE) " +
+                        "ON PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION = PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION " +
+                        "WHERE(((PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION) = " + operation + ") AND((MODEL_AND_SIZE.ID_MODEL_AND_SIZE) = " + model + ")); ", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = int.Parse(reader["ID_PRODUCTION_OPERATIONS_FOR_MODEL"].ToString());
+                    }
+                    
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static bool InsertIntoOrderOfProductionOperation(int order, int operationForModel, int employer, int namberOfOperations)
+        {
+            string dateTime = DateTime.Now.ToShortDateString();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("INSERT INTO [ORDER_OF_PRODCTION_OPERATIONS] " +
+                        "(ID_ORDER_LIST_MODEL,	ID_PRODUCTION_OPERATIONS_FOR_MODEL,	ID_EMPLOYEE,	NAMBER_OF_OPERATIONS_IS_DONE, [DATE]) " +
+                        "VALUES ('" + order + "' , '" + operationForModel + "' , '" + employer + "' , '" + namberOfOperations + "' , '" + dateTime + "')", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
         public static List<string> GetNumberIdAndNameOfEmployee()
         {
             List<string> result = new List<string>();

@@ -89,7 +89,7 @@
             this.groupBoxMaster.TabIndex = 5;
             this.groupBoxMaster.TabStop = false;
             this.groupBoxMaster.Text = "Додати виконані операції";
-            this.groupBoxMaster.Enter += new System.EventHandler(this.groupBoxMaster_Enter);
+
             // 
             // comboBoxIDWorkerMaster
             // 
@@ -99,7 +99,6 @@
             this.comboBoxIDWorkerMaster.Size = new System.Drawing.Size(262, 24);
             this.comboBoxIDWorkerMaster.TabIndex = 14;
             this.comboBoxIDWorkerMaster.DropDown += new System.EventHandler(this.comboBoxIDWorkerMaster_DropDown);
-            this.comboBoxIDWorkerMaster.SelectedIndexChanged += new System.EventHandler(this.ComboBoxIDWorkerMaster_SelectedIndexChanged);
             // 
             // comboBoxNumberOfOperationMaster
             // 
@@ -259,7 +258,6 @@
             this.comboBoxNumberOfModelForMaster.Size = new System.Drawing.Size(139, 21);
             this.comboBoxNumberOfModelForMaster.TabIndex = 10;
             this.comboBoxNumberOfModelForMaster.DropDown += new System.EventHandler(this.comboBoxNumberOfModelForMasterView_DropDown);
-            this.comboBoxNumberOfModelForMaster.SelectedIndexChanged += new System.EventHandler(this.comboBoxNumberOfModelForMaster_SelectedIndexChanged);
             // 
             // buttonGetOperationOfEmployee
             // 
@@ -310,7 +308,6 @@
             this.textBoxIdOperanionIsDone.Name = "textBoxIdOperanionIsDone";
             this.textBoxIdOperanionIsDone.Size = new System.Drawing.Size(262, 22);
             this.textBoxIdOperanionIsDone.TabIndex = 0;
-            this.textBoxIdOperanionIsDone.TextChanged += new System.EventHandler(this.textBoxIdOperanionIsDone_TextChanged);
             this.textBoxIdOperanionIsDone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdOperanionIsDone_KeyPress);
             // 
             // ErrorMaster1
@@ -343,7 +340,6 @@
             this.Name = "frmMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master";
-            this.Load += new System.EventHandler(this.frmMaster_Load);
             this.groupBoxMaster.ResumeLayout(false);
             this.groupBoxMaster.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaster)).EndInit();

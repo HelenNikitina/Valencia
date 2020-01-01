@@ -17,6 +17,11 @@ namespace SewingCompanyManagement
                 e.Handled = true;
             }
         }
+        public static void ClearCbx(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            comboBox.Text = "";
+        }
         public static void MessageBlankFields()
         {
             MessageBox.Show("Усі поля у доному блоці повинні бути заповнені !!");
