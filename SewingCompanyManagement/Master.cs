@@ -240,7 +240,10 @@ namespace SewingCompanyManagement
 
         private void TextBoxNumberOfOperation_TextChanged(object sender, EventArgs e)
         {
-            textBoxNumberOfOperation.Text = getBalanceOfOperation().ToString();
+            if (int.Parse(textBoxNumberOfOperation.Text) > getBalanceOfOperation() || int.Parse(textBoxNumberOfOperation.Text) < 0)
+            {
+                textBoxNumberOfOperation.Text = getBalanceOfOperation().ToString();
+            }
         }
         private int compareBalanceAndEntredText( int text)
         {
