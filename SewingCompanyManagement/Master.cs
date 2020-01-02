@@ -174,7 +174,7 @@ namespace SewingCompanyManagement
                     else
                     {
                         int operationForModel = DataBaseHelper.GetProductionOperationForModel(operation, model);
-                        if (DataBaseHelper.InsertIntoOrderOfProductionOperation(order, operationForModel, employer, namberOfOperations) == true)
+                        if (DataBaseHelper.InsertIntoOrderOfProductionOperation(order, operationForModel, employer, namberOfOperations) == true)//true-insert is done, false - is not 
                         {
                             MyFunctions.MessageDataSeved();
                             textBoxNumberOfOperation.Clear();

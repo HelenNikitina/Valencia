@@ -10,7 +10,7 @@ namespace SewingCompanyManagement
         public EntranceForm()
         {
             InitializeComponent();
-            myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=TrueDB_01.mdb;User Id=admin;Password=;";
+            myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\TrueDB_01.mdb;User Id=admin;Password=;";
         }
         public EntranceType CurrentEntranceType
         {

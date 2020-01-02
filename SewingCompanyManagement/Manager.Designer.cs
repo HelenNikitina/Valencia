@@ -58,6 +58,7 @@
             this.textBoxNameOfCostumer = new System.Windows.Forms.TextBox();
             this.dateTimePickerManager = new System.Windows.Forms.DateTimePicker();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBoxNewCustomer = new System.Windows.Forms.GroupBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxDismissAnEmployee = new System.Windows.Forms.GroupBox();
             this.buttonDismiss = new System.Windows.Forms.Button();
@@ -78,7 +79,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNamePosition = new System.Windows.Forms.TextBox();
             this.textBoxIdPosition = new System.Windows.Forms.TextBox();
-            this.groupBoxNewCustomer = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewForManager)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -407,6 +407,15 @@
             this.tabPage4.Text = "Новий Замовник";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // groupBoxNewCustomer
+            // 
+            this.groupBoxNewCustomer.Location = new System.Drawing.Point(7, 7);
+            this.groupBoxNewCustomer.Name = "groupBoxNewCustomer";
+            this.groupBoxNewCustomer.Size = new System.Drawing.Size(381, 197);
+            this.groupBoxNewCustomer.TabIndex = 0;
+            this.groupBoxNewCustomer.TabStop = false;
+            this.groupBoxNewCustomer.Text = "groupBox6";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBoxDismissAnEmployee);
@@ -448,7 +457,6 @@
             this.textBoxIDEmployeeForDismiss.Name = "textBoxIDEmployeeForDismiss";
             this.textBoxIDEmployeeForDismiss.Size = new System.Drawing.Size(368, 21);
             this.textBoxIDEmployeeForDismiss.TabIndex = 1;
-            this.textBoxIDEmployeeForDismiss.TextChanged += new System.EventHandler(this.TextBoxIDEmployeeForDismiss_TextChanged);
             this.textBoxIDEmployeeForDismiss.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxIDEmployeeForDismiss_KeyPress);
             // 
             // label14
@@ -603,15 +611,6 @@
             this.textBoxIdPosition.Name = "textBoxIdPosition";
             this.textBoxIdPosition.Size = new System.Drawing.Size(368, 20);
             this.textBoxIdPosition.TabIndex = 0;
-            // 
-            // groupBoxNewCustomer
-            // 
-            this.groupBoxNewCustomer.Location = new System.Drawing.Point(7, 7);
-            this.groupBoxNewCustomer.Name = "groupBoxNewCustomer";
-            this.groupBoxNewCustomer.Size = new System.Drawing.Size(381, 197);
-            this.groupBoxNewCustomer.TabIndex = 0;
-            this.groupBoxNewCustomer.TabStop = false;
-            this.groupBoxNewCustomer.Text = "groupBox6";
             // 
             // frmManager
             // 

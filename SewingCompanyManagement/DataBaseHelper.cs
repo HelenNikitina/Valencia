@@ -11,7 +11,7 @@ namespace SewingCompanyManagement
     class DataBaseHelper
     {
         private static string provider = "Microsoft.Jet.OLEDB.4.0";
-        private static string dataSource = "TrueDB_01.mdb";
+        private static string dataSource = @"D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\TrueDB_01.mdb";
         private static string userId = "admin";
         private static string password = "";
         //private static string provider = "";
@@ -233,6 +233,45 @@ namespace SewingCompanyManagement
             }
             return result;
         }
+        public static List<string> GetNumberOfModel()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(@"SELECT ID_MODEL FROM [MODEL]", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["ID_MODEL"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static List<string> GetNumberOfModelAndSizeByModel(int model)
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(@"SELECT MODEL_AND_SIZE.ID_MODEL_SIZE_STATURE, MODEL_AND_SIZE.ID_MODEL " +
+                        "FROM MODEL_AND_SIZE " +
+                        "WHERE(((MODEL_AND_SIZE.ID_MODEL) = " + model + ")); ", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["ID_MODEL_SIZE_STATURE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+
         public static List<string> GetNumberOfModelByOrder(int numberOfOrder)
         {
             List<string> result = new List<string>();
@@ -319,6 +358,102 @@ namespace SewingCompanyManagement
                 }
             }
         }
+        public static bool AddNewEmployee(string name, int phone, int position)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("INSERT INTO [EMPLOYEE] (NAME_EMPLOYEE, PHONE_EMPLOYEE, ID_POSITION_OF_EMPLOYEE) " +
+                    "VALUES ('" + name + "', " + phone + "," + position + ") ", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddNewPosition(int idPosition, string namePositin)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("INSERT INTO [POSITION_OF_EMPLOYEE] (ID_POSITION_OF_EMPLOYEE, NAME_POSITION_OF_EMPLOYEE) " +
+                    "VALUES (" + idPosition + ", '" + namePositin + "') ", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddNewOrder(string date,string customersName, string comment)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("INSERT INTO [ORDER](DATE_OF_ORDER, NAME_OF_CUSTOMER, [COMMENT]) " +
+                    "VALUES ('" + date + "', '" + customersName + "', '" + comment + "' ); ", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddNewModelForOrder(int idOrder,int order, int modelAndSize,int number)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("INSERT INTO ORDER_MODEL " +
+                    "VALUES (" + idOrder + ", '" + order + "', '" + modelAndSize + "', '" + number + "' ); ", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool SetStatusForEmployee(int IdEmployee, int status)//1-работает, 2-уволен
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand($"UPDATE EMPLOYEE SET STATUS={status} " +
+                        $"WHERE EMPLOYEE.ID_EMPLOYEE={IdEmployee};", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+
         public static List<string> GetNumberIdAndNameOfEmployee()
         {
             List<string> result = new List<string>();
@@ -339,5 +474,157 @@ namespace SewingCompanyManagement
             }
             return result;
         }
+        public static List<string> GetNumberOfPosition()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand("SELECT POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE, POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE " +
+                    "FROM POSITION_OF_EMPLOYEE; ", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["ID_POSITION_OF_EMPLOYEE"].ToString() + " " + reader["NAME_POSITION_OF_EMPLOYEE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+
+        public static DataTable GetOrders()
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT " +
+                    "ORDER.ID_ORDER as [Замовлення №], " +
+                    "ORDER.DATE_OF_ORDER as [Дата замовлення], " +
+                    "CUSTOMER.NAME_OF_CUSTOMER as [Им'я замовника], " +
+                    "ORDER.COMMENT as [Коментар], " +
+                    "ORDER.NAMBER_OF_MODELS as [Кількість одиниць у замовленні], " +
+                    "ORDER.PERSENTAGE_OF_READINESS as [Готовність у процентах] " +
+                    "FROM CUSTOMER INNER JOIN[ORDER] ON CUSTOMER.ID = ORDER.ID_OF_CUSTOMER;";
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
+
+        public static DataTable GetModels()
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT " +
+                    "[ID_MODEL] as [модель №], " +
+                    "[SHORT_NAME_OF_MODEL] as [Назва моделі], " +
+                    "[MODEL_DESCRIPTION] as [Опис моделі] " +
+                    "FROM [MODEL] ";
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
+
+        public static DataTable GetEmployees()
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT EMPLOYEE.ID_EMPLOYEE as [Табельний номер працівника], " +
+                    "EMPLOYEE.NAME_EMPLOYEE as [ПІП працівника], " +
+                    "EMPLOYEE.PHONE_EMPLOYEE as [Номер телефона працівника], " +
+                    "POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE as [Посада працівника], " +
+                    "EMPLOYEE_STATUS.NAME_OF_STATUS as [Статус працівника]" +
+                    "FROM EMPLOYEE_STATUS INNER JOIN (POSITION_OF_EMPLOYEE INNER JOIN EMPLOYEE ON " +
+                    "POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE) ON " +
+                    "EMPLOYEE_STATUS.ID_STATUS = EMPLOYEE.STATUS; ";
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
+        public static DataTable GetPositionsOfEmployee()
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE as [Код посади], " +
+                    "POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE as [Назва посади] " +
+                    "FROM POSITION_OF_EMPLOYEE; ";
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
+        public static DataTable GetModelsForOrder(int order)
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = null;
+                string queryq = "SELECT " +
+                    // "ORDER_MODEL.ID_ORDER_LIST_MODEL, " +
+                    "ORDER_MODEL.ID_ORDER as [Номер замовлення], " +
+                    "MODEL_AND_SIZE.ID_MODEL as [Номер моделі], " +
+                    "MODEL.SHORT_NAME_OF_MODEL as [Назва моделі], " +
+                    "ORDER_MODEL.ID_MODEL_AND_SIZE as [Модель та розмір], " +
+                    "ORDER_MODEL.NUMBER_OF_MODELS as [Кількість моделей у замовленні] " +
+                    "FROM MODEL INNER JOIN(MODEL_AND_SIZE INNER JOIN ORDER_MODEL " +
+                    "ON MODEL_AND_SIZE.ID_MODEL_AND_SIZE = ORDER_MODEL.ID_MODEL_AND_SIZE) " +
+                    "ON MODEL.ID_MODEL = MODEL_AND_SIZE.ID_MODEL ";
+                if (order==-1)
+                {
+                    query = queryq;
+                }
+                else
+                {
+                    query = queryq + "WHERE(((ORDER_MODEL.ID_ORDER) = " + order + ")) ";
+                }
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
+
+
     }
 }

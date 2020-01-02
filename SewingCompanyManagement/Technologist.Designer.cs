@@ -113,7 +113,7 @@
             this.dataGridViewTechnologist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTechnologist.Location = new System.Drawing.Point(482, 23);
             this.dataGridViewTechnologist.Name = "dataGridViewTechnologist";
-            this.dataGridViewTechnologist.Size = new System.Drawing.Size(518, 535);
+            this.dataGridViewTechnologist.Size = new System.Drawing.Size(592, 535);
             this.dataGridViewTechnologist.TabIndex = 0;
             // 
             // buttonViewTableOfModel
@@ -158,7 +158,7 @@
             this.groupBox1.Controls.Add(this.buttonViewTableOfModel);
             this.groupBox1.Location = new System.Drawing.Point(482, 564);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(518, 170);
+            this.groupBox1.Size = new System.Drawing.Size(592, 170);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Перегляд бази даних";
@@ -768,7 +768,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 747);
+            this.ClientSize = new System.Drawing.Size(1087, 747);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dataGridViewTechnologist);
             this.Controls.Add(this.groupBox1);
