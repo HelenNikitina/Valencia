@@ -139,7 +139,7 @@ namespace SewingCompanyManagement
             try
             {
                 MyFunctions.ClearCbx(comboBoxIDWorkerMaster);
-                comboBoxIDWorkerMaster.Items.AddRange(DataBaseHelper.GetNumberIdAndNameOfEmployee().ToArray());
+                comboBoxIDWorkerMaster.Items.AddRange(DataBaseHelper.GetNumberIdAndNameOfEmployee("швея").ToArray());
             }
             catch (Exception ex)
             {
@@ -174,7 +174,7 @@ namespace SewingCompanyManagement
                     else
                     {
                         int operationForModel = DataBaseHelper.GetProductionOperationForModel(operation, model);
-                        if (DataBaseHelper.InsertIntoOrderOfProductionOperation(order, operationForModel, employer, namberOfOperations) == true)
+                        if (DataBaseHelper.InsertIntoOrderOfProductionOperation(order, operationForModel, employer, namberOfOperations) == true)//true-insert is done, false - is not 
                         {
                             MyFunctions.MessageDataSeved();
                             textBoxNumberOfOperation.Clear();
@@ -240,7 +240,10 @@ namespace SewingCompanyManagement
 
         private void TextBoxNumberOfOperation_TextChanged(object sender, EventArgs e)
         {
-            textBoxNumberOfOperation.Text = getBalanceOfOperation().ToString();
+            if (int.Parse(textBoxNumberOfOperation.Text) > getBalanceOfOperation() || int.Parse(textBoxNumberOfOperation.Text) < 0)
+            {
+                textBoxNumberOfOperation.Text = getBalanceOfOperation().ToString();
+            }
         }
         private int compareBalanceAndEntredText( int text)
         {

@@ -26,6 +26,11 @@ namespace SewingCompanyManagement
         {
             MessageBox.Show("Усі поля у доному блоці повинні бути заповнені !!");
         }
+        public static void MessageSomethingWrong()
+        {
+            MessageBox.Show("Something went wrong please try again!!");
+        }
+
         public static void MessageChooseModel()
         {
             MessageBox.Show("Оберіть або введіть значення для моделі !");

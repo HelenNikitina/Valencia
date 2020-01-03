@@ -58,7 +58,7 @@
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(145, 26);
             this.textBoxLogin.TabIndex = 4;
-            this.textBoxLogin.Text = "женя";
+            this.textBoxLogin.Text = "игорь";
             this.textBoxLogin.TextChanged += new System.EventHandler(this.textBoxLogin_TextChanged);
             // 
             // textBoxPassword
@@ -69,7 +69,7 @@
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(145, 26);
             this.textBoxPassword.TabIndex = 5;
-            this.textBoxPassword.Text = "женя";
+            this.textBoxPassword.Text = "игорь";
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             // 
             // buttonLogin
