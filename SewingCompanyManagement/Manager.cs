@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SewingCompanyManagement
 {
     public partial class frmManager : Form
     {
-        private OleDbConnection myConnection = new OleDbConnection();
         public frmManager()
         {
             InitializeComponent();
-            myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\TrueDB_01.mdb;User Id=admin;Password=;";
         }
 
         private void buttonViewOrder_Click(object sender, EventArgs e)
@@ -82,21 +72,27 @@ namespace SewingCompanyManagement
         {
             try
             {
-                if (string.IsNullOrEmpty(dateTimePickerManager.Text) || string.IsNullOrEmpty(textBoxNameOfCostumer.Text) || string.IsNullOrEmpty(textBoxComment.Text))
+                if (string.IsNullOrEmpty(dateTimePickerManager.Text) || string.IsNullOrEmpty(comboBoxNameOfCustomer.Text) 
+                    || string.IsNullOrEmpty(textBoxComment.Text) || string.IsNullOrEmpty(textBoxNumberOfModelForNewOrder.Text))
                 {
                     MyFunctions.MessageBlankFields();
                 }
                 else
                 {
                     string date = dateTimePickerManager.Text;
-                    string customersName = textBoxNameOfCostumer.Text;
+                    int idCustomer = DataBaseHelper.GetCustomerId(comboBoxNameOfCustomer.Text.Split(' ')[0]+" "
+                        +comboBoxNameOfCustomer.Text.Split(' ')[1]+" "
+                        + comboBoxNameOfCustomer.Text.Split(' ')[2]) ;
                     string comment = textBoxComment.Text;
+                    int numberOfModels= int.Parse(textBoxNumberOfModelForNewOrder.Text);
 
-                    if (DataBaseHelper.AddNewOrder(date,customersName,comment))
-                    {
-                        MyFunctions.MessageDataSeved();
-                        textBoxNameOfCostumer.Clear();
+                    if (DataBaseHelper.AddNewOrder(date, idCustomer, comment, numberOfModels))
+                    {   
+                        MyFunctions.ClearCbx(comboBoxNameOfCustomer);
                         textBoxComment.Clear();
+                        textBoxNumberOfModelForNewOrder.Clear();
+                        DataBaseHelper.UpdateNumberOfOrderForCustomer(idCustomer);
+                        MyFunctions.MessageDataSeved();
                     }
                     else
                     {
@@ -137,7 +133,6 @@ namespace SewingCompanyManagement
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }         
         }
@@ -159,8 +154,8 @@ namespace SewingCompanyManagement
         {
             try
             {
-            MyFunctions.ClearCbx(comboBoxModelNumber);
-            comboBoxModelNumber.Items.AddRange(DataBaseHelper.GetNumberOfModel().ToArray());
+                MyFunctions.ClearCbx(comboBoxModelNumber);
+                comboBoxModelNumber.Items.AddRange(DataBaseHelper.GetNumberOfModel().ToArray());
             }
             catch (Exception ex)
             {
@@ -209,7 +204,7 @@ namespace SewingCompanyManagement
                 int order = 0;
                 if (string.IsNullOrEmpty(comboBoxModelInOrder.Text))
                 {
-                    order = -1;                //если в строка пустая значение заказа =-1
+                    order = -1;                //если в строка пустая значение заказа =-1 
                 }
                 else
                 {
@@ -280,8 +275,8 @@ namespace SewingCompanyManagement
                     if (DataBaseHelper.AddNewPosition(idPosition, namePositin)==true)
                     {
                         MyFunctions.MessageDataSeved();
-                        textBoxNameEmployee.Clear();
-                        textBoxTelephoneNumber.Clear();
+                        textBoxIdPosition.Clear();
+                        textBoxNamePosition.Clear();
                     }
                     else
                     {
@@ -329,5 +324,53 @@ namespace SewingCompanyManagement
             MyFunctions.MyDigitKeyPress(sender, e);
         }
 
+        private void buttonAddNewCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(textBoxNameOfCustomer.Text) || string.IsNullOrEmpty(textBoxPhoneOfCustomer.Text))
+                {
+                    MyFunctions.MessageBlankFields();
+                }
+                else
+                {
+                    string name = textBoxNameOfCustomer.Text;
+                    int phone = int.Parse(textBoxPhoneOfCustomer.Text);
+
+                    if (DataBaseHelper.AddNewCustomer(name,phone,0))
+                    {
+                        MyFunctions.MessageDataSeved();
+                        textBoxNameOfCustomer.Clear();
+                        textBoxPhoneOfCustomer.Clear();
+                    }
+                    else
+                    {
+                        MyFunctions.MessageSomethingWrong();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error  " + ex);
+            }
+        }
+
+        private void comboBoxNameOfCustomer_DropDown(object sender, EventArgs e)
+        {
+            try
+            {
+                MyFunctions.ClearCbx(comboBoxNameOfCustomer);
+                comboBoxNameOfCustomer.Items.AddRange(DataBaseHelper.GetNumberOCustomer().ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error  " + ex);
+            }
+        }
+
+        private void textBoxNumberOfModelForNewOrder_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MyFunctions.MyDigitKeyPress(sender, e);
+        }
     }
 }

@@ -139,7 +139,7 @@ namespace SewingCompanyManagement
             try
             {
                 MyFunctions.ClearCbx(comboBoxIDWorkerMaster);
-                comboBoxIDWorkerMaster.Items.AddRange(DataBaseHelper.GetNumberIdAndNameOfEmployee().ToArray());
+                comboBoxIDWorkerMaster.Items.AddRange(DataBaseHelper.GetNumberIdAndNameOfEmployee("швея").ToArray());
             }
             catch (Exception ex)
             {

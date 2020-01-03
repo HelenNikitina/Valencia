@@ -55,10 +55,14 @@
             this.buttonAddNewOrder = new System.Windows.Forms.Button();
             this.textBoxComment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxNameOfCostumer = new System.Windows.Forms.TextBox();
             this.dateTimePickerManager = new System.Windows.Forms.DateTimePicker();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBoxNewCustomer = new System.Windows.Forms.GroupBox();
+            this.buttonAddNewCustomer = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxPhoneOfCustomer = new System.Windows.Forms.TextBox();
+            this.textBoxNameOfCustomer = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBoxDismissAnEmployee = new System.Windows.Forms.GroupBox();
             this.buttonDismiss = new System.Windows.Forms.Button();
@@ -79,6 +83,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNamePosition = new System.Windows.Forms.TextBox();
             this.textBoxIdPosition = new System.Windows.Forms.TextBox();
+            this.comboBoxNameOfCustomer = new System.Windows.Forms.ComboBox();
+            this.textBoxNumberOfModelForNewOrder = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewForManager)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -86,6 +93,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBoxNewCustomer.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBoxDismissAnEmployee.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -230,7 +238,7 @@
             this.groupBox3.Controls.Add(this.comboBoxModelSize);
             this.groupBox3.Controls.Add(this.comboBoxModelNumber);
             this.groupBox3.Controls.Add(this.comboBoxOrderNumber);
-            this.groupBox3.Location = new System.Drawing.Point(7, 274);
+            this.groupBox3.Location = new System.Drawing.Point(7, 327);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(381, 296);
             this.groupBox3.TabIndex = 1;
@@ -248,9 +256,9 @@
             // 
             // textBoxNumberModelsInOrder
             // 
-            this.textBoxNumberModelsInOrder.Location = new System.Drawing.Point(12, 193);
+            this.textBoxNumberModelsInOrder.Location = new System.Drawing.Point(7, 193);
             this.textBoxNumberModelsInOrder.Name = "textBoxNumberModelsInOrder";
-            this.textBoxNumberModelsInOrder.Size = new System.Drawing.Size(363, 20);
+            this.textBoxNumberModelsInOrder.Size = new System.Drawing.Size(368, 20);
             this.textBoxNumberModelsInOrder.TabIndex = 7;
             this.textBoxNumberModelsInOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberModelsInOrder_KeyPress);
             // 
@@ -294,42 +302,44 @@
             // comboBoxModelSize
             // 
             this.comboBoxModelSize.FormattingEnabled = true;
-            this.comboBoxModelSize.Location = new System.Drawing.Point(12, 147);
+            this.comboBoxModelSize.Location = new System.Drawing.Point(7, 147);
             this.comboBoxModelSize.Name = "comboBoxModelSize";
-            this.comboBoxModelSize.Size = new System.Drawing.Size(363, 21);
+            this.comboBoxModelSize.Size = new System.Drawing.Size(368, 21);
             this.comboBoxModelSize.TabIndex = 2;
             this.comboBoxModelSize.DropDown += new System.EventHandler(this.comboBoxModelSize_DropDown);
             // 
             // comboBoxModelNumber
             // 
             this.comboBoxModelNumber.FormattingEnabled = true;
-            this.comboBoxModelNumber.Location = new System.Drawing.Point(12, 103);
+            this.comboBoxModelNumber.Location = new System.Drawing.Point(7, 103);
             this.comboBoxModelNumber.Name = "comboBoxModelNumber";
-            this.comboBoxModelNumber.Size = new System.Drawing.Size(363, 21);
+            this.comboBoxModelNumber.Size = new System.Drawing.Size(368, 21);
             this.comboBoxModelNumber.TabIndex = 1;
             this.comboBoxModelNumber.DropDown += new System.EventHandler(this.comboBoxModelNumber_DropDown);
             // 
             // comboBoxOrderNumber
             // 
             this.comboBoxOrderNumber.FormattingEnabled = true;
-            this.comboBoxOrderNumber.Location = new System.Drawing.Point(12, 59);
+            this.comboBoxOrderNumber.Location = new System.Drawing.Point(7, 59);
             this.comboBoxOrderNumber.Name = "comboBoxOrderNumber";
-            this.comboBoxOrderNumber.Size = new System.Drawing.Size(363, 21);
+            this.comboBoxOrderNumber.Size = new System.Drawing.Size(368, 21);
             this.comboBoxOrderNumber.TabIndex = 0;
             this.comboBoxOrderNumber.DropDown += new System.EventHandler(this.comboBoxOrderNumber_DropDown);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.textBoxNumberOfModelForNewOrder);
+            this.groupBox2.Controls.Add(this.comboBoxNameOfCustomer);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.buttonAddNewOrder);
             this.groupBox2.Controls.Add(this.textBoxComment);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.textBoxNameOfCostumer);
             this.groupBox2.Controls.Add(this.dateTimePickerManager);
             this.groupBox2.Location = new System.Drawing.Point(7, 17);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(381, 240);
+            this.groupBox2.Size = new System.Drawing.Size(381, 304);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Створити нове замовлення";
@@ -354,7 +364,7 @@
             // 
             // buttonAddNewOrder
             // 
-            this.buttonAddNewOrder.Location = new System.Drawing.Point(244, 194);
+            this.buttonAddNewOrder.Location = new System.Drawing.Point(245, 265);
             this.buttonAddNewOrder.Name = "buttonAddNewOrder";
             this.buttonAddNewOrder.Size = new System.Drawing.Size(130, 23);
             this.buttonAddNewOrder.TabIndex = 4;
@@ -379,13 +389,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Ім\'я замовника";
             // 
-            // textBoxNameOfCostumer
-            // 
-            this.textBoxNameOfCostumer.Location = new System.Drawing.Point(7, 92);
-            this.textBoxNameOfCostumer.Name = "textBoxNameOfCostumer";
-            this.textBoxNameOfCostumer.Size = new System.Drawing.Size(368, 20);
-            this.textBoxNameOfCostumer.TabIndex = 1;
-            // 
             // dateTimePickerManager
             // 
             this.dateTimePickerManager.CustomFormat = "MM/dd/yyyy";
@@ -409,12 +412,59 @@
             // 
             // groupBoxNewCustomer
             // 
+            this.groupBoxNewCustomer.Controls.Add(this.buttonAddNewCustomer);
+            this.groupBoxNewCustomer.Controls.Add(this.label16);
+            this.groupBoxNewCustomer.Controls.Add(this.label15);
+            this.groupBoxNewCustomer.Controls.Add(this.textBoxPhoneOfCustomer);
+            this.groupBoxNewCustomer.Controls.Add(this.textBoxNameOfCustomer);
             this.groupBoxNewCustomer.Location = new System.Drawing.Point(7, 7);
             this.groupBoxNewCustomer.Name = "groupBoxNewCustomer";
             this.groupBoxNewCustomer.Size = new System.Drawing.Size(381, 197);
             this.groupBoxNewCustomer.TabIndex = 0;
             this.groupBoxNewCustomer.TabStop = false;
-            this.groupBoxNewCustomer.Text = "groupBox6";
+            this.groupBoxNewCustomer.Text = "Додати нового замовника";
+            // 
+            // buttonAddNewCustomer
+            // 
+            this.buttonAddNewCustomer.Location = new System.Drawing.Point(244, 153);
+            this.buttonAddNewCustomer.Name = "buttonAddNewCustomer";
+            this.buttonAddNewCustomer.Size = new System.Drawing.Size(130, 23);
+            this.buttonAddNewCustomer.TabIndex = 6;
+            this.buttonAddNewCustomer.Text = "Додати";
+            this.buttonAddNewCustomer.UseVisualStyleBackColor = true;
+            this.buttonAddNewCustomer.Click += new System.EventHandler(this.buttonAddNewCustomer_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(3, 80);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(93, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Номер телефона";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(88, 13);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "ФІП замовника";
+            // 
+            // textBoxPhoneOfCustomer
+            // 
+            this.textBoxPhoneOfCustomer.Location = new System.Drawing.Point(7, 100);
+            this.textBoxPhoneOfCustomer.Name = "textBoxPhoneOfCustomer";
+            this.textBoxPhoneOfCustomer.Size = new System.Drawing.Size(368, 20);
+            this.textBoxPhoneOfCustomer.TabIndex = 1;
+            // 
+            // textBoxNameOfCustomer
+            // 
+            this.textBoxNameOfCustomer.Location = new System.Drawing.Point(7, 47);
+            this.textBoxNameOfCustomer.Name = "textBoxNameOfCustomer";
+            this.textBoxNameOfCustomer.Size = new System.Drawing.Size(368, 20);
+            this.textBoxNameOfCustomer.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -443,9 +493,9 @@
             // 
             // buttonDismiss
             // 
-            this.buttonDismiss.Location = new System.Drawing.Point(254, 98);
+            this.buttonDismiss.Location = new System.Drawing.Point(244, 98);
             this.buttonDismiss.Name = "buttonDismiss";
-            this.buttonDismiss.Size = new System.Drawing.Size(121, 28);
+            this.buttonDismiss.Size = new System.Drawing.Size(130, 23);
             this.buttonDismiss.TabIndex = 2;
             this.buttonDismiss.Text = "Звільнити";
             this.buttonDismiss.UseVisualStyleBackColor = true;
@@ -486,9 +536,9 @@
             // 
             // buttonAddNewEmployee
             // 
-            this.buttonAddNewEmployee.Location = new System.Drawing.Point(254, 152);
+            this.buttonAddNewEmployee.Location = new System.Drawing.Point(244, 152);
             this.buttonAddNewEmployee.Name = "buttonAddNewEmployee";
-            this.buttonAddNewEmployee.Size = new System.Drawing.Size(121, 28);
+            this.buttonAddNewEmployee.Size = new System.Drawing.Size(130, 23);
             this.buttonAddNewEmployee.TabIndex = 6;
             this.buttonAddNewEmployee.Text = "Додати";
             this.buttonAddNewEmployee.UseVisualStyleBackColor = true;
@@ -572,9 +622,9 @@
             // 
             // buttonAddNewPosition
             // 
-            this.buttonAddNewPosition.Location = new System.Drawing.Point(253, 132);
+            this.buttonAddNewPosition.Location = new System.Drawing.Point(244, 132);
             this.buttonAddNewPosition.Name = "buttonAddNewPosition";
-            this.buttonAddNewPosition.Size = new System.Drawing.Size(122, 23);
+            this.buttonAddNewPosition.Size = new System.Drawing.Size(130, 23);
             this.buttonAddNewPosition.TabIndex = 4;
             this.buttonAddNewPosition.Text = "Додати";
             this.buttonAddNewPosition.UseVisualStyleBackColor = true;
@@ -612,6 +662,32 @@
             this.textBoxIdPosition.Size = new System.Drawing.Size(368, 20);
             this.textBoxIdPosition.TabIndex = 0;
             // 
+            // comboBoxNameOfCustomer
+            // 
+            this.comboBoxNameOfCustomer.FormattingEnabled = true;
+            this.comboBoxNameOfCustomer.Location = new System.Drawing.Point(7, 90);
+            this.comboBoxNameOfCustomer.Name = "comboBoxNameOfCustomer";
+            this.comboBoxNameOfCustomer.Size = new System.Drawing.Size(368, 21);
+            this.comboBoxNameOfCustomer.TabIndex = 7;
+            this.comboBoxNameOfCustomer.DropDown += new System.EventHandler(this.comboBoxNameOfCustomer_DropDown);
+            // 
+            // textBoxNumberOfModelForNewOrder
+            // 
+            this.textBoxNumberOfModelForNewOrder.Location = new System.Drawing.Point(7, 204);
+            this.textBoxNumberOfModelForNewOrder.Name = "textBoxNumberOfModelForNewOrder";
+            this.textBoxNumberOfModelForNewOrder.Size = new System.Drawing.Size(368, 20);
+            this.textBoxNumberOfModelForNewOrder.TabIndex = 8;
+            this.textBoxNumberOfModelForNewOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfModelForNewOrder_KeyPress);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 185);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(169, 13);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Кількість моделей у замовленні";
+            // 
             // frmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -633,6 +709,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.groupBoxNewCustomer.ResumeLayout(false);
+            this.groupBoxNewCustomer.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBoxDismissAnEmployee.ResumeLayout(false);
             this.groupBoxDismissAnEmployee.PerformLayout();
@@ -669,7 +747,6 @@
         private System.Windows.Forms.Button buttonAddNewOrder;
         private System.Windows.Forms.TextBox textBoxComment;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxNameOfCostumer;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxNumberModelsInOrder;
         private System.Windows.Forms.Label label5;
@@ -698,5 +775,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBoxNewCustomer;
+        private System.Windows.Forms.Button buttonAddNewCustomer;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBoxPhoneOfCustomer;
+        private System.Windows.Forms.TextBox textBoxNameOfCustomer;
+        private System.Windows.Forms.ComboBox comboBoxNameOfCustomer;
+        private System.Windows.Forms.TextBox textBoxNumberOfModelForNewOrder;
+        private System.Windows.Forms.Label label17;
     }
 }
