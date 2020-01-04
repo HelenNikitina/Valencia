@@ -17,7 +17,7 @@ namespace SewingCompanyManagement
         public frmTechnologist()
         {
             InitializeComponent();
-            myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=TrueDB_01.mdb;User Id=admin;Password=;";
+            myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\TrueDB_01.mdb;User Id=admin;Password=;";
         }
 
         private void buttonViewTableOfModel_Click(object sender, EventArgs e)
@@ -72,11 +72,6 @@ namespace SewingCompanyManagement
             }
         }
 
-        private void comboBoxViewModel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBoxViewModel_DropDown(object sender, EventArgs e)
         {
             try
@@ -102,11 +97,6 @@ namespace SewingCompanyManagement
                 myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonViewOperationsForModel_Click(object sender, EventArgs e)
@@ -448,11 +438,6 @@ namespace SewingCompanyManagement
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBoxStature_DropDown(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(comboBoxModelAndSizeForAdd.Text))
@@ -531,25 +516,25 @@ namespace SewingCompanyManagement
             MyFunctions.MyDigitKeyPress(sender, e);
         }
 
-        private void textBoxModelForDel_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MyFunctions.MyDigitKeyPress(sender, e);
-        }
+        //private void textBoxModelForDel_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    MyFunctions.MyDigitKeyPress(sender, e);
+        //}
 
-        private void textBoxOperationForDel_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MyFunctions.MyDigitKeyPress(sender, e);
-        }
+        //private void textBoxOperationForDel_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    MyFunctions.MyDigitKeyPress(sender, e);
+        //}
 
-        private void textBoxModelForDelOperation_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MyFunctions.MyDigitKeyPress(sender, e);
-        }
+        //private void textBoxModelForDelOperation_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    MyFunctions.MyDigitKeyPress(sender, e);
+        //}
 
-        private void textBoxOperationForDelFromModel_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MyFunctions.MyDigitKeyPress(sender, e);
-        }
+        //private void textBoxOperationForDelFromModel_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    MyFunctions.MyDigitKeyPress(sender, e);
+        //}
 
         private void buttonDeleteModele_Click(object sender, EventArgs e)
         {
@@ -616,7 +601,7 @@ namespace SewingCompanyManagement
 
         }
 
-        private void comboBox1_DropDown(object sender, EventArgs e)
+        private void comboBoxModelNumberForUpdate_DropDown(object sender, EventArgs e)
         {
             try
             {
@@ -767,109 +752,5 @@ namespace SewingCompanyManagement
             }
         }
 
-        private void comboBoxModelAndSizeForDeliteOperation_DropDown(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    myConnection.Open();
-            //    OleDbCommand command = new OleDbCommand();
-            //    command.Connection = myConnection;
-            //    string query = "SELECT ID_MODEL_AND_SIZE FROM MODEL_AND_SIZE ";
-            //    command.CommandText = query;
-            //    OleDbDataReader reader = command.ExecuteReader();
-            //    comboBoxModelAndSizeForDeliteOperation.Items.Clear();
-            //    while (reader.Read())
-            //    {
-            //        comboBoxModelAndSizeForDeliteOperation.Items.Add(reader["ID_MODEL_AND_SIZE"].ToString());
-            //    }
-            //    comboBoxModelAndSizeForDeliteOperation.Show();
-            //    myConnection.Close();
-            //    reader.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    myConnection.Close();
-            //    MessageBox.Show("Error  " + ex);
-            //}
-        }
-
-        private void comboBoxNumberOperetionForDelite_DropDown(object sender, EventArgs e)
-        {
-            //if (string.IsNullOrEmpty(comboBoxModelAndSizeForDeliteOperation.Text))
-            //{
-            //    MessageBox.Show("Выбирите значение для МодельРостРазмер");
-            //}
-            //else
-            //{
-            //    int model = int.Parse(comboBoxModelAndSizeForDeliteOperation.Text);
-            //    try
-            //    {
-            //        myConnection.Open();
-            //        OleDbCommand command = new OleDbCommand();
-            //        command.Connection = myConnection;
-            //        string query = "SELECT PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE, PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION " +
-            //            "FROM PRODUCTION_OPERATION_FOR_MODEL " +
-            //            "WHERE(((PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) = "+ model + "));";
-            //        command.CommandText = query;
-            //        OleDbDataReader reader = command.ExecuteReader();
-            //        comboBoxNumberOperetionForDelite.Items.Clear();
-            //        while (reader.Read())
-            //        {
-            //            comboBoxNumberOperetionForDelite.Items.Add(reader["ID_PRODUCTION_OPERATION"].ToString());
-            //        }
-            //        comboBoxNumberOperetionForDelite.Show();
-            //        myConnection.Close();
-            //        reader.Close();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        myConnection.Close();
-            //        MessageBox.Show("Error  " + ex);
-            //    }
-            //}
-            
-        }
-
-        private void buttonDeleteOperationFromModel_Click(object sender, EventArgs e)
-        {
-        //    int modelAndSize = int.Parse(comboBoxModelAndSizeForDeliteOperation.Text);
-        //    int operation= int.Parse(comboBoxNumberOperetionForDelite.Text);
-        //    string query = null;
-        //    try
-        //    {
-        //        myConnection.Open();
-        //        OleDbCommand command = new OleDbCommand();
-        //        command.Connection = myConnection;
-        //        query = "DELETE PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE, PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION " +
-        //            "FROM PRODUCTION_OPERATION_FOR_MODEL " +
-        //            "WHERE(((PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) = "+ modelAndSize + ") AND((PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION) = "+ operation + ")) ";
-        //        command.CommandText = query;
-        //        if (command.ExecuteNonQuery() == 1)
-        //        {
-        //            MessageBox.Show("Data deleted");
-        //        }
-        //        myConnection.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        myConnection.Close();
-        //        MessageBox.Show("Error  " + ex);
-        //    }
-        }
-
-        private void comboBoxStature_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxTimeForOperation_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxModelAndSizeForAdd_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
