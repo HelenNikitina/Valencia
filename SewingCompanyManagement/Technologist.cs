@@ -24,24 +24,10 @@ namespace SewingCompanyManagement
         {
             try
             {
-               
-                string query = "SELECT MODEL.ID_MODEL as [Модель № ], MODEL.SHORT_NAME_OF_MODEL as [Назва моделі], MODEL.MODEL_DESCRIPTION as [Опис моделі] FROM MODEL; ";
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                command.CommandText = query;
-                OleDbDataAdapter da = new OleDbDataAdapter(command);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridViewTechnologist.DataSource = dt;
-             
-               
-
-                myConnection.Close();
+                dataGridViewTechnologist.DataSource = DataBaseHelper.GetModels(); ;
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -49,25 +35,11 @@ namespace SewingCompanyManagement
         private void buttonViewTableOfOperation_Click(object sender, EventArgs e)
         {
             try
-            {
-                string query = "SELECT PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION as [Операція №], " +
-                    "PRODUCTION_OPERATION.NAME_PRODUCTION_OPERATION as [Назва операції], " +
-                    "PRODUCTION_OPERATION.PRODUCTION_OPERATION_DESCRIPTION as [Опис операції] " +
-                    "FROM PRODUCTION_OPERATION ";
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                command.CommandText = query;
-                OleDbDataAdapter da = new OleDbDataAdapter(command);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridViewTechnologist.DataSource = dt;
-
-                myConnection.Close();
+            {            
+                dataGridViewTechnologist.DataSource = DataBaseHelper.GetOperatoins();
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -76,25 +48,11 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT MODEL_AND_SIZE.ID_MODEL_AND_SIZE FROM MODEL_AND_SIZE ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                comboBoxViewModelAndSize.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxViewModelAndSize.Items.Add(reader["ID_MODEL_AND_SIZE"].ToString());
-                }
-                comboBoxViewModelAndSize.Show();
-                myConnection.Close();
-                reader.Close();
-
+                MyFunctions.ClearCbx(comboBoxViewModelAndSize);
+                comboBoxViewModelAndSize.Items.AddRange(DataBaseHelper.GetNumberOfModelAndSize().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -104,42 +62,13 @@ namespace SewingCompanyManagement
             try
             {
                 int model ;
-                if (string.IsNullOrEmpty(comboBoxViewModelAndSize.Text)) model = 0;
+                if (string.IsNullOrEmpty(comboBoxViewModelAndSize.Text)) model = -1;
                 else model=int.Parse(comboBoxViewModelAndSize.Text);
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = null;
-                string qt = "SELECT " +
-                    "PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATIONS_FOR_MODEL as [ID], " +
-                    "MODEL.SHORT_NAME_OF_MODEL as [Назва моделі], " +
-                    "MODEL_AND_SIZE.ID_MODEL as [Номер моделі], " +
-                    "SIZE_OF_MODEL_STATURE.ID_MODEL_SIZE_STATURE as [Розмір моделі], " +
-                    "PRODUCTION_OPERATION.NAME_PRODUCTION_OPERATION as [Назва операції], " +
-                    "PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION as [Номер операції ], " +
-                    "PRODUCTION_OPERATION_FOR_MODEL.TIME_FOR_PRODUCTION_OPERATION as [Час виконання операції] " +
-                    "FROM SIZE_OF_MODEL_STATURE INNER JOIN(PRODUCTION_OPERATION INNER JOIN (MODEL INNER JOIN (MODEL_AND_SIZE INNER JOIN PRODUCTION_OPERATION_FOR_MODEL ON MODEL_AND_SIZE.ID_MODEL_AND_SIZE = PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) ON MODEL.ID_MODEL = MODEL_AND_SIZE.ID_MODEL) " +
-                    "ON PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION = PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION) ON SIZE_OF_MODEL_STATURE.ID_MODEL_SIZE_STATURE = MODEL_AND_SIZE.ID_MODEL_SIZE_STATURE ";
-                if (model==0)
-                {
-                    query = qt;
-                }
-                else
-                {
-                    query = qt + "WHERE(((PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) = " + model + ")) ";
-                }
-                 
-                command.CommandText = query;
-                OleDbDataAdapter da = new OleDbDataAdapter(command);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridViewTechnologist.DataSource = dt;
-                myConnection.Close();
 
+                dataGridViewTechnologist.DataSource = DataBaseHelper.Technologist_GetOperationsForModel(model);
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
 
@@ -150,31 +79,12 @@ namespace SewingCompanyManagement
             try
             {
                 int model;
-                if (string.IsNullOrEmpty(comboBoxViewModel.Text)) model = 0;
-                else model = int.Parse(comboBoxViewModel.Text);
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = null;
-                string qt = "SELECT MODEL_AND_SIZE.ID_MODEL_AND_SIZE as [Модель и размір №], MODEL_AND_SIZE.ID_MODEL as [Модель №], MODEL_AND_SIZE.ID_MODEL_SIZE_STATURE as [Зріст та Размір] FROM MODEL_AND_SIZE "; 
-                if (model == 0)
-                {
-                    query = qt;
-                }
-                else
-                {
-                    query = qt + "WHERE (((MODEL_AND_SIZE.ID_MODEL) = " + model + "))";
-                }
-                command.CommandText = query;
-                OleDbDataAdapter da = new OleDbDataAdapter(command);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridViewTechnologist.DataSource = dt;
-                myConnection.Close();
+                if (string.IsNullOrEmpty(comboBoxViewModel.Text.Split(' ')[0])) model = -1;
+                else model = int.Parse(comboBoxViewModel.Text.Split(' ')[0]);
+                dataGridViewTechnologist.DataSource = DataBaseHelper.GetModelAndSizes(model);
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -183,25 +93,11 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT ID_MODEL FROM MODEL ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                comboBoxViewModel.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxViewModel.Items.Add(reader["ID_MODEL"].ToString());
-                }
-                comboBoxViewModel.Show();
-                myConnection.Close();
-                reader.Close();
-
+                MyFunctions.ClearCbx(comboBoxViewModel);
+                comboBoxViewModel.Items.AddRange(DataBaseHelper.GetNumberOfModel().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -263,11 +159,11 @@ namespace SewingCompanyManagement
             }
             else
             {
-                modelNumber = int.Parse(comboBoxNumberOfModelToAddSize.Text);
+                modelNumber = int.Parse(comboBoxNumberOfModelToAddSize.Text.Split(' ')[0]);
                 stature = int.Parse(comboBoxStatureOfModel.Text);
                 size = int.Parse(comboBoxSizeOfModel.Text);
                 sizeAndSrature= int.Parse(comboBoxStatureOfModel.Text+comboBoxSizeOfModel.Text);
-                modelAndSize = int.Parse(comboBoxNumberOfModelToAddSize.Text + comboBoxStatureOfModel.Text + comboBoxSizeOfModel.Text);
+                modelAndSize = int.Parse(comboBoxNumberOfModelToAddSize.Text.Split(' ')[0] + comboBoxStatureOfModel.Text + comboBoxSizeOfModel.Text);
                 try
                 {
                     myConnection.Open();
@@ -294,25 +190,11 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT ID_MODEL FROM MODEL ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                comboBoxNumberOfModelToAddSize.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxNumberOfModelToAddSize.Items.Add(reader["ID_MODEL"].ToString());
-                }
-                comboBoxNumberOfModelToAddSize.Show();
-                myConnection.Close();
-                reader.Close();
-
+                MyFunctions.ClearCbx(comboBoxNumberOfModelToAddSize);
+                comboBoxNumberOfModelToAddSize.Items.AddRange(DataBaseHelper.GetNumberOfModel().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -321,24 +203,11 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT * FROM MODEL ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                comboBoxModelAndSizeForAdd.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxModelAndSizeForAdd.Items.Add(reader["ID_MODEL"].ToString()+" "+reader["SHORT_NAME_OF_MODEL"].ToString());
-                }
-                comboBoxModelAndSizeForAdd.Show();
-                myConnection.Close();
-                reader.Close();
+                MyFunctions.ClearCbx(comboBoxModelAndSizeForAdd);
+                comboBoxModelAndSizeForAdd.Items.AddRange(DataBaseHelper.GetNumberOfModel().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
