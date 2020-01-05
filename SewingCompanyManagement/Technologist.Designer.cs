@@ -54,7 +54,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNewDescriptModelForUpdate = new System.Windows.Forms.TextBox();
             this.textBoxNewNamedelForUpdate = new System.Windows.Forms.TextBox();
-            this.buttonDeleteModele = new System.Windows.Forms.Button();
+            this.buttonUpdateModele = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -81,7 +81,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.comboBoxOperation = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBoxStature = new System.Windows.Forms.ComboBox();
+            this.comboBoxStatureAndSize = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxModelAndSizeForAdd = new System.Windows.Forms.ComboBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -328,7 +328,7 @@
             this.groupBox6.Controls.Add(this.label10);
             this.groupBox6.Controls.Add(this.textBoxNewDescriptModelForUpdate);
             this.groupBox6.Controls.Add(this.textBoxNewNamedelForUpdate);
-            this.groupBox6.Controls.Add(this.buttonDeleteModele);
+            this.groupBox6.Controls.Add(this.buttonUpdateModele);
             this.groupBox6.Controls.Add(this.label17);
             this.groupBox6.Location = new System.Drawing.Point(4, 269);
             this.groupBox6.Name = "groupBox6";
@@ -379,16 +379,16 @@
             this.textBoxNewNamedelForUpdate.Size = new System.Drawing.Size(440, 20);
             this.textBoxNewNamedelForUpdate.TabIndex = 4;
             // 
-            // buttonDeleteModele
+            // buttonUpdateModele
             // 
-            this.buttonDeleteModele.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeleteModele.Location = new System.Drawing.Point(298, 211);
-            this.buttonDeleteModele.Name = "buttonDeleteModele";
-            this.buttonDeleteModele.Size = new System.Drawing.Size(152, 23);
-            this.buttonDeleteModele.TabIndex = 3;
-            this.buttonDeleteModele.Text = "Зберегти";
-            this.buttonDeleteModele.UseVisualStyleBackColor = true;
-            this.buttonDeleteModele.Click += new System.EventHandler(this.buttonDeleteModele_Click);
+            this.buttonUpdateModele.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateModele.Location = new System.Drawing.Point(298, 211);
+            this.buttonUpdateModele.Name = "buttonUpdateModele";
+            this.buttonUpdateModele.Size = new System.Drawing.Size(152, 23);
+            this.buttonUpdateModele.TabIndex = 3;
+            this.buttonUpdateModele.Text = "Зберегти";
+            this.buttonUpdateModele.UseVisualStyleBackColor = true;
+            this.buttonUpdateModele.Click += new System.EventHandler(this.buttonUpdateModele_Click);
             // 
             // label17
             // 
@@ -591,7 +591,7 @@
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.comboBoxOperation);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.comboBoxStature);
+            this.groupBox3.Controls.Add(this.comboBoxStatureAndSize);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.comboBoxModelAndSizeForAdd);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -662,14 +662,14 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "Зріст-Розмір";
             // 
-            // comboBoxStature
+            // comboBoxStatureAndSize
             // 
-            this.comboBoxStature.FormattingEnabled = true;
-            this.comboBoxStature.Location = new System.Drawing.Point(21, 94);
-            this.comboBoxStature.Name = "comboBoxStature";
-            this.comboBoxStature.Size = new System.Drawing.Size(421, 23);
-            this.comboBoxStature.TabIndex = 2;
-            this.comboBoxStature.DropDown += new System.EventHandler(this.comboBoxStature_DropDown);
+            this.comboBoxStatureAndSize.FormattingEnabled = true;
+            this.comboBoxStatureAndSize.Location = new System.Drawing.Point(21, 94);
+            this.comboBoxStatureAndSize.Name = "comboBoxStatureAndSize";
+            this.comboBoxStatureAndSize.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxStatureAndSize.TabIndex = 2;
+            this.comboBoxStatureAndSize.DropDown += new System.EventHandler(this.comboBoxStatureAndSize_DropDown);
             // 
             // label5
             // 
@@ -850,7 +850,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxNewDescriptModelForUpdate;
         private System.Windows.Forms.TextBox textBoxNewNamedelForUpdate;
-        private System.Windows.Forms.Button buttonDeleteModele;
+        private System.Windows.Forms.Button buttonUpdateModele;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -877,7 +877,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBoxOperation;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBoxStature;
+        private System.Windows.Forms.ComboBox comboBoxStatureAndSize;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxModelAndSizeForAdd;
         private System.Windows.Forms.TabPage tabPage5;

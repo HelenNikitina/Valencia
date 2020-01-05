@@ -269,6 +269,44 @@ namespace SewingCompanyManagement
             }
             return result;
         }
+        public static List<string> GetStature()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT NUMBER_OF_STATURE FROM STATURE ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["NUMBER_OF_STATURE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static List<string> GetSize()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT [SIZE] FROM SIZE_OF_MODEL; ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["SIZE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
         public static List<string> GetNumberOfModelAndSizeByModel(int model)
         {
             List<string> result = new List<string>();
@@ -394,6 +432,45 @@ namespace SewingCompanyManagement
                 }
             }
         }
+        public static bool UpdateModel(int model, string newName, string newDescription)
+        {
+            using (var con = GetNewConnection())
+            {
+                string query = null;
+                if (string.IsNullOrEmpty(newName))
+                {
+                    query = "UPDATE MODEL " +
+                        $"SET MODEL.MODEL_DESCRIPTION = '{newDescription}' " +
+                        $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                    
+                }
+                else if (string.IsNullOrEmpty(newDescription))
+                {
+                    query = "UPDATE MODEL " +
+                        $"SET MODEL.SHORT_NAME_OF_MODEL = '{newName}' " +
+                        $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                }
+                else
+                {
+                    query = "UPDATE MODEL " +
+                        $"SET MODEL.SHORT_NAME_OF_MODEL = '{newName}', " +
+                        $"MODEL.MODEL_DESCRIPTION = '{newDescription}' " +
+                        $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                }
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
         public static bool AddNewEmployee(string name, int phone, int position)
         {
             using (var con = GetNewConnection())
@@ -401,6 +478,25 @@ namespace SewingCompanyManagement
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("INSERT INTO [EMPLOYEE] (NAME_EMPLOYEE, PHONE_EMPLOYEE, ID_POSITION_OF_EMPLOYEE) " +
                     $"VALUES ('{name}', { phone }, { position}) ", con); ;
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddSizeForModel( int modelAndSize, int modelNumber, int sizeAndSrature)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = $"INSERT INTO MODEL_AND_SIZE VALUES ({modelAndSize}, {modelNumber}, {sizeAndSrature}); ";
+                OleDbCommand cmd = new OleDbCommand(query, con); ;
                 if (cmd.ExecuteNonQuery() == 1)
                 {
                     con.Close();
@@ -477,6 +573,26 @@ namespace SewingCompanyManagement
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("INSERT INTO CUSTOMER(NAME_OF_CUSTOMER, TELEPHONE_NUMBER, NUMBER_OF_ORDERS) " +
                     $"VALUES ('{name}', {phone}, {orderCount}); ", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddNewOperation(int numberOfOperation, string nameOfOperation, string descriptionOfOperation)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "INSERT INTO PRODUCTION_OPERATION " +
+                    $"VALUES ({numberOfOperation}, '{nameOfOperation}', '{descriptionOfOperation}' ); ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
                 if (cmd.ExecuteNonQuery() == 1)
                 {
                     con.Close();

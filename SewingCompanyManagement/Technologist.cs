@@ -152,37 +152,32 @@ namespace SewingCompanyManagement
 
         private void buttonAddSizeForModel_Click(object sender, EventArgs e)
         {
-            int modelNumber, stature, size, modelAndSize, sizeAndSrature;
-            if (string.IsNullOrEmpty(comboBoxNumberOfModelToAddSize.Text) || string.IsNullOrEmpty(comboBoxStatureOfModel.Text) || string.IsNullOrEmpty(comboBoxSizeOfModel.Text))
+            try
             {
-                MyFunctions.MessageBlankFields();
-            }
-            else
-            {
-                modelNumber = int.Parse(comboBoxNumberOfModelToAddSize.Text.Split(' ')[0]);
-                stature = int.Parse(comboBoxStatureOfModel.Text);
-                size = int.Parse(comboBoxSizeOfModel.Text);
-                sizeAndSrature= int.Parse(comboBoxStatureOfModel.Text+comboBoxSizeOfModel.Text);
-                modelAndSize = int.Parse(comboBoxNumberOfModelToAddSize.Text.Split(' ')[0] + comboBoxStatureOfModel.Text + comboBoxSizeOfModel.Text);
-                try
+                if (string.IsNullOrEmpty(comboBoxNumberOfModelToAddSize.Text) || string.IsNullOrEmpty(comboBoxStatureOfModel.Text) || string.IsNullOrEmpty(comboBoxSizeOfModel.Text))
                 {
-                    myConnection.Open();
-                    OleDbCommand command = new OleDbCommand();
-                    command.Connection = myConnection;
-                    string query = "INSERT INTO MODEL_AND_SIZE VALUES (" + modelAndSize + ", '" + modelNumber + "', '" + sizeAndSrature + "' ); ";
-                    command.CommandText = query;
-                    if (command.ExecuteNonQuery() == 1)
+                    MyFunctions.MessageBlankFields();
+                }
+                else
+                {
+                    int modelNumber = int.Parse(comboBoxNumberOfModelToAddSize.Text.Split(' ')[0]);
+                    int sizeAndSrature = int.Parse(comboBoxStatureOfModel.Text + comboBoxSizeOfModel.Text);
+                    int modelAndSize = int.Parse(comboBoxNumberOfModelToAddSize.Text.Split(' ')[0] + comboBoxStatureOfModel.Text + comboBoxSizeOfModel.Text);
+                    if (DataBaseHelper.AddSizeForModel(modelAndSize, modelNumber, sizeAndSrature))
                     {
                         MyFunctions.MessageDataSeved();
                     }
-                    myConnection.Close();
-                }
-                catch (Exception ex)
-                {
-                    myConnection.Close();
-                    MessageBox.Show("Error  " + ex);
+                    else
+                    {
+                        MyFunctions.MessageSomethingWrong();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error  " + ex);
+            }
+            
             
         }
 
@@ -216,26 +211,11 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT NUMBER_OF_STATURE FROM STATURE ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-
-                comboBoxStatureOfModel.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxStatureOfModel.Items.Add(reader["NUMBER_OF_STATURE"].ToString());
-                }
-                comboBoxStatureOfModel.Show();
-                myConnection.Close();
-                reader.Close();
-
+                MyFunctions.ClearCbx(comboBoxStatureOfModel);
+                comboBoxStatureOfModel.Items.AddRange(DataBaseHelper.GetStature().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
@@ -244,25 +224,11 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT [SIZE] FROM SIZE_OF_MODEL; ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                comboBoxSizeOfModel.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxSizeOfModel.Items.Add(reader["SIZE"].ToString());
-                }
-                comboBoxSizeOfModel.Show();
-                myConnection.Close();
-                reader.Close();
-
+                MyFunctions.ClearCbx(comboBoxSizeOfModel);
+                comboBoxSizeOfModel.Items.AddRange(DataBaseHelper.GetSize().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
 
@@ -270,44 +236,38 @@ namespace SewingCompanyManagement
 
         private void buttonAddNewOperation_Click(object sender, EventArgs e)
         {
-            int numberOfOperation;
-            string nameOfOperation, descriptionOfOperation;
-            if (string.IsNullOrEmpty(textBoxIdOperatinToNew.Text)|| string.IsNullOrEmpty(textBoxNameOperationToNew.Text)|| string.IsNullOrEmpty(textBoxOperatinnDescriptorToNew.Text))
+            try
             {
-                MyFunctions.MessageBlankFields();
-            }
-            else
-            {
-                numberOfOperation = int.Parse(textBoxIdOperatinToNew.Text);
-                nameOfOperation = textBoxNameOperationToNew.Text;
-                descriptionOfOperation = textBoxOperatinnDescriptorToNew.Text;
-
-                try
+                if (string.IsNullOrEmpty(textBoxIdOperatinToNew.Text) || string.IsNullOrEmpty(textBoxNameOperationToNew.Text) || string.IsNullOrEmpty(textBoxOperatinnDescriptorToNew.Text))
                 {
-                    myConnection.Open();
-                    OleDbCommand command = new OleDbCommand();
-                    command.Connection = myConnection;
-                    string query = "INSERT INTO PRODUCTION_OPERATION VALUES (" + numberOfOperation + ", '" + nameOfOperation + "', '" + descriptionOfOperation + "' ); ";
-                    command.CommandText = query;
-                    if (command.ExecuteNonQuery() == 1)
+                    MyFunctions.MessageBlankFields();
+                }
+                else
+                {
+                    int numberOfOperation = int.Parse(textBoxIdOperatinToNew.Text);
+                    string nameOfOperation = textBoxNameOperationToNew.Text;
+                    string descriptionOfOperation = textBoxOperatinnDescriptorToNew.Text;
+
+                    if (DataBaseHelper.AddNewOperation(numberOfOperation, nameOfOperation, descriptionOfOperation))
                     {
                         MyFunctions.MessageDataSeved();
                         textBoxIdOperatinToNew.Clear();
                         textBoxNameOperationToNew.Clear();
                         textBoxOperatinnDescriptorToNew.Clear();
                     }
-                    myConnection.Close();
+                    else
+                    {
+                        MyFunctions.MessageSomethingWrong();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    myConnection.Close();
-                    MessageBox.Show("Error  " + ex);
-                }
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error  " + ex);
             }
         }
 
-        private void comboBoxStature_DropDown(object sender, EventArgs e)
+        private void comboBoxStatureAndSize_DropDown(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(comboBoxModelAndSizeForAdd.Text))
             {
@@ -327,12 +287,12 @@ namespace SewingCompanyManagement
                         "WHERE(((MODEL_AND_SIZE.ID_MODEL) = " + a + "))";
                     command.CommandText = query;
                     OleDbDataReader reader = command.ExecuteReader();
-                    comboBoxStature.Items.Clear();
+                    comboBoxStatureAndSize.Items.Clear();
                     while (reader.Read())
                     {
-                        comboBoxStature.Items.Add(reader["ID_MODEL_SIZE_STATURE"].ToString());
+                        comboBoxStatureAndSize.Items.Add(reader["ID_MODEL_SIZE_STATURE"].ToString());
                     }
-                    comboBoxStature.Show();
+                    comboBoxStatureAndSize.Show();
                     myConnection.Close();
 
                 }
@@ -347,7 +307,7 @@ namespace SewingCompanyManagement
 
         private void comboBoxOperation_DropDown(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBoxStature.Text))
+            if (string.IsNullOrEmpty(comboBoxStatureAndSize.Text))
             {
                 MyFunctions.MessageChooseSize();
             }
@@ -385,126 +345,69 @@ namespace SewingCompanyManagement
             MyFunctions.MyDigitKeyPress(sender, e);
         }
 
-        //private void textBoxModelForDel_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    MyFunctions.MyDigitKeyPress(sender, e);
-        //}
-
-        //private void textBoxOperationForDel_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    MyFunctions.MyDigitKeyPress(sender, e);
-        //}
-
-        //private void textBoxModelForDelOperation_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    MyFunctions.MyDigitKeyPress(sender, e);
-        //}
-
-        //private void textBoxOperationForDelFromModel_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    MyFunctions.MyDigitKeyPress(sender, e);
-        //}
-
-        private void buttonDeleteModele_Click(object sender, EventArgs e)
+        private void buttonUpdateModele_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBoxModelNumberForUpdate.Text))
+            try
             {
-                MyFunctions.MessageChooseModel();
-            }
-            else
-            {
-                int model = int.Parse(comboBoxModelNumberForUpdate.Text);
-                string newName=null;
-                string newDescription = null;
-                string query = null;
-                if (string.IsNullOrEmpty(textBoxNewNamedelForUpdate.Text)&& string.IsNullOrEmpty(textBoxNewDescriptModelForUpdate.Text))
+                if (string.IsNullOrEmpty(comboBoxModelNumberForUpdate.Text))
                 {
                     MyFunctions.MessageChooseModel();
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(textBoxNewDescriptModelForUpdate.Text))
+
+                    if (string.IsNullOrEmpty(textBoxNewNamedelForUpdate.Text) && string.IsNullOrEmpty(textBoxNewDescriptModelForUpdate.Text))
                     {
-                        newName = textBoxNewNamedelForUpdate.Text;
-                        query = "UPDATE MODEL SET MODEL.SHORT_NAME_OF_MODEL = '" + newName + "' " +
-                       "WHERE(((MODEL.ID_MODEL) = " + model + ")); ";
-                    }
-                    else if (string.IsNullOrEmpty(textBoxNewNamedelForUpdate.Text))
-                    {
-                        newDescription = textBoxNewDescriptModelForUpdate.Text;
-                        query = "UPDATE MODEL SET MODEL.MODEL_DESCRIPTION = '" + newDescription + "' " +
-                        "WHERE(((MODEL.ID_MODEL) = " + model + ")); ";
+                        MyFunctions.MessageChooseModel();
                     }
                     else
                     {
-                        newName = textBoxNewNamedelForUpdate.Text;
-                        newDescription = textBoxNewDescriptModelForUpdate.Text;
-                        query = "UPDATE MODEL SET MODEL.SHORT_NAME_OF_MODEL = '" + newName + "', MODEL.MODEL_DESCRIPTION = '" + newDescription + "' " +
-                        "WHERE(((MODEL.ID_MODEL) = " + model + ")); ";
-                    }
-
-                    try
-                    {
-                        myConnection.Open();
-                        OleDbCommand command = new OleDbCommand();
-                        command.Connection = myConnection;
-                        command.CommandText = query;
-                        if (command.ExecuteNonQuery() == 1)
+                        int model = int.Parse(comboBoxModelNumberForUpdate.Text.Split(' ')[0]);
+                        string newName = textBoxNewNamedelForUpdate.Text;
+                        string newDescription = textBoxNewDescriptModelForUpdate.Text;
+                        if (DataBaseHelper.UpdateModel(model, newName, newDescription))
                         {
-                            MyFunctions.MessageDataUpdate();
                             textBoxNewNamedelForUpdate.Clear();
-                            textBoxNewDescriptModelForUpdate.Clear();         
+                            textBoxNewDescriptModelForUpdate.Clear();
+                            MyFunctions.MessageDataUpdate();
                         }
-                        myConnection.Close();
-                        buttonViewTableOfModel_Click(sender, e);
-                    }
-                    catch (Exception ex)
-                    {
-                        myConnection.Close();
-                        MessageBox.Show("Error  " + ex);
+                        else
+                        {
+                            MyFunctions.MessageSomethingWrong();
+                        }
                     }
 
                 }
-
             }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show("Error  " + ex);
+            }
         }
 
         private void comboBoxModelNumberForUpdate_DropDown(object sender, EventArgs e)
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT ID_MODEL FROM MODEL ";
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                comboBoxModelNumberForUpdate.Items.Clear();
-                while (reader.Read())
-                {
-                    comboBoxModelNumberForUpdate.Items.Add(reader["ID_MODEL"].ToString());
-                }
-                comboBoxModelNumberForUpdate.Show();
-                myConnection.Close();
-                reader.Close();
+                MyFunctions.ClearCbx(comboBoxModelNumberForUpdate);
+                comboBoxModelNumberForUpdate.Items.AddRange(DataBaseHelper.GetNumberOfModel().ToArray());
             }
             catch (Exception ex)
             {
-                myConnection.Close();
                 MessageBox.Show("Error  " + ex);
             }
         }
 
         private void buttonAddOperationsForModel_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBoxModelAndSizeForAdd.Text)|| string.IsNullOrEmpty(comboBoxStature.Text)|| string.IsNullOrEmpty(comboBoxOperation.Text)|| string.IsNullOrEmpty(textBoxTimeForOperation.Text))
+            if (string.IsNullOrEmpty(comboBoxModelAndSizeForAdd.Text)|| string.IsNullOrEmpty(comboBoxStatureAndSize.Text)|| string.IsNullOrEmpty(comboBoxOperation.Text)|| string.IsNullOrEmpty(textBoxTimeForOperation.Text))
             {
                 MyFunctions.MessageBlankFields();
             }
             else
             {
-                int model = int.Parse(comboBoxModelAndSizeForAdd.Text.Split(' ')[0] + comboBoxStature.Text);
+                int model = int.Parse(comboBoxModelAndSizeForAdd.Text.Split(' ')[0] + comboBoxStatureAndSize.Text);
                 int operation = int.Parse(comboBoxOperation.Text);
                 int time = int.Parse(textBoxTimeForOperation.Text);
                 try
