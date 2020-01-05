@@ -46,43 +46,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxNumberOfModel = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.buttonAddOperationsForModel = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxTimeForOperation = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboBoxOperation = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBoxStature = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBoxModelAndSizeForAdd = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.buttonAddSizeForModel = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxSizeOfModel = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxStatureOfModel = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBoxNumberOfModelToAddSize = new System.Windows.Forms.ComboBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.buttonAddNewOperation = new System.Windows.Forms.Button();
-            this.textBoxOperatinnDescriptorToNew = new System.Windows.Forms.TextBox();
-            this.textBoxNameOperationToNew = new System.Windows.Forms.TextBox();
-            this.textBoxIdOperatinToNew = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.comboBoxModelNumberForUpdate = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNewDescriptModelForUpdate = new System.Windows.Forms.TextBox();
             this.textBoxNewNamedelForUpdate = new System.Windows.Forms.TextBox();
-            this.buttonDeleteModele = new System.Windows.Forms.Button();
+            this.buttonUpdateModele = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
             this.textBoxNewOperationDescriptorForUpdate = new System.Windows.Forms.TextBox();
@@ -91,17 +65,47 @@
             this.comboBoxNumberOperationForUpdate = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.buttonUpdateOperation = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.buttonAddNewOperation = new System.Windows.Forms.Button();
+            this.textBoxOperatinnDescriptorToNew = new System.Windows.Forms.TextBox();
+            this.textBoxNameOperationToNew = new System.Windows.Forms.TextBox();
+            this.textBoxIdOperatinToNew = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonAddOperationsForModel = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxTimeForOperation = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBoxOperation = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxStatureAndSize = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxModelAndSizeForAdd = new System.Windows.Forms.ComboBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.buttonAddSizeForModel = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBoxSizeOfModel = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxStatureOfModel = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxNumberOfModelToAddSize = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTechnologist)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewTechnologist
@@ -223,7 +227,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Maroon;
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(448, 230);
+            this.groupBox2.Size = new System.Drawing.Size(456, 254);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Додати нову модель";
@@ -293,291 +297,12 @@
             this.textBoxNumberOfModel.TabIndex = 0;
             this.textBoxNumberOfModel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfModel_KeyPress);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.Controls.Add(this.buttonAddOperationsForModel);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.textBoxTimeForOperation);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.comboBoxOperation);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.comboBoxStature);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.comboBoxModelAndSizeForAdd);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBox3.Location = new System.Drawing.Point(6, 434);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(448, 283);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Додати операції у модель";
-            // 
-            // buttonAddOperationsForModel
-            // 
-            this.buttonAddOperationsForModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddOperationsForModel.ForeColor = System.Drawing.Color.Black;
-            this.buttonAddOperationsForModel.Location = new System.Drawing.Point(21, 233);
-            this.buttonAddOperationsForModel.Name = "buttonAddOperationsForModel";
-            this.buttonAddOperationsForModel.Size = new System.Drawing.Size(421, 29);
-            this.buttonAddOperationsForModel.TabIndex = 10;
-            this.buttonAddOperationsForModel.Text = "Додати";
-            this.buttonAddOperationsForModel.UseVisualStyleBackColor = true;
-            this.buttonAddOperationsForModel.Click += new System.EventHandler(this.buttonAddOperationsForModel_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(25, 177);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(200, 15);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Час виконання операції (секунди)";
-            // 
-            // textBoxTimeForOperation
-            // 
-            this.textBoxTimeForOperation.Location = new System.Drawing.Point(21, 202);
-            this.textBoxTimeForOperation.Name = "textBoxTimeForOperation";
-            this.textBoxTimeForOperation.Size = new System.Drawing.Size(421, 21);
-            this.textBoxTimeForOperation.TabIndex = 8;
-            this.textBoxTimeForOperation.TextChanged += new System.EventHandler(this.textBoxTimeForOperation_TextChanged);
-            this.textBoxTimeForOperation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTimeForOperation_KeyPress);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(24, 125);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(97, 15);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "Номер операції";
-            // 
-            // comboBoxOperation
-            // 
-            this.comboBoxOperation.FormattingEnabled = true;
-            this.comboBoxOperation.Location = new System.Drawing.Point(21, 147);
-            this.comboBoxOperation.Name = "comboBoxOperation";
-            this.comboBoxOperation.Size = new System.Drawing.Size(421, 23);
-            this.comboBoxOperation.TabIndex = 6;
-            this.comboBoxOperation.DropDown += new System.EventHandler(this.comboBoxOperation_DropDown);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(25, 71);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 15);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Зріст-Розмір";
-            // 
-            // comboBoxStature
-            // 
-            this.comboBoxStature.FormattingEnabled = true;
-            this.comboBoxStature.Location = new System.Drawing.Point(21, 94);
-            this.comboBoxStature.Name = "comboBoxStature";
-            this.comboBoxStature.Size = new System.Drawing.Size(421, 23);
-            this.comboBoxStature.TabIndex = 2;
-            this.comboBoxStature.DropDown += new System.EventHandler(this.comboBoxStature_DropDown);
-            this.comboBoxStature.SelectedIndexChanged += new System.EventHandler(this.comboBoxStature_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(24, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Номер моделі";
-            // 
-            // comboBoxModelAndSizeForAdd
-            // 
-            this.comboBoxModelAndSizeForAdd.FormattingEnabled = true;
-            this.comboBoxModelAndSizeForAdd.Location = new System.Drawing.Point(21, 43);
-            this.comboBoxModelAndSizeForAdd.Name = "comboBoxModelAndSizeForAdd";
-            this.comboBoxModelAndSizeForAdd.Size = new System.Drawing.Size(421, 23);
-            this.comboBoxModelAndSizeForAdd.TabIndex = 0;
-            this.comboBoxModelAndSizeForAdd.DropDown += new System.EventHandler(this.comboBoxModelAndSizeForAdd_DropDown);
-            this.comboBoxModelAndSizeForAdd.SelectedIndexChanged += new System.EventHandler(this.comboBoxModelAndSizeForAdd_SelectedIndexChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.buttonAddSizeForModel);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.comboBoxSizeOfModel);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.comboBoxStatureOfModel);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.comboBoxNumberOfModelToAddSize);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox4.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBox4.Location = new System.Drawing.Point(6, 238);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(218, 192);
-            this.groupBox4.TabIndex = 8;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Додати розмір у модель";
-            // 
-            // buttonAddSizeForModel
-            // 
-            this.buttonAddSizeForModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddSizeForModel.ForeColor = System.Drawing.Color.Black;
-            this.buttonAddSizeForModel.Location = new System.Drawing.Point(21, 160);
-            this.buttonAddSizeForModel.Name = "buttonAddSizeForModel";
-            this.buttonAddSizeForModel.Size = new System.Drawing.Size(163, 24);
-            this.buttonAddSizeForModel.TabIndex = 6;
-            this.buttonAddSizeForModel.Text = "Додати розмір";
-            this.buttonAddSizeForModel.UseVisualStyleBackColor = true;
-            this.buttonAddSizeForModel.Click += new System.EventHandler(this.buttonAddSizeForModel_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(26, 111);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 15);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Розмір";
-            // 
-            // comboBoxSizeOfModel
-            // 
-            this.comboBoxSizeOfModel.FormattingEnabled = true;
-            this.comboBoxSizeOfModel.Location = new System.Drawing.Point(21, 130);
-            this.comboBoxSizeOfModel.Name = "comboBoxSizeOfModel";
-            this.comboBoxSizeOfModel.Size = new System.Drawing.Size(163, 23);
-            this.comboBoxSizeOfModel.TabIndex = 4;
-            this.comboBoxSizeOfModel.DropDown += new System.EventHandler(this.comboBoxSizeOfModel_DropDown);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(27, 65);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 15);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Зріст";
-            // 
-            // comboBoxStatureOfModel
-            // 
-            this.comboBoxStatureOfModel.FormattingEnabled = true;
-            this.comboBoxStatureOfModel.Location = new System.Drawing.Point(21, 84);
-            this.comboBoxStatureOfModel.Name = "comboBoxStatureOfModel";
-            this.comboBoxStatureOfModel.Size = new System.Drawing.Size(163, 23);
-            this.comboBoxStatureOfModel.TabIndex = 2;
-            this.comboBoxStatureOfModel.DropDown += new System.EventHandler(this.comboBoxStatureOfModel_DropDown);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(24, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 15);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Номер моделі";
-            // 
-            // comboBoxNumberOfModelToAddSize
-            // 
-            this.comboBoxNumberOfModelToAddSize.FormattingEnabled = true;
-            this.comboBoxNumberOfModelToAddSize.Location = new System.Drawing.Point(21, 38);
-            this.comboBoxNumberOfModelToAddSize.Name = "comboBoxNumberOfModelToAddSize";
-            this.comboBoxNumberOfModelToAddSize.Size = new System.Drawing.Size(163, 23);
-            this.comboBoxNumberOfModelToAddSize.TabIndex = 0;
-            this.comboBoxNumberOfModelToAddSize.DropDown += new System.EventHandler(this.comboBoxNumberOfModelToAddSize_DropDown);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label15);
-            this.groupBox5.Controls.Add(this.label14);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.buttonAddNewOperation);
-            this.groupBox5.Controls.Add(this.textBoxOperatinnDescriptorToNew);
-            this.groupBox5.Controls.Add(this.textBoxNameOperationToNew);
-            this.groupBox5.Controls.Add(this.textBoxIdOperatinToNew);
-            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox5.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBox5.Location = new System.Drawing.Point(231, 238);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(223, 192);
-            this.groupBox5.TabIndex = 9;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Додати нову опреацію";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(21, 114);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(87, 15);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "Опис операції";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(20, 66);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(94, 15);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "Назва операції";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(20, 19);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(97, 15);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Номер операції";
-            // 
-            // buttonAddNewOperation
-            // 
-            this.buttonAddNewOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddNewOperation.ForeColor = System.Drawing.Color.Black;
-            this.buttonAddNewOperation.Location = new System.Drawing.Point(17, 162);
-            this.buttonAddNewOperation.Name = "buttonAddNewOperation";
-            this.buttonAddNewOperation.Size = new System.Drawing.Size(200, 23);
-            this.buttonAddNewOperation.TabIndex = 3;
-            this.buttonAddNewOperation.Text = "Додати операцію";
-            this.buttonAddNewOperation.UseVisualStyleBackColor = true;
-            this.buttonAddNewOperation.Click += new System.EventHandler(this.buttonAddNewOperation_Click);
-            // 
-            // textBoxOperatinnDescriptorToNew
-            // 
-            this.textBoxOperatinnDescriptorToNew.Location = new System.Drawing.Point(17, 135);
-            this.textBoxOperatinnDescriptorToNew.Multiline = true;
-            this.textBoxOperatinnDescriptorToNew.Name = "textBoxOperatinnDescriptorToNew";
-            this.textBoxOperatinnDescriptorToNew.Size = new System.Drawing.Size(200, 20);
-            this.textBoxOperatinnDescriptorToNew.TabIndex = 2;
-            // 
-            // textBoxNameOperationToNew
-            // 
-            this.textBoxNameOperationToNew.Location = new System.Drawing.Point(17, 87);
-            this.textBoxNameOperationToNew.Name = "textBoxNameOperationToNew";
-            this.textBoxNameOperationToNew.Size = new System.Drawing.Size(200, 21);
-            this.textBoxNameOperationToNew.TabIndex = 1;
-            // 
-            // textBoxIdOperatinToNew
-            // 
-            this.textBoxIdOperatinToNew.Location = new System.Drawing.Point(17, 39);
-            this.textBoxIdOperatinToNew.Name = "textBoxIdOperatinToNew";
-            this.textBoxIdOperatinToNew.Size = new System.Drawing.Size(200, 21);
-            this.textBoxIdOperatinToNew.TabIndex = 0;
-            this.textBoxIdOperatinToNew.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdOperatinToNew_KeyPress);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(3, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -586,29 +311,15 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(465, 722);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Додавання";
+            this.tabPage1.Text = "Модель";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.groupBox6);
-            this.tabPage3.Controls.Add(this.groupBox7);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(465, 722);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Редагування";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -617,12 +328,12 @@
             this.groupBox6.Controls.Add(this.label10);
             this.groupBox6.Controls.Add(this.textBoxNewDescriptModelForUpdate);
             this.groupBox6.Controls.Add(this.textBoxNewNamedelForUpdate);
-            this.groupBox6.Controls.Add(this.buttonDeleteModele);
+            this.groupBox6.Controls.Add(this.buttonUpdateModele);
             this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Location = new System.Drawing.Point(3, 15);
+            this.groupBox6.Location = new System.Drawing.Point(4, 269);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(456, 254);
-            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Редагувати модель з довідника";
             // 
@@ -633,7 +344,7 @@
             this.comboBoxModelNumberForUpdate.Name = "comboBoxModelNumberForUpdate";
             this.comboBoxModelNumberForUpdate.Size = new System.Drawing.Size(440, 21);
             this.comboBoxModelNumberForUpdate.TabIndex = 8;
-            this.comboBoxModelNumberForUpdate.DropDown += new System.EventHandler(this.comboBox1_DropDown);
+            this.comboBoxModelNumberForUpdate.DropDown += new System.EventHandler(this.comboBoxModelNumberForUpdate_DropDown);
             // 
             // label21
             // 
@@ -668,15 +379,16 @@
             this.textBoxNewNamedelForUpdate.Size = new System.Drawing.Size(440, 20);
             this.textBoxNewNamedelForUpdate.TabIndex = 4;
             // 
-            // buttonDeleteModele
+            // buttonUpdateModele
             // 
-            this.buttonDeleteModele.Location = new System.Drawing.Point(298, 211);
-            this.buttonDeleteModele.Name = "buttonDeleteModele";
-            this.buttonDeleteModele.Size = new System.Drawing.Size(152, 23);
-            this.buttonDeleteModele.TabIndex = 3;
-            this.buttonDeleteModele.Text = "Зберегти";
-            this.buttonDeleteModele.UseVisualStyleBackColor = true;
-            this.buttonDeleteModele.Click += new System.EventHandler(this.buttonDeleteModele_Click);
+            this.buttonUpdateModele.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateModele.Location = new System.Drawing.Point(298, 211);
+            this.buttonUpdateModele.Name = "buttonUpdateModele";
+            this.buttonUpdateModele.Size = new System.Drawing.Size(152, 23);
+            this.buttonUpdateModele.TabIndex = 3;
+            this.buttonUpdateModele.Text = "Зберегти";
+            this.buttonUpdateModele.UseVisualStyleBackColor = true;
+            this.buttonUpdateModele.Click += new System.EventHandler(this.buttonUpdateModele_Click);
             // 
             // label17
             // 
@@ -687,6 +399,18 @@
             this.label17.TabIndex = 2;
             this.label17.Text = "Номер моделі";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox7);
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(465, 722);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "Операція";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label23);
@@ -696,10 +420,10 @@
             this.groupBox7.Controls.Add(this.comboBoxNumberOperationForUpdate);
             this.groupBox7.Controls.Add(this.label18);
             this.groupBox7.Controls.Add(this.buttonUpdateOperation);
-            this.groupBox7.Location = new System.Drawing.Point(6, 292);
+            this.groupBox7.Location = new System.Drawing.Point(5, 210);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(455, 233);
-            this.groupBox7.TabIndex = 1;
+            this.groupBox7.TabIndex = 11;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Редагувати операцію в довіднику";
             // 
@@ -756,6 +480,7 @@
             // 
             // buttonUpdateOperation
             // 
+            this.buttonUpdateOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUpdateOperation.Location = new System.Drawing.Point(295, 204);
             this.buttonUpdateOperation.Name = "buttonUpdateOperation";
             this.buttonUpdateOperation.Size = new System.Drawing.Size(152, 23);
@@ -763,6 +488,304 @@
             this.buttonUpdateOperation.Text = "Зберегти";
             this.buttonUpdateOperation.UseVisualStyleBackColor = true;
             this.buttonUpdateOperation.Click += new System.EventHandler(this.buttonUpdateOperation_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label15);
+            this.groupBox5.Controls.Add(this.label14);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.buttonAddNewOperation);
+            this.groupBox5.Controls.Add(this.textBoxOperatinnDescriptorToNew);
+            this.groupBox5.Controls.Add(this.textBoxNameOperationToNew);
+            this.groupBox5.Controls.Add(this.textBoxIdOperatinToNew);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox5.ForeColor = System.Drawing.Color.Black;
+            this.groupBox5.Location = new System.Drawing.Point(3, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(456, 192);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Додати нову опреацію";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(21, 114);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(87, 15);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Опис операції";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(20, 66);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(94, 15);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Назва операції";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(20, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(97, 15);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Номер операції";
+            // 
+            // buttonAddNewOperation
+            // 
+            this.buttonAddNewOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddNewOperation.ForeColor = System.Drawing.Color.Black;
+            this.buttonAddNewOperation.Location = new System.Drawing.Point(296, 162);
+            this.buttonAddNewOperation.Name = "buttonAddNewOperation";
+            this.buttonAddNewOperation.Size = new System.Drawing.Size(152, 23);
+            this.buttonAddNewOperation.TabIndex = 3;
+            this.buttonAddNewOperation.Text = "Додати операцію";
+            this.buttonAddNewOperation.UseVisualStyleBackColor = true;
+            this.buttonAddNewOperation.Click += new System.EventHandler(this.buttonAddNewOperation_Click);
+            // 
+            // textBoxOperatinnDescriptorToNew
+            // 
+            this.textBoxOperatinnDescriptorToNew.Location = new System.Drawing.Point(17, 135);
+            this.textBoxOperatinnDescriptorToNew.Multiline = true;
+            this.textBoxOperatinnDescriptorToNew.Name = "textBoxOperatinnDescriptorToNew";
+            this.textBoxOperatinnDescriptorToNew.Size = new System.Drawing.Size(433, 20);
+            this.textBoxOperatinnDescriptorToNew.TabIndex = 2;
+            // 
+            // textBoxNameOperationToNew
+            // 
+            this.textBoxNameOperationToNew.Location = new System.Drawing.Point(17, 87);
+            this.textBoxNameOperationToNew.Name = "textBoxNameOperationToNew";
+            this.textBoxNameOperationToNew.Size = new System.Drawing.Size(433, 21);
+            this.textBoxNameOperationToNew.TabIndex = 1;
+            // 
+            // textBoxIdOperatinToNew
+            // 
+            this.textBoxIdOperatinToNew.Location = new System.Drawing.Point(17, 39);
+            this.textBoxIdOperatinToNew.Name = "textBoxIdOperatinToNew";
+            this.textBoxIdOperatinToNew.Size = new System.Drawing.Size(433, 21);
+            this.textBoxIdOperatinToNew.TabIndex = 0;
+            this.textBoxIdOperatinToNew.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdOperatinToNew_KeyPress);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBox3);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(465, 722);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "Операціі у модель";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Controls.Add(this.buttonAddOperationsForModel);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.textBoxTimeForOperation);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.comboBoxOperation);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.comboBoxStatureAndSize);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.comboBoxModelAndSizeForAdd);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox3.ForeColor = System.Drawing.Color.Maroon;
+            this.groupBox3.Location = new System.Drawing.Point(8, 5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(448, 283);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Додати операції у модель";
+            // 
+            // buttonAddOperationsForModel
+            // 
+            this.buttonAddOperationsForModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddOperationsForModel.ForeColor = System.Drawing.Color.Black;
+            this.buttonAddOperationsForModel.Location = new System.Drawing.Point(21, 233);
+            this.buttonAddOperationsForModel.Name = "buttonAddOperationsForModel";
+            this.buttonAddOperationsForModel.Size = new System.Drawing.Size(421, 29);
+            this.buttonAddOperationsForModel.TabIndex = 10;
+            this.buttonAddOperationsForModel.Text = "Додати";
+            this.buttonAddOperationsForModel.UseVisualStyleBackColor = true;
+            this.buttonAddOperationsForModel.Click += new System.EventHandler(this.buttonAddOperationsForModel_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(25, 177);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(200, 15);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Час виконання операції (секунди)";
+            // 
+            // textBoxTimeForOperation
+            // 
+            this.textBoxTimeForOperation.Location = new System.Drawing.Point(21, 202);
+            this.textBoxTimeForOperation.Name = "textBoxTimeForOperation";
+            this.textBoxTimeForOperation.Size = new System.Drawing.Size(421, 21);
+            this.textBoxTimeForOperation.TabIndex = 8;
+            this.textBoxTimeForOperation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTimeForOperation_KeyPress);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(24, 125);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 15);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Номер операції";
+            // 
+            // comboBoxOperation
+            // 
+            this.comboBoxOperation.FormattingEnabled = true;
+            this.comboBoxOperation.Location = new System.Drawing.Point(21, 147);
+            this.comboBoxOperation.Name = "comboBoxOperation";
+            this.comboBoxOperation.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxOperation.TabIndex = 6;
+            this.comboBoxOperation.DropDown += new System.EventHandler(this.comboBoxOperation_DropDown);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(25, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(82, 15);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Зріст-Розмір";
+            // 
+            // comboBoxStatureAndSize
+            // 
+            this.comboBoxStatureAndSize.FormattingEnabled = true;
+            this.comboBoxStatureAndSize.Location = new System.Drawing.Point(21, 94);
+            this.comboBoxStatureAndSize.Name = "comboBoxStatureAndSize";
+            this.comboBoxStatureAndSize.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxStatureAndSize.TabIndex = 2;
+            this.comboBoxStatureAndSize.DropDown += new System.EventHandler(this.comboBoxStatureAndSize_DropDown);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(24, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 15);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Номер моделі";
+            // 
+            // comboBoxModelAndSizeForAdd
+            // 
+            this.comboBoxModelAndSizeForAdd.FormattingEnabled = true;
+            this.comboBoxModelAndSizeForAdd.Location = new System.Drawing.Point(21, 43);
+            this.comboBoxModelAndSizeForAdd.Name = "comboBoxModelAndSizeForAdd";
+            this.comboBoxModelAndSizeForAdd.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxModelAndSizeForAdd.TabIndex = 0;
+            this.comboBoxModelAndSizeForAdd.DropDown += new System.EventHandler(this.comboBoxModelAndSizeForAdd_DropDown);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.groupBox4);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(465, 722);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "Розмір у модель";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.buttonAddSizeForModel);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.comboBoxSizeOfModel);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.comboBoxStatureOfModel);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.comboBoxNumberOfModelToAddSize);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox4.ForeColor = System.Drawing.Color.Maroon;
+            this.groupBox4.Location = new System.Drawing.Point(8, 8);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(448, 213);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Додати розмір у модель";
+            // 
+            // buttonAddSizeForModel
+            // 
+            this.buttonAddSizeForModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddSizeForModel.ForeColor = System.Drawing.Color.Black;
+            this.buttonAddSizeForModel.Location = new System.Drawing.Point(288, 176);
+            this.buttonAddSizeForModel.Name = "buttonAddSizeForModel";
+            this.buttonAddSizeForModel.Size = new System.Drawing.Size(152, 23);
+            this.buttonAddSizeForModel.TabIndex = 6;
+            this.buttonAddSizeForModel.Text = "Додати розмір";
+            this.buttonAddSizeForModel.UseVisualStyleBackColor = true;
+            this.buttonAddSizeForModel.Click += new System.EventHandler(this.buttonAddSizeForModel_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(26, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 15);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Розмір";
+            // 
+            // comboBoxSizeOfModel
+            // 
+            this.comboBoxSizeOfModel.FormattingEnabled = true;
+            this.comboBoxSizeOfModel.Location = new System.Drawing.Point(17, 130);
+            this.comboBoxSizeOfModel.Name = "comboBoxSizeOfModel";
+            this.comboBoxSizeOfModel.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxSizeOfModel.TabIndex = 4;
+            this.comboBoxSizeOfModel.DropDown += new System.EventHandler(this.comboBoxSizeOfModel_DropDown);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(27, 65);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 15);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Зріст";
+            // 
+            // comboBoxStatureOfModel
+            // 
+            this.comboBoxStatureOfModel.FormattingEnabled = true;
+            this.comboBoxStatureOfModel.Location = new System.Drawing.Point(17, 84);
+            this.comboBoxStatureOfModel.Name = "comboBoxStatureOfModel";
+            this.comboBoxStatureOfModel.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxStatureOfModel.TabIndex = 2;
+            this.comboBoxStatureOfModel.DropDown += new System.EventHandler(this.comboBoxStatureOfModel_DropDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(24, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 15);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Номер моделі";
+            // 
+            // comboBoxNumberOfModelToAddSize
+            // 
+            this.comboBoxNumberOfModelToAddSize.FormattingEnabled = true;
+            this.comboBoxNumberOfModelToAddSize.Location = new System.Drawing.Point(17, 38);
+            this.comboBoxNumberOfModelToAddSize.Name = "comboBoxNumberOfModelToAddSize";
+            this.comboBoxNumberOfModelToAddSize.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxNumberOfModelToAddSize.TabIndex = 0;
+            this.comboBoxNumberOfModelToAddSize.DropDown += new System.EventHandler(this.comboBoxNumberOfModelToAddSize_DropDown);
             // 
             // frmTechnologist
             // 
@@ -780,19 +803,21 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -815,24 +840,27 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxNumberOfModel;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBoxTimeForOperation;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBoxOperation;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBoxStature;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBoxModelAndSizeForAdd;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button buttonAddSizeForModel;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBoxSizeOfModel;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBoxStatureOfModel;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBoxNumberOfModelToAddSize;
-        private System.Windows.Forms.Button buttonAddOperationsForModel;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox comboBoxViewModel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ComboBox comboBoxModelNumberForUpdate;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxNewDescriptModelForUpdate;
+        private System.Windows.Forms.TextBox textBoxNewNamedelForUpdate;
+        private System.Windows.Forms.Button buttonUpdateModele;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBoxNewOperationDescriptorForUpdate;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBoxNewNemOperationForUpdate;
+        private System.Windows.Forms.ComboBox comboBoxNumberOperationForUpdate;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button buttonUpdateOperation;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
@@ -841,26 +869,25 @@
         private System.Windows.Forms.TextBox textBoxOperatinnDescriptorToNew;
         private System.Windows.Forms.TextBox textBoxNameOperationToNew;
         private System.Windows.Forms.TextBox textBoxIdOperatinToNew;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboBoxViewModel;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button buttonUpdateOperation;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button buttonDeleteModele;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBoxNewDescriptModelForUpdate;
-        private System.Windows.Forms.TextBox textBoxNewNamedelForUpdate;
-        private System.Windows.Forms.ComboBox comboBoxModelNumberForUpdate;
-        private System.Windows.Forms.TextBox textBoxNewOperationDescriptorForUpdate;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBoxNewNemOperationForUpdate;
-        private System.Windows.Forms.ComboBox comboBoxNumberOperationForUpdate;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button buttonAddOperationsForModel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBoxTimeForOperation;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBoxOperation;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBoxStatureAndSize;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBoxModelAndSizeForAdd;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button buttonAddSizeForModel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBoxSizeOfModel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBoxStatureOfModel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxNumberOfModelToAddSize;
     }
 }

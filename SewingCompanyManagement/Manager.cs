@@ -167,13 +167,13 @@ namespace SewingCompanyManagement
         {
             try
             {
-                if (string.IsNullOrEmpty(comboBoxModelNumber.Text))
+                if (string.IsNullOrEmpty(comboBoxModelNumber.Text.Split(' ')[0]))
                 {
                     MyFunctions.MessageChooseModel();
                 }
                 else
                 {
-                    int model = int.Parse(comboBoxModelNumber.Text);
+                    int model = int.Parse(comboBoxModelNumber.Text.Split(' ')[0]);
                     MyFunctions.ClearCbx(comboBoxModelSize);
                     comboBoxModelSize.Items.AddRange(DataBaseHelper.GetNumberOfModelAndSizeByModel(model).ToArray());
                 }

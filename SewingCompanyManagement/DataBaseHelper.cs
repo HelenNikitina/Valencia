@@ -257,12 +257,50 @@ namespace SewingCompanyManagement
             using (var con = GetNewConnection())
             {
                 con.Open();
-                OleDbCommand cmd = new OleDbCommand(@"SELECT ID_MODEL FROM [MODEL]", con);
+                OleDbCommand cmd = new OleDbCommand(@"SELECT * FROM MODEL ", con);
                 using (var reader = cmd.ExecuteReader())
                 {
                     for (int i = 0; reader.Read(); i++)
                     {
-                        result.Add(reader["ID_MODEL"].ToString());
+                        result.Add(reader["ID_MODEL"].ToString() + " " + reader["SHORT_NAME_OF_MODEL"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static List<string> GetStature()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT NUMBER_OF_STATURE FROM STATURE ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["NUMBER_OF_STATURE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static List<string> GetSize()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT [SIZE] FROM SIZE_OF_MODEL; ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["SIZE"].ToString());
                     }
                 }
                 con.Close();
@@ -283,6 +321,24 @@ namespace SewingCompanyManagement
                     for (int i = 0; reader.Read(); i++)
                     {
                         result.Add(reader["ID_MODEL_SIZE_STATURE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static List<string> GetNumberOfModelAndSize()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(@"SELECT MODEL_AND_SIZE.ID_MODEL_AND_SIZE FROM MODEL_AND_SIZE ", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["ID_MODEL_AND_SIZE"].ToString());
                     }
                 }
                 con.Close();
@@ -376,6 +432,45 @@ namespace SewingCompanyManagement
                 }
             }
         }
+        public static bool UpdateModel(int model, string newName, string newDescription)
+        {
+            using (var con = GetNewConnection())
+            {
+                string query = null;
+                if (string.IsNullOrEmpty(newName))
+                {
+                    query = "UPDATE MODEL " +
+                        $"SET MODEL.MODEL_DESCRIPTION = '{newDescription}' " +
+                        $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                    
+                }
+                else if (string.IsNullOrEmpty(newDescription))
+                {
+                    query = "UPDATE MODEL " +
+                        $"SET MODEL.SHORT_NAME_OF_MODEL = '{newName}' " +
+                        $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                }
+                else
+                {
+                    query = "UPDATE MODEL " +
+                        $"SET MODEL.SHORT_NAME_OF_MODEL = '{newName}', " +
+                        $"MODEL.MODEL_DESCRIPTION = '{newDescription}' " +
+                        $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                }
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
         public static bool AddNewEmployee(string name, int phone, int position)
         {
             using (var con = GetNewConnection())
@@ -383,6 +478,25 @@ namespace SewingCompanyManagement
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("INSERT INTO [EMPLOYEE] (NAME_EMPLOYEE, PHONE_EMPLOYEE, ID_POSITION_OF_EMPLOYEE) " +
                     $"VALUES ('{name}', { phone }, { position}) ", con); ;
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddSizeForModel( int modelAndSize, int modelNumber, int sizeAndSrature)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = $"INSERT INTO MODEL_AND_SIZE VALUES ({modelAndSize}, {modelNumber}, {sizeAndSrature}); ";
+                OleDbCommand cmd = new OleDbCommand(query, con); ;
                 if (cmd.ExecuteNonQuery() == 1)
                 {
                     con.Close();
@@ -459,6 +573,26 @@ namespace SewingCompanyManagement
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand("INSERT INTO CUSTOMER(NAME_OF_CUSTOMER, TELEPHONE_NUMBER, NUMBER_OF_ORDERS) " +
                     $"VALUES ('{name}', {phone}, {orderCount}); ", con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddNewOperation(int numberOfOperation, string nameOfOperation, string descriptionOfOperation)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "INSERT INTO PRODUCTION_OPERATION " +
+                    $"VALUES ({numberOfOperation}, '{nameOfOperation}', '{descriptionOfOperation}' ); ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
                 if (cmd.ExecuteNonQuery() == 1)
                 {
                     con.Close();
@@ -596,6 +730,36 @@ namespace SewingCompanyManagement
             }
             return dt;
         }
+        public static DataTable GetModelAndSizes(int model)
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = null;
+                string qt = "SELECT MODEL_AND_SIZE.ID_MODEL_AND_SIZE as [Модель и размір №], " +
+                    "MODEL_AND_SIZE.ID_MODEL as [Модель №], " +
+                    "MODEL_AND_SIZE.ID_MODEL_SIZE_STATURE as [Зріст та Размір] " +
+                    "FROM MODEL_AND_SIZE ";
+                if (model == -1)
+                {
+                    query = qt;
+                }
+                else
+                {
+                    query = qt + "WHERE (((MODEL_AND_SIZE.ID_MODEL) = " + model + "))";
+                }
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
 
         public static DataTable GetModels()
         {
@@ -609,6 +773,27 @@ namespace SewingCompanyManagement
                     "[SHORT_NAME_OF_MODEL] as [Назва моделі], " +
                     "[MODEL_DESCRIPTION] as [Опис моделі] " +
                     "FROM [MODEL] ";
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
+        public static DataTable GetOperatoins()
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION as [Операція №], " +
+                    "PRODUCTION_OPERATION.NAME_PRODUCTION_OPERATION as [Назва операції], " +
+                    "PRODUCTION_OPERATION.PRODUCTION_OPERATION_DESCRIPTION as [Опис операції] " +
+                    "FROM PRODUCTION_OPERATION ";
                 OleDbCommand cmd = new OleDbCommand(query);
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = con;
@@ -700,7 +885,46 @@ namespace SewingCompanyManagement
             }
             return dt;
         }
-
-
+        public static DataTable Technologist_GetOperationsForModel(int model)
+        {
+            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter;
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = null;
+                string queryq = "SELECT " +
+                    "PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATIONS_FOR_MODEL as [ID], " +
+                    "MODEL.SHORT_NAME_OF_MODEL as [Назва моделі], " +
+                    "MODEL_AND_SIZE.ID_MODEL as [Номер моделі], " +
+                    "SIZE_OF_MODEL_STATURE.ID_MODEL_SIZE_STATURE as [Розмір моделі], " +
+                    "PRODUCTION_OPERATION.NAME_PRODUCTION_OPERATION as [Назва операції], " +
+                    "PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION as [Номер операції ], " +
+                    "PRODUCTION_OPERATION_FOR_MODEL.TIME_FOR_PRODUCTION_OPERATION as [Час виконання операції] " +
+                    "FROM SIZE_OF_MODEL_STATURE INNER JOIN(PRODUCTION_OPERATION " +
+                    "INNER JOIN (MODEL INNER JOIN (MODEL_AND_SIZE " +
+                    "INNER JOIN PRODUCTION_OPERATION_FOR_MODEL " +
+                    "ON MODEL_AND_SIZE.ID_MODEL_AND_SIZE = PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) " +
+                    "ON MODEL.ID_MODEL = MODEL_AND_SIZE.ID_MODEL) " +
+                    "ON PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION = PRODUCTION_OPERATION_FOR_MODEL.ID_PRODUCTION_OPERATION) " +
+                    "ON SIZE_OF_MODEL_STATURE.ID_MODEL_SIZE_STATURE = MODEL_AND_SIZE.ID_MODEL_SIZE_STATURE ";
+                if (model == -1)
+                {
+                    query = queryq;
+                }
+                else
+                {
+                    query = queryq + $"WHERE(((PRODUCTION_OPERATION_FOR_MODEL.ID_MODEL_AND_SIZE) = " + model + ")) ";
+                }
+                OleDbCommand cmd = new OleDbCommand(query);
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = con;
+                command.CommandText = query;
+                adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dt);
+                con.Close();
+            }
+            return dt;
+        }
     }
 }
