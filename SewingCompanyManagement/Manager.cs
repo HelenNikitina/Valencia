@@ -116,9 +116,9 @@ namespace SewingCompanyManagement
                 }
                 else
                 {
-                    int idOrder = int.Parse(comboBoxOrderNumber.Text + comboBoxModelNumber.Text + comboBoxModelSize.Text);
+                    int idOrder = int.Parse(comboBoxOrderNumber.Text + comboBoxModelNumber.Text.Split(' ')[0] + comboBoxModelSize.Text);
                     int order = int.Parse(comboBoxOrderNumber.Text);
-                    int modelAndSize = int.Parse(comboBoxModelNumber.Text + comboBoxModelSize.Text);
+                    int modelAndSize = int.Parse(comboBoxModelNumber.Text.Split(' ')[0] + comboBoxModelSize.Text);
                     int number = int.Parse(textBoxNumberModelsInOrder.Text);
 
                     if (DataBaseHelper.AddNewModelForOrder(idOrder, order, modelAndSize, number))
