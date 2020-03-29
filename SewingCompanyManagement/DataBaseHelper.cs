@@ -288,6 +288,46 @@ namespace SewingCompanyManagement
             }
             return result;
         }
+        public static List<string> GetIdModelSizeStature(int model)
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT MODEL_AND_SIZE.ID_MODEL, SIZE_OF_MODEL_STATURE.ID_MODEL_SIZE_STATURE " +
+                       "FROM SIZE_OF_MODEL_STATURE INNER JOIN MODEL_AND_SIZE ON SIZE_OF_MODEL_STATURE.ID_MODEL_SIZE_STATURE = MODEL_AND_SIZE.ID_MODEL_SIZE_STATURE " +
+                       $"WHERE(((MODEL_AND_SIZE.ID_MODEL) = {model}))";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["ID_MODEL_SIZE_STATURE"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+        public static List<string> GetProductionOperation()
+        {
+            List<string> result = new List<string>();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "SELECT PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION FROM PRODUCTION_OPERATION;";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        result.Add(reader["ID_PRODUCTION_OPERATION"].ToString());
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
         public static List<string> GetSize()
         {
             List<string> result = new List<string>();
@@ -432,6 +472,27 @@ namespace SewingCompanyManagement
                 }
             }
         }
+        public static bool InsertIntoProductionOperationForModel(int model, int operation, int time)
+        {
+            string dateTime = DateTime.Now.ToShortDateString();
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = "INSERT INTO PRODUCTION_OPERATION_FOR_MODEL(ID_MODEL_AND_SIZE, ID_PRODUCTION_OPERATION, TIME_FOR_PRODUCTION_OPERATION) " +
+                        "VALUES (" + model + ", " + operation + ", " + time + " ); ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
         public static bool UpdateModel(int model, string newName, string newDescription)
         {
             using (var con = GetNewConnection())
@@ -456,6 +517,45 @@ namespace SewingCompanyManagement
                         $"SET MODEL.SHORT_NAME_OF_MODEL = '{newName}', " +
                         $"MODEL.MODEL_DESCRIPTION = '{newDescription}' " +
                         $"WHERE(((MODEL.ID_MODEL) = {model})); ";
+                }
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool UpdateOperation(int operation, string newName, string newDescription)
+        {
+            using (var con = GetNewConnection())
+            {
+                string query = null;
+                if (string.IsNullOrEmpty(newName))
+                {
+                    query = "UPDATE PRODUCTION_OPERATION " +
+                        $"SET PRODUCTION_OPERATION.PRODUCTION_OPERATION_DESCRIPTION = '{newDescription}' " +
+                         $"WHERE(((PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION) = {operation})); ";
+
+                }
+                else if (string.IsNullOrEmpty(newDescription))
+                {
+                    query = "UPDATE PRODUCTION_OPERATION " +
+                        $"SET PRODUCTION_OPERATION.NAME_PRODUCTION_OPERATION = '{newName}' " +
+                       $"WHERE(((PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION) = {operation})); ";
+                }
+                else
+                {
+                    query = "UPDATE PRODUCTION_OPERATION " +
+                        $"SET PRODUCTION_OPERATION.NAME_PRODUCTION_OPERATION = '{newName}', " +
+                        $"PRODUCTION_OPERATION.PRODUCTION_OPERATION_DESCRIPTION = '{newDescription}' " +
+                         $"WHERE(((PRODUCTION_OPERATION.ID_PRODUCTION_OPERATION) = {operation})); ";
                 }
                 con.Open();
                 OleDbCommand cmd = new OleDbCommand(query, con);
@@ -592,6 +692,25 @@ namespace SewingCompanyManagement
                 con.Open();
                 string query = "INSERT INTO PRODUCTION_OPERATION " +
                     $"VALUES ({numberOfOperation}, '{nameOfOperation}', '{descriptionOfOperation}' ); ";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    con.Close();
+                    return false;
+                }
+            }
+        }
+        public static bool AddNewModel(int modelId, string modelName, string modelDescription)
+        {
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                string query = $"INSERT INTO MODEL VALUES ({modelId}, '{modelName}', '{modelDescription}' ); ";
                 OleDbCommand cmd = new OleDbCommand(query, con);
                 if (cmd.ExecuteNonQuery() == 1)
                 {

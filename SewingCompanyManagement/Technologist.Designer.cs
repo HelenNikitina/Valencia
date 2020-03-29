@@ -81,9 +81,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.comboBoxOperation = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBoxStatureAndSize = new System.Windows.Forms.ComboBox();
+            this.comboBoxStatureAndSizeForModel = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBoxModelAndSizeForAdd = new System.Windows.Forms.ComboBox();
+            this.comboBoxModelForAddOperations = new System.Windows.Forms.ComboBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.buttonAddSizeForModel = new System.Windows.Forms.Button();
@@ -591,9 +591,9 @@
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.comboBoxOperation);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.comboBoxStatureAndSize);
+            this.groupBox3.Controls.Add(this.comboBoxStatureAndSizeForModel);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.comboBoxModelAndSizeForAdd);
+            this.groupBox3.Controls.Add(this.comboBoxModelForAddOperations);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.ForeColor = System.Drawing.Color.Maroon;
             this.groupBox3.Location = new System.Drawing.Point(8, 5);
@@ -662,14 +662,14 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "Зріст-Розмір";
             // 
-            // comboBoxStatureAndSize
+            // comboBoxStatureAndSizeForModel
             // 
-            this.comboBoxStatureAndSize.FormattingEnabled = true;
-            this.comboBoxStatureAndSize.Location = new System.Drawing.Point(21, 94);
-            this.comboBoxStatureAndSize.Name = "comboBoxStatureAndSize";
-            this.comboBoxStatureAndSize.Size = new System.Drawing.Size(421, 23);
-            this.comboBoxStatureAndSize.TabIndex = 2;
-            this.comboBoxStatureAndSize.DropDown += new System.EventHandler(this.comboBoxStatureAndSize_DropDown);
+            this.comboBoxStatureAndSizeForModel.FormattingEnabled = true;
+            this.comboBoxStatureAndSizeForModel.Location = new System.Drawing.Point(21, 94);
+            this.comboBoxStatureAndSizeForModel.Name = "comboBoxStatureAndSizeForModel";
+            this.comboBoxStatureAndSizeForModel.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxStatureAndSizeForModel.TabIndex = 2;
+            this.comboBoxStatureAndSizeForModel.DropDown += new System.EventHandler(this.comboBoxStatureAndSizeForModel_DropDown);
             // 
             // label5
             // 
@@ -681,14 +681,14 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Номер моделі";
             // 
-            // comboBoxModelAndSizeForAdd
+            // comboBoxModelForAddOperations
             // 
-            this.comboBoxModelAndSizeForAdd.FormattingEnabled = true;
-            this.comboBoxModelAndSizeForAdd.Location = new System.Drawing.Point(21, 43);
-            this.comboBoxModelAndSizeForAdd.Name = "comboBoxModelAndSizeForAdd";
-            this.comboBoxModelAndSizeForAdd.Size = new System.Drawing.Size(421, 23);
-            this.comboBoxModelAndSizeForAdd.TabIndex = 0;
-            this.comboBoxModelAndSizeForAdd.DropDown += new System.EventHandler(this.comboBoxModelAndSizeForAdd_DropDown);
+            this.comboBoxModelForAddOperations.FormattingEnabled = true;
+            this.comboBoxModelForAddOperations.Location = new System.Drawing.Point(21, 43);
+            this.comboBoxModelForAddOperations.Name = "comboBoxModelForAddOperations";
+            this.comboBoxModelForAddOperations.Size = new System.Drawing.Size(421, 23);
+            this.comboBoxModelForAddOperations.TabIndex = 0;
+            this.comboBoxModelForAddOperations.DropDown += new System.EventHandler(this.comboBoxModelAndSizeForAdd_DropDown);
             // 
             // tabPage5
             // 
@@ -877,9 +877,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBoxOperation;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBoxStatureAndSize;
+        private System.Windows.Forms.ComboBox comboBoxStatureAndSizeForModel;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBoxModelAndSizeForAdd;
+        private System.Windows.Forms.ComboBox comboBoxModelForAddOperations;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button buttonAddSizeForModel;
