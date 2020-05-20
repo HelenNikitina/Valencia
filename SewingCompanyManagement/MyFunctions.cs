@@ -83,6 +83,10 @@ namespace SewingCompanyManagement
         {
             MessageBox.Show("Довжира вхідного тексту перевищує допустиме! Максимальна довжина 255 символів.");
         }
+        public static void MessageLoginError()
+        {
+            MessageBox.Show("Логін та//або пароль не збігаються! ");
+        }
         public static void MessageDataIsntCorrect(string message ="")
         {
             MessageBox.Show($"input data is not correct. {message}");

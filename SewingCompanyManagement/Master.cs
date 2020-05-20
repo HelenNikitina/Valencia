@@ -12,7 +12,6 @@ namespace SewingCompanyManagement
         public frmMaster()
         {
             InitializeComponent();
-           // myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=TrueDB_01.mdb;User Id=admin;Password=;";
         }
 
         private void buttonGetOperationMaster_Click(object sender, EventArgs e)

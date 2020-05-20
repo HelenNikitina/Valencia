@@ -36,6 +36,33 @@ namespace SewingCompanyManagement
 
             return true;
         }
+        public static string Entrance_getPositionOfEmployeeENG(string login, string parol)
+        {
+            string result = "";
+            using (var con = GetNewConnection())
+            {
+                con.Open();
+                OleDbCommand cmd = new OleDbCommand(
+                    "SELECT POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE_EN " +
+                    "FROM POSITION_OF_EMPLOYEE LEFT JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE " +
+                    "WHERE LOGIN = '" + login + "'AND PASSWORD = '" + parol + "'", con);
+                using (var reader = cmd.ExecuteReader())
+                {
+
+                    if (reader.Read())
+                    {
+                        result = reader["NAME_POSITION_OF_EMPLOYEE_EN"].ToString();
+                    }
+                    else
+                    {
+                        MyFunctions.MessageDataNotFound();
+                    }
+                }
+                con.Close();
+            }
+            return result;
+        }
+
         public static int Master_getNamberOfOperationInOrder(int order, int modelAndSize, int operation)
         {
             int value = 0;

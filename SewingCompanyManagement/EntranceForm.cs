@@ -10,7 +10,7 @@ namespace SewingCompanyManagement
         public EntranceForm()
         {
             InitializeComponent();
-            myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\TrueDB_01.mdb;User Id=admin;Password=;";
+            //myConnection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\TrueDB_01.mdb;User Id=admin;Password=;";
         }
         public EntranceType CurrentEntranceType
         {
@@ -46,54 +46,46 @@ namespace SewingCompanyManagement
         {
             try
             {
-                myConnection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = myConnection;
-                string query = "SELECT LOGIN , PASSWORD, POSITION_OF_EMPLOYEE.NAME_POSITION_OF_EMPLOYEE_EN " +
-                    "FROM POSITION_OF_EMPLOYEE LEFT JOIN EMPLOYEE ON POSITION_OF_EMPLOYEE.ID_POSITION_OF_EMPLOYEE = EMPLOYEE.ID_POSITION_OF_EMPLOYEE " +
-                    "WHERE LOGIN = '" + textBoxLogin.Text + "'AND PASSWORD = '"+ textBoxPassword.Text + "'";
-                textBoxLogin.Clear();
-                textBoxPassword.Clear();
-                command.CommandText = query;
-                OleDbDataReader reader = command.ExecuteReader();
-                
-                int count = 0;
-                string logPass=null;
-                while (reader.Read())
+                if (String.IsNullOrEmpty(textBoxLogin.Text)|| String.IsNullOrEmpty(textBoxPassword.Text))
                 {
-                    count++;
-                    logPass = reader["NAME_POSITION_OF_EMPLOYEE_EN"].ToString();
+                    MyFunctions.MessageBlankFields();
                 }
-                //if we have one result
-                if (count==1)
+                else
                 {
-                    if (logPass.CompareTo("Master")==0)
-                    {
-                        CurrentEntranceType = EntranceType.Master;
-                        Hide();
-                    }
-                    if (logPass.CompareTo("Technolog") == 0)
-                    {
-                        CurrentEntranceType = EntranceType.Technolog;
-                        Hide();
-                    }
-                    if (logPass.CompareTo("Manager") == 0)
-                    {
-                        CurrentEntranceType = EntranceType.Manager;
-                        Hide();
-                    }
-                    if (logPass.CompareTo("Admin") == 0)
-                    {
-                        CurrentEntranceType = EntranceType.Admin;
-                        Hide();
-                    }
+                    string logPass = null;
 
+                    logPass = DataBaseHelper.Entrance_getPositionOfEmployeeENG(textBoxLogin.Text, textBoxPassword.Text);
+                    if (!String.IsNullOrEmpty(logPass))
+                    {
+                        if (logPass.CompareTo("Master") == 0)
+                        {
+                            CurrentEntranceType = EntranceType.Master;
+                            Hide();
+                        }
+                        if (logPass.CompareTo("Technolog") == 0)
+                        {
+                            CurrentEntranceType = EntranceType.Technolog;
+                            Hide();
+                        }
+                        if (logPass.CompareTo("Manager") == 0)
+                        {
+                            CurrentEntranceType = EntranceType.Manager;
+                            Hide();
+                        }
+                        //if (logPass.CompareTo("Admin") == 0)
+                        //{
+                        //    CurrentEntranceType = EntranceType.Admin;
+                        //    Hide();
+                        //}
+
+                    }
+                    else
+                    {
+                        // MessageBox.Show("FALSE");
+                    }
+                    textBoxLogin.Clear();
+                    textBoxPassword.Clear();
                 }
-                else if (count>1)
-                {
-                    MessageBox.Show("FALSE");
-                }
-                myConnection.Close();
             }
             catch (Exception ex)
             {
