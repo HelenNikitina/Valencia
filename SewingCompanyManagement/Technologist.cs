@@ -450,5 +450,9 @@ namespace SewingCompanyManagement
             }
         }
 
+        private void textBoxNewNamedelForUpdate_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

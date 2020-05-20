@@ -265,6 +265,7 @@
             // textBoxNameOfModel
             // 
             this.textBoxNameOfModel.Location = new System.Drawing.Point(21, 94);
+            this.textBoxNameOfModel.MaxLength = 100;
             this.textBoxNameOfModel.Name = "textBoxNameOfModel";
             this.textBoxNameOfModel.Size = new System.Drawing.Size(421, 21);
             this.textBoxNameOfModel.TabIndex = 3;
@@ -375,9 +376,11 @@
             // textBoxNewNamedelForUpdate
             // 
             this.textBoxNewNamedelForUpdate.Location = new System.Drawing.Point(10, 89);
+            this.textBoxNewNamedelForUpdate.MaxLength = 100;
             this.textBoxNewNamedelForUpdate.Name = "textBoxNewNamedelForUpdate";
             this.textBoxNewNamedelForUpdate.Size = new System.Drawing.Size(440, 20);
             this.textBoxNewNamedelForUpdate.TabIndex = 4;
+            this.textBoxNewNamedelForUpdate.TextChanged += new System.EventHandler(this.textBoxNewNamedelForUpdate_TextChanged);
             // 
             // buttonUpdateModele
             // 
@@ -456,6 +459,7 @@
             // textBoxNewNemOperationForUpdate
             // 
             this.textBoxNewNemOperationForUpdate.Location = new System.Drawing.Point(14, 89);
+            this.textBoxNewNemOperationForUpdate.MaxLength = 100;
             this.textBoxNewNemOperationForUpdate.Name = "textBoxNewNemOperationForUpdate";
             this.textBoxNewNemOperationForUpdate.Size = new System.Drawing.Size(433, 20);
             this.textBoxNewNemOperationForUpdate.TabIndex = 4;
@@ -560,6 +564,7 @@
             // textBoxNameOperationToNew
             // 
             this.textBoxNameOperationToNew.Location = new System.Drawing.Point(17, 87);
+            this.textBoxNameOperationToNew.MaxLength = 100;
             this.textBoxNameOperationToNew.Name = "textBoxNameOperationToNew";
             this.textBoxNameOperationToNew.Size = new System.Drawing.Size(433, 21);
             this.textBoxNameOperationToNew.TabIndex = 1;
@@ -628,6 +633,7 @@
             // textBoxTimeForOperation
             // 
             this.textBoxTimeForOperation.Location = new System.Drawing.Point(21, 202);
+            this.textBoxTimeForOperation.MaxLength = 5;
             this.textBoxTimeForOperation.Name = "textBoxTimeForOperation";
             this.textBoxTimeForOperation.Size = new System.Drawing.Size(421, 21);
             this.textBoxTimeForOperation.TabIndex = 8;

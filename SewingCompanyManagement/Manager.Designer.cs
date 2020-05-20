@@ -50,6 +50,9 @@
             this.comboBoxModelNumber = new System.Windows.Forms.ComboBox();
             this.comboBoxOrderNumber = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBoxNumberOfModelForNewOrder = new System.Windows.Forms.TextBox();
+            this.comboBoxNameOfCustomer = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonAddNewOrder = new System.Windows.Forms.Button();
@@ -83,9 +86,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNamePosition = new System.Windows.Forms.TextBox();
             this.textBoxIdPosition = new System.Windows.Forms.TextBox();
-            this.comboBoxNameOfCustomer = new System.Windows.Forms.ComboBox();
-            this.textBoxNumberOfModelForNewOrder = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewForManager)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -344,6 +344,32 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Створити нове замовлення";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 185);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(169, 13);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Кількість моделей у замовленні";
+            // 
+            // textBoxNumberOfModelForNewOrder
+            // 
+            this.textBoxNumberOfModelForNewOrder.Location = new System.Drawing.Point(7, 204);
+            this.textBoxNumberOfModelForNewOrder.Name = "textBoxNumberOfModelForNewOrder";
+            this.textBoxNumberOfModelForNewOrder.Size = new System.Drawing.Size(368, 20);
+            this.textBoxNumberOfModelForNewOrder.TabIndex = 8;
+            this.textBoxNumberOfModelForNewOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfModelForNewOrder_KeyPress);
+            // 
+            // comboBoxNameOfCustomer
+            // 
+            this.comboBoxNameOfCustomer.FormattingEnabled = true;
+            this.comboBoxNameOfCustomer.Location = new System.Drawing.Point(7, 90);
+            this.comboBoxNameOfCustomer.Name = "comboBoxNameOfCustomer";
+            this.comboBoxNameOfCustomer.Size = new System.Drawing.Size(368, 21);
+            this.comboBoxNameOfCustomer.TabIndex = 7;
+            this.comboBoxNameOfCustomer.DropDown += new System.EventHandler(this.comboBoxNameOfCustomer_DropDown);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -455,6 +481,7 @@
             // textBoxPhoneOfCustomer
             // 
             this.textBoxPhoneOfCustomer.Location = new System.Drawing.Point(7, 100);
+            this.textBoxPhoneOfCustomer.MaxLength = 10;
             this.textBoxPhoneOfCustomer.Name = "textBoxPhoneOfCustomer";
             this.textBoxPhoneOfCustomer.Size = new System.Drawing.Size(368, 20);
             this.textBoxPhoneOfCustomer.TabIndex = 1;
@@ -462,6 +489,7 @@
             // textBoxNameOfCustomer
             // 
             this.textBoxNameOfCustomer.Location = new System.Drawing.Point(7, 47);
+            this.textBoxNameOfCustomer.MaxLength = 255;
             this.textBoxNameOfCustomer.Name = "textBoxNameOfCustomer";
             this.textBoxNameOfCustomer.Size = new System.Drawing.Size(368, 20);
             this.textBoxNameOfCustomer.TabIndex = 0;
@@ -583,6 +611,7 @@
             // textBoxTelephoneNumber
             // 
             this.textBoxTelephoneNumber.Location = new System.Drawing.Point(7, 82);
+            this.textBoxTelephoneNumber.MaxLength = 10;
             this.textBoxTelephoneNumber.Name = "textBoxTelephoneNumber";
             this.textBoxTelephoneNumber.Size = new System.Drawing.Size(368, 20);
             this.textBoxTelephoneNumber.TabIndex = 1;
@@ -591,6 +620,7 @@
             // textBoxNameEmployee
             // 
             this.textBoxNameEmployee.Location = new System.Drawing.Point(7, 41);
+            this.textBoxNameEmployee.MaxLength = 255;
             this.textBoxNameEmployee.Name = "textBoxNameEmployee";
             this.textBoxNameEmployee.Size = new System.Drawing.Size(368, 20);
             this.textBoxNameEmployee.TabIndex = 0;
@@ -661,32 +691,6 @@
             this.textBoxIdPosition.Name = "textBoxIdPosition";
             this.textBoxIdPosition.Size = new System.Drawing.Size(368, 20);
             this.textBoxIdPosition.TabIndex = 0;
-            // 
-            // comboBoxNameOfCustomer
-            // 
-            this.comboBoxNameOfCustomer.FormattingEnabled = true;
-            this.comboBoxNameOfCustomer.Location = new System.Drawing.Point(7, 90);
-            this.comboBoxNameOfCustomer.Name = "comboBoxNameOfCustomer";
-            this.comboBoxNameOfCustomer.Size = new System.Drawing.Size(368, 21);
-            this.comboBoxNameOfCustomer.TabIndex = 7;
-            this.comboBoxNameOfCustomer.DropDown += new System.EventHandler(this.comboBoxNameOfCustomer_DropDown);
-            // 
-            // textBoxNumberOfModelForNewOrder
-            // 
-            this.textBoxNumberOfModelForNewOrder.Location = new System.Drawing.Point(7, 204);
-            this.textBoxNumberOfModelForNewOrder.Name = "textBoxNumberOfModelForNewOrder";
-            this.textBoxNumberOfModelForNewOrder.Size = new System.Drawing.Size(368, 20);
-            this.textBoxNumberOfModelForNewOrder.TabIndex = 8;
-            this.textBoxNumberOfModelForNewOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumberOfModelForNewOrder_KeyPress);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 185);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(169, 13);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Кількість моделей у замовленні";
             // 
             // frmManager
             // 

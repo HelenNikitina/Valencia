@@ -76,4 +76,3 @@ D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\o
 D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csproj.GenerateResource.cache
 D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.exe
 D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.pdb
-D:\GDrveSpecowka\Develop\#HELEN PROJECTS\SewingCompany\SewingCompanyManagement\obj\Debug\SewingCompanyManagement.csprojAssemblyReference.cache

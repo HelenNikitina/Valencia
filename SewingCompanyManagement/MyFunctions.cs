@@ -79,6 +79,10 @@ namespace SewingCompanyManagement
         {
             MessageBox.Show("Немає зв'язку з базою данних!");
         }
+        public static void MessageInputStringLength()
+        {
+            MessageBox.Show("Довжира вхідного тексту перевищує допустиме! Максимальна довжина 255 символів.");
+        }
         public static void MessageDataIsntCorrect(string message ="")
         {
             MessageBox.Show($"input data is not correct. {message}");
